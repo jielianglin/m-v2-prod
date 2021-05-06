@@ -133,7 +133,7 @@ export default function Gallery() {
           <div className={classes.root}>
             <Box
               display="flex"
-              flexdirection="row"
+              flexDirection="row"
               flexWrap="wrap"
               justifyContent="center"
               alignItems="center"
@@ -144,7 +144,7 @@ export default function Gallery() {
               <Grid
                 container
                 display="flex"
-                flexdirection="column"
+                flexDirection="column"
                 justify="center"
                 alignItems="center"
                 spacing={10}

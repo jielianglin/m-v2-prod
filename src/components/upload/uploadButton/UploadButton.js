@@ -9,7 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import UploadIMG from "./uploadIMG/UploadIMG.png";
-import Annotator from "../annotation/Annotator.js";
+import Annotator from "../annotation/Annotator";
 
 const styles = (theme) => ({
   root: {
