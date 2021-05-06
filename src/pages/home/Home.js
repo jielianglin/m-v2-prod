@@ -144,7 +144,7 @@ export default function Gallery() {
               <Grid
                 container
                 display="flex"
-                flexDirection="column"
+                flexdirection="column"
                 justify="center"
                 alignItems="center"
                 spacing={10}
