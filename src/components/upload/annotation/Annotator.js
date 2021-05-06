@@ -1,67 +1,71 @@
-import React from "react";
-import * as markerjs2 from "markerjs2";
+import React from "react"; 
+import ReactLassoSelect, { getCanvas } from 'react-lasso-select';
 
 export default function Annotator() {
-  const [src, setSrc] = React.useState(null);
-  const imgRef = React.useRef(null);
-
-  const handleImageSelection = (event) => {
-    let file = event.target.files[0];
-    let reader = new FileReader();
-    reader.onload = function (e) {
-      setSrc(e.target.result);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const openFileInput = () => {
-    imgRef.current?.click();
-  };
-
-  const showMarkerArea = () => {
-    if (imgRef.current !== null) {
-      // create a marker.js MarkerArea
-      const markerArea = new markerjs2.MarkerArea(imgRef.current);
-      // attach an event handler to assign annotated image back to our image element
-      markerArea.addRenderEventListener((dataUrl) => {
-        if (imgRef.current) {
-          imgRef.current.src = dataUrl;
-        }
-      });
-      // launch marker.js
-      markerArea.show();
-    }
-  };
-
+  const [src, setImage] = useState("./demo.jpg");
+  const [clippedImg, setClippedImg] = useState(
+    ""
+  );
+  const [width, setWidth] = useState(300);
+  const [logs, setLogs] = useState<string[]>([]);
+  const [disabled, setDisabled] = useState(false);
+  const init = "172,173 509,99 458,263"
+    .split(" ")
+    .map((c) => c.split(",").map(Number))
+    .map(([x, y]) => ({ x, y }));
+  const [points, setPoints] = useState<{ x: number; y: number }[]>(init);
   return (
-    <div
-      className="image-input"
-      style={{
-        width: "100%",
-        height: "200px",
-        border: "2px solid",
-        borderRadius: "5px",
-        color: " #9611ff",
-      }}
-      onClick={openFileInput}
-    >
-      <img
-        ref={imgRef}
+    <div className="App">
+      <ReactLassoSelect
+        value={points}
         src={src}
-        alt="upload_image"
-        style={{ height: "100%" }}
-        onClick={showMarkerArea}
+        disabled={disabled}
+        onChange={(path) => {
+          setPoints(path);
+        }}
+        onComplete={(path) => {
+          if (!path.length) return;
+          getCanvas(src, path, (err, canvas) => {
+            if (!err) {
+              setClippedImg(canvas.toDataURL());
+            }
+          });
+        }}
+        onImageError={() => setLogs([...logs, "image not loaded"])}
+        onImageLoad={() => setLogs([...logs, "image loaded"])}
+        imageStyle={{ width: `${width}px` }}
       />
-
-      <label>
-        <input
-          ref={imgRef}
-          style={{ display: "none" }}
-          type="file"
-          accept="image/*"
-          onChange={handleImageSelection}
-        />
-      </label>
+      <br />
+      <button onClick={() => setDisabled(!disabled)}>
+        {!disabled ? "Lock" : "Unlock"}
+      </button>
+      <button
+        onClick={() =>
+          setImage(src === "./demo.jpg" ? "./demo2.jpg" : "./demo.jpg")
+        }
+      >
+        Toggle image
+      </button>
+      Image width:{" "}
+      <input
+        type="range"
+        min="0"
+        max="1000"
+        value={width}
+        onChange={(e) => setWidth(+e.target.value)}
+      />
+      <br />
+      Points: {points.map(({ x, y }) => `${x},${y}`).join(" ")}
+      <br />
+      <img src={clippedImg} alt="clipped" />
+      <br />
+      Logs:
+      <ul
+        dangerouslySetInnerHTML={{
+          __html: logs.map((txt) => `<li>${txt}</li>`).join("")
+        }}
+      />
     </div>
   );
 }
+
