@@ -1,11 +1,13 @@
 import React from "react";
 import ReactLassoSelect, { getCanvas } from 'react-lasso-select';
 
+
 export default function Annotator() {
 
-    const src = "./demo.jpg";
+    const src = "./sample/Sample.jpg";
     const [points, setPoints] = React.useState<{ x: number; y: number }[]>([]);
     const [clippedImg, setClippedImg] = React.useState<string>();
+
     return (
         <div className="App">
             <ReactLassoSelect
