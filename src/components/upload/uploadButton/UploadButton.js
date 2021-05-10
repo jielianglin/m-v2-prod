@@ -9,7 +9,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import UploadIMG from "./uploadIMG/UploadIMG.png";
-import Annotator from "../annotation/Annotator";
+import LassoI from "../annotation/LassoI";
 
 const styles = (theme) => ({
   root: {
@@ -80,7 +80,7 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-          <Annotator />
+          <LassoI />
         </DialogContent>
       </Dialog>
     </div>
