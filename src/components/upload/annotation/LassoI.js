@@ -9,7 +9,7 @@ export default function App () {
   
   
  return (
-     <div>
+     <div style={{margin: "0 auto"}}>
 <ReactLassoSelect
         value={points}
         src={src}
@@ -28,10 +28,6 @@ export default function App () {
         }}
       />
 
-
-   {/*<div>
-    Points: {points.map(({x, y}) => `${x},${y}`).join(' ')}
-    </div>*/}
         {show && <img src={clippedImg} alt="" />}
       </div>
   

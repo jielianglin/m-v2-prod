@@ -8,11 +8,11 @@ import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
 import { useSpring, animated } from "react-spring";
-
 import { Transition } from "react-transition-group";
 import testimage1 from "./testimage1/testimage1.png";
 import testimage2 from "./testimage2/testimage2.png";
 import testimage3 from "./testimage3/testimage3.png";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,22 +59,60 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
+function shuffle(arra1) {
+  var ctr = arra1.length,
+    temp,
+    index;
+  while (ctr > 0) {
+    index = Math.floor(Math.random() * ctr);
+    ctr--;
+    temp = arra1[ctr];
+    arra1[ctr] = arra1[index];
+    arra1[index] = temp;
+  }
+  return arra1;
+}
+
 export default function Gallery() {
   const classes = useStyles();
   const [galleryMode, exploreMode] = React.useState(false);
-  const [displayShuffle, setDisplayShuffle] = React.useState([]);
   const [mount, setMount] = React.useState(false);
   const [seconds, setSeconds] = React.useState(5);
   const foo = React.useRef();
-  const [isToggled, setToggle] = React.useState(false);
-
-  const fade = useSpring({
-    opacity: isToggled ? 0 : 1,
-  });
-
+  const [list, setList] = React.useState([]);
+  
   const changeMode = () => {
-    exploreMode(true);
+  exploreMode(true);
   };
+
+  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
+
+  
+
+  const items = [
+      <UploadButton />,
+      <Paper className={classes.paper} elevation={0} />,
+      <img src={testimage2} alt="" width="110px" />,
+      <Paper className={classes.paper} elevation={0} />,
+      <img src={testimage1} alt="" width="110px" />,
+      <Paper className={classes.paper} elevation={0} />,
+      <img src={testimage3} alt="" width="110px" />,
+      <ExploreButton changeMode={changeMode} />,
+]; 
+
+const row = items.map((item, index) => (
+    <React.Fragment key={index}>
+      <Grid item>{item}</Grid>
+    </React.Fragment>
+  ));
+
+
+
+useEffect(() => {
+  
+  const mountArray = shuffle(row);
+  setList(mountArray);
+  }, []);
 
   useEffect(() => {
     setMount(true);
@@ -91,37 +129,6 @@ export default function Gallery() {
     }
   }, [seconds]);
 
-  var shuffle = require("shuffle-array"),
-    items = [
-      <UploadButton />,
-      <Paper className={classes.paper} elevation={0} />,
-      <img src={testimage2} alt="" width="110px" />,
-      <Paper className={classes.paper} elevation={0} />,
-      <img src={testimage1} alt="" width="110px" />,
-      <Paper className={classes.paper} elevation={0} />,
-      <img src={testimage3} alt="" width="110px" />,
-      <ExploreButton changeMode={changeMode} />,
-    ];
-
-  const row = items.map((item, index) => (
-    <React.Fragment key={index}>
-      <Grid item>{item}</Grid>
-    </React.Fragment>
-  ));
-
-  const animateItems = React.useCallback(() => {
-    setToggle(!isToggled);
-    setDisplayShuffle(shuffle(row));
-  }, [shuffle, row, isToggled]);
-
-  useEffect(() => {
-    console.log("firstrender");
-    const timer = setInterval(animateItems, 2000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [animateItems]);
-
   if (galleryMode) {
     return <ExploreMode />;
   } else {
@@ -129,7 +136,7 @@ export default function Gallery() {
       <div>
         <br />
         <Intro in={mount} />
-        <animated.div style={fade}>
+        <animated.div style={props}>
           <div className={classes.root}>
             <Box
               display="flex"
@@ -149,7 +156,7 @@ export default function Gallery() {
                 alignItems="center"
                 spacing={10}
               >
-                {displayShuffle}
+                {list}
               </Grid>
             </Box>
           </div>
