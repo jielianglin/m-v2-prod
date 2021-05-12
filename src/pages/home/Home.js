@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
+import IntroText from "../../components/IntroText";
+
 import { useSpring, animated } from "react-spring";
-import { Transition } from "react-transition-group";
+
 import testimage1 from "./testimage1/testimage1.png";
 import testimage2 from "./testimage2/testimage2.png";
 import testimage3 from "./testimage3/testimage3.png";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,39 +27,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#E5E5E5",
   },
 }));
-
-const Intro = ({ in: inProp }) => (
-  <Transition in={inProp} timeout={{ enter: 500, exit: 500 }}>
-    {(state) => (
-      <div
-        style={{
-          ...defaultStyle,
-          ...transitionStyles[state],
-          textAlign: "center",
-        }}
-      >
-        <Typography>
-          <i>
-            What is essential is invisible to the eye. -Antoine St. Exupery
-            (1943)
-          </i>
-        </Typography>
-      </div>
-    )}
-  </Transition>
-);
-
-const defaultStyle = {
-  transition: `transform 5000ms, opacity 5000ms ease`,
-  opacity: 1,
-};
-
-const transitionStyles = {
-  entering: { opacity: 0 },
-  entered: { opacity: 1 },
-  exiting: { opacity: 0 },
-  exited: { opacity: 0 },
-};
 
 function shuffle(arra1) {
   var ctr = arra1.length,
@@ -74,12 +43,8 @@ function shuffle(arra1) {
 }
 
 export default function Gallery() {
-  const classes = useStyles();
   const [galleryMode, exploreMode] = React.useState(false);
-
-  const [mount, setMount] = React.useState(false);
-  const [seconds, setSeconds] = React.useState(5);
-  const foo = React.useRef();
+  const classes = useStyles();
   
   
   const [list, setList] = React.useState([]);
@@ -124,20 +89,7 @@ setCount((count) => count + 1);
        setList(mountArray);}     
   }, [count]);
 
-  useEffect(() => {
-    setMount(true);
-    function tick() {
-      setSeconds((prevSeconds) => prevSeconds - 1);
-    }
-    foo.current = setInterval(() => tick(), 1000);
-  }, []);
 
-  useEffect(() => {
-    if (seconds === 0) {
-      clearInterval(foo.current);
-      setMount(false);
-    }
-  }, [seconds]);
 
   if (galleryMode) {
     return <ExploreMode />;
@@ -145,7 +97,7 @@ setCount((count) => count + 1);
     return (
       <div>
         <br />
-        <Intro in={mount} />
+        <IntroText/>
         <animated.div style={props}>
           <div className={classes.root}>
             <Box
