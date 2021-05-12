@@ -45,12 +45,8 @@ function shuffle(arra1) {
 export default function Gallery() {
   const [galleryMode, exploreMode] = React.useState(false);
   const classes = useStyles();
-  
-  
   const [list, setList] = React.useState([]);
   const [toggle, setToggle] = React.useState(false);
-  const [count, setCount] = React.useState(0); 
-  const fooTwo = React.useRef(); 
    
   const changeMode = () => {
   exploreMode(true);
@@ -78,18 +74,15 @@ const row = items.map((item, index) => (
   ));
 
 useEffect(() => {
-  function counter() {
-setCount((count) => count + 1);
-  }
-  fooTwo.current = setInterval(() => counter(), 1000); 
-  if (count === 20) {
-    setToggle(true); 
-    clearInterval(fooTwo.current);
-       const mountArray = shuffle(row);
-       setList(mountArray);}     
-  }, [count]);
-
-
+const timer = setTimeout(() => { 
+  setToggle(true); 
+    console.log("activated_fade");
+  setList(shuffle(row));
+    console.log("mounted"); 
+}, 8000);
+return() => clearTimeout(timer);
+}, []);
+  
 
   if (galleryMode) {
     return <ExploreMode />;

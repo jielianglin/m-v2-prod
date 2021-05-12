@@ -1,20 +1,8 @@
 import React, {useEffect} from 'react';
-import { makeStyles } from "@material-ui/core/styles";
+
 import Typography from "@material-ui/core/Typography";
 import { Transition } from "react-transition-group";
  
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    paddingTop: "100px",
-    flexShrink: 1,
-  },
-  paper: {
-    padding: theme.spacing(8),
-    textAlign: "center",
-    backgroundColor: "#E5E5E5",
-  },
-}));
 
 const defaultStyle = {
   transition: `transform 5000ms, opacity 5000ms ease`,
@@ -49,7 +37,6 @@ const Intro = ({ in: inProp }) => (
   </Transition>
 );
 export default function IntroText(){
-    const classes = useStyles();
     const [mount, setMount] = React.useState(false);
     const [seconds, setSeconds] = React.useState(5);
   const foo = React.useRef();
