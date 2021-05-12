@@ -76,19 +76,25 @@ function shuffle(arra1) {
 export default function Gallery() {
   const classes = useStyles();
   const [galleryMode, exploreMode] = React.useState(false);
+
   const [mount, setMount] = React.useState(false);
   const [seconds, setSeconds] = React.useState(5);
   const foo = React.useRef();
-  const [list, setList] = React.useState([]);
   
+  
+  const [list, setList] = React.useState([]);
+  const [toggle, setToggle] = React.useState(false);
+  const [count, setCount] = React.useState(0); 
+  const fooTwo = React.useRef(); 
+   
   const changeMode = () => {
   exploreMode(true);
   };
 
-  const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } })
-
+  const props = useSpring({
+    opacity: toggle ? 1 : 0,
+  });
   
-
   const items = [
       <UploadButton />,
       <Paper className={classes.paper} elevation={0} />,
@@ -106,13 +112,17 @@ const row = items.map((item, index) => (
     </React.Fragment>
   ));
 
-
-
 useEffect(() => {
-  
-  const mountArray = shuffle(row);
-  setList(mountArray);
-  }, []);
+  function counter() {
+setCount((count) => count + 1);
+  }
+  fooTwo.current = setInterval(() => counter(), 1000); 
+  if (count === 20) {
+    setToggle(true); 
+    clearInterval(fooTwo.current);
+       const mountArray = shuffle(row);
+       setList(mountArray);}     
+  }, [count]);
 
   useEffect(() => {
     setMount(true);
