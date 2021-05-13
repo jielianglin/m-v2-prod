@@ -43,8 +43,8 @@ function shuffle(arra1) {
 }
 
 export default function Gallery() {
-  const [galleryMode, exploreMode] = React.useState(false);
   const classes = useStyles();
+  const [galleryMode, exploreMode] = React.useState(false);
   const [list, setList] = React.useState([]);
   const [toggle, setToggle] = React.useState(false);
    
@@ -83,7 +83,6 @@ const timer = setTimeout(() => {
 return() => clearTimeout(timer);
 }, []);
   
-
   if (galleryMode) {
     return <ExploreMode />;
   } else {

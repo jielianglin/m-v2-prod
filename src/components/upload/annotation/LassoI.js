@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import ReactLassoSelect, { getCanvas } from 'react-lasso-select';
+import Sample from "./sample/Sample.jpg"
 
 export default function App () {
-  const [src, setSrc]= useState("./sample/Sample.jpg"); 
+  const [src, setSrc]= useState(`${Sample}`); 
   const [points, setPoints] = useState([]);
   const [clippedImg, setClippedImg] = useState();
   const [show, setShow] = useState(false); 
@@ -10,6 +11,7 @@ export default function App () {
   
  return (
      <div style={{margin: "0 auto"}}>
+
 <ReactLassoSelect
         value={points}
         src={src}
@@ -27,7 +29,6 @@ export default function App () {
           });
         }}
       />
-
         {show && <img src={clippedImg} alt="" />}
       </div>
   
