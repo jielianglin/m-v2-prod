@@ -9,8 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
-import LassoI from "../annotation/LassoI";
-import FileInput from "../../upload/FileInput"; 
+import Lasso from "../annotation/Lasso";
+
 import UploadIMG from "./uploadIMG/UploadIMG.png";
 
 
@@ -83,8 +83,7 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-          <FileInput /> 
-          <LassoI />
+          <Lasso />
         </DialogContent>
       </Dialog>
     </div>

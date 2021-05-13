@@ -12,10 +12,6 @@ import IntroText from "../../components/IntroText";
 
 import { useSpring, animated } from "react-spring";
 
-import testimage1 from "./testimage1/testimage1.png";
-import testimage2 from "./testimage2/testimage2.png";
-import testimage3 from "./testimage3/testimage3.png";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: "100px",
@@ -59,11 +55,11 @@ export default function Gallery() {
   const items = [
       <UploadButton />,
       <Paper className={classes.paper} elevation={0} />,
-      <img src={testimage2} alt="" width="110px" />,
       <Paper className={classes.paper} elevation={0} />,
-      <img src={testimage1} alt="" width="110px" />,
       <Paper className={classes.paper} elevation={0} />,
-      <img src={testimage3} alt="" width="110px" />,
+      <Paper className={classes.paper} elevation={0} />,
+      <Paper className={classes.paper} elevation={0} />,
+      <Paper className={classes.paper} elevation={0} />,
       <ExploreButton changeMode={changeMode} />,
 ]; 
 
