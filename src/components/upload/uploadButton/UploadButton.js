@@ -10,7 +10,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import Lasso from "../annotation/Lasso";
-
+import Caption from "../annotation/Caption"; 
+import Tags from "../annotation/Tags"; 
 import UploadIMG from "./uploadIMG/UploadIMG.png";
 
 
@@ -84,6 +85,8 @@ export default function CustomizedDialogs() {
         </DialogTitle>
         <DialogContent dividers>
           <Lasso />
+          <Caption />
+          <Tags />
         </DialogContent>
       </Dialog>
     </div>
