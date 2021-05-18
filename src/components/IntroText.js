@@ -16,8 +16,8 @@ const transitionStyles = {
 };
 
 let questions = [
-  "Can transforming AI practices be a healing Proccess?",
-  "How is the way we perceive the world changing due to computer vision?",
+  "Can transforming AI practices be a healing proccess?",
+  "How is the way we perceive the world changing due to image recognition algorithms?",
   "Who are the AI labourers?",
   "How can everyday users collaberate on AI?",
   "What do we sacrifice for automation?",
