@@ -10,6 +10,10 @@ import ExploreButton from "../../components/explore/exploreButton/ExploreButton"
 import ExploreMode from "./ExploreMode";
 import IntroText from "../../components/IntroText";
 
+import homeIcon from "./homeIcon/homeIcon.png";
+import solidarityIcon from "./solidarityIcon/solidarityIcon.png";
+import wellBeingIcon from "./wellBeingIcon/wellBeingIcon.png";
+
 import { useSpring, animated } from "react-spring";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(8),
     textAlign: "center",
-    backgroundColor: "#E5E5E5",
+    backgroundColor: "black",
   },
 }));
 
@@ -55,9 +59,9 @@ export default function Gallery() {
   const items = [
       <UploadButton />,
       <Paper className={classes.paper} elevation={0} />,
-      <Paper className={classes.paper} elevation={0} />,
-      <Paper className={classes.paper} elevation={0} />,
-      <Paper className={classes.paper} elevation={0} />,
+      <img src={homeIcon} alt="" width="130px" />,
+      <img src={solidarityIcon} alt="" width="130px" />,
+      <img src={wellBeingIcon} alt="" width="130px" />,
       <Paper className={classes.paper} elevation={0} />,
       <Paper className={classes.paper} elevation={0} />,
       <ExploreButton changeMode={changeMode} />,
