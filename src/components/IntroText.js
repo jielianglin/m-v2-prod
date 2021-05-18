@@ -15,6 +15,27 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
+let questions = [
+  "Can transforming AI practices be a healing Proccess?",
+  "How is the way we perceive the world changing due to computer vision?",
+  "Who are the AI labourers?",
+  "How can everyday users collaberate on AI?",
+  "What do we sacrifice for automation?",
+  "What creates AI bias, and who is affected?",
+  "How can underrepresented people have a voice in the future media landscape?",
+  "How can we build inclusive technologies?",
+  "How can we source data ethnically?",
+  "How do AI technologies impact migration flows? What are digital borders?"
+]
+
+const intro = questions.map((item, index) => (
+    <div key={index}>
+      {item}
+    </div>
+  ));
+
+const randomQuestion = intro[Math.floor(Math.random() * intro.length)];
+
 const Intro = ({ in: inProp }) => (
   <Transition in={inProp} timeout={{ enter: 500, exit: 500 }}>
     {(state) => (
@@ -26,10 +47,7 @@ const Intro = ({ in: inProp }) => (
         }}
       >
         <Typography>
-          <i>
-            What is essential is invisible to the eye. -Antoine St. Exupery
-            (1943)
-          </i>
+          {randomQuestion}
         </Typography>
       </div>
     )}
