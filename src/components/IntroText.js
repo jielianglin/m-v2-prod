@@ -22,7 +22,7 @@ let questions = [
   "How can everyday users collaberate on AI?",
   "What do we sacrifice for automation?",
   "What creates AI bias, and who is affected?",
-  "How can underrepresented people have a voice in the future media landscape?",
+  "How can those who are underrepresented have a voice in the future media landscape?",
   "How can we build inclusive technologies?",
   "How can we source data ethnically?",
   "How do AI technologies impact migration flows? What are digital borders?"
