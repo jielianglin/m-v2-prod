@@ -12,7 +12,7 @@ import IntroText from "../../components/IntroText";
 
 import HomeIconText from "./HomeIconText"; 
 import SolidarityIconText from "./SolidarityIconText";
-
+import WellBeingIconText from "./WellBeingIconText"; 
 
 import HomeIconButton from "../../components/icons/HomeIconButton";
 import SolidarityIconButton from "../../components/icons/SolidarityIconButton";
@@ -53,7 +53,7 @@ export default function Gallery() {
   const [toggle, setToggle] = React.useState(false);
   const [homeIcon, setHomeIconText] = React.useState(false);
   const [solidarityIcon, setSolidarityIconText] = React.useState(false);  
-
+  const [wellBeingIcon, setWellBeingIconText] = React.useState(false); 
    
   const changeMode = () => {
   exploreMode(true);
@@ -66,6 +66,11 @@ export default function Gallery() {
   const showSolidarityIconText = () => {
     setSolidarityIconText(true); 
   }
+
+  const showWellBeingIconText = () => {
+    setWellBeingIconText(true); 
+  }
+
   const props = useSpring({
     opacity: toggle ? 1 : 0,
   });
@@ -75,7 +80,7 @@ export default function Gallery() {
       <Paper className={classes.paper} elevation={0} />,
       <HomeIconButton showHomeIconText={showHomeIconText}/> ,
       <SolidarityIconButton showSolidarityIconText={showSolidarityIconText}/>,
-      <WellBeingIconButton />,
+      <WellBeingIconButton showWellBeingIconText={showWellBeingIconText}/>,
       <Paper className={classes.paper} elevation={0} />,
       <Paper className={classes.paper} elevation={0} />,
       <ExploreButton changeMode={changeMode} />,
@@ -100,12 +105,15 @@ return() => clearTimeout(timer);
   if (galleryMode) {
     return <ExploreMode />;
   } else {
-    if(homeIcon) {
+    if (homeIcon) {
       return <HomeIconText />; 
     } else {
-      if(solidarityIcon) {
+      if (solidarityIcon) {
         return <SolidarityIconText />; 
-      }
+      } else {
+        if (wellBeingIcon) {
+          return <WellBeingIconText />; 
+        } else {
     return (
       <div>
         <br />
@@ -138,4 +146,4 @@ return() => clearTimeout(timer);
       </div>
     );
   }
-  }}
+  }}}}
