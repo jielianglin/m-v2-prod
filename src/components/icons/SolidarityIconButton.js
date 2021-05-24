@@ -1,11 +1,13 @@
-import React from "react";
+
+import Button from "@material-ui/core/Button";
 import solidarityIcon from "./solidarityIcon/solidarityIcon.png"
 
-const showText = () => {
-return("Explanation of Solidarity"); 
-}
-
-export default function homeIconButton(){
-    return(<img src={solidarityIcon} alt="" width="130px" onClick={showText} />
+export default function homeIconButton(props){
+    return(
+        <Button>
+    <img src={solidarityIcon} alt="" width="130px" onClick={()=>{
+        props.showSolidarityIconText();
+        }} />
+    </Button>
         );
 }

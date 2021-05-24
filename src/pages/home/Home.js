@@ -9,7 +9,10 @@ import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
 import IntroText from "../../components/IntroText";
+
 import HomeIconText from "./HomeIconText"; 
+import SolidarityIconText from "./SolidarityIconText";
+
 
 import HomeIconButton from "../../components/icons/HomeIconButton";
 import SolidarityIconButton from "../../components/icons/SolidarityIconButton";
@@ -48,7 +51,8 @@ export default function Gallery() {
   const [galleryMode, exploreMode] = React.useState(false);
   const [list, setList] = React.useState([]);
   const [toggle, setToggle] = React.useState(false);
-  const [homeIcon, setHomeIconText] = React.useState(false); 
+  const [homeIcon, setHomeIconText] = React.useState(false);
+  const [solidarityIcon, setSolidarityIconText] = React.useState(false);  
 
    
   const changeMode = () => {
@@ -59,6 +63,9 @@ export default function Gallery() {
     setHomeIconText(true); 
   }
 
+  const showSolidarityIconText = () => {
+    setSolidarityIconText(true); 
+  }
   const props = useSpring({
     opacity: toggle ? 1 : 0,
   });
@@ -67,7 +74,7 @@ export default function Gallery() {
       <UploadButton />,
       <Paper className={classes.paper} elevation={0} />,
       <HomeIconButton showHomeIconText={showHomeIconText}/> ,
-      <SolidarityIconButton />,
+      <SolidarityIconButton showSolidarityIconText={showSolidarityIconText}/>,
       <WellBeingIconButton />,
       <Paper className={classes.paper} elevation={0} />,
       <Paper className={classes.paper} elevation={0} />,
@@ -96,6 +103,9 @@ return() => clearTimeout(timer);
     if(homeIcon) {
       return <HomeIconText />; 
     } else {
+      if(solidarityIcon) {
+        return <SolidarityIconText />; 
+      }
     return (
       <div>
         <br />
