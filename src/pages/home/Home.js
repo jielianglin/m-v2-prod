@@ -9,10 +9,11 @@ import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
 import IntroText from "../../components/IntroText";
+import HomeIconText from "./HomeIconText"; 
 
-import homeIcon from "./homeIcon/homeIcon.png";
-import solidarityIcon from "./solidarityIcon/solidarityIcon.png";
-import wellBeingIcon from "./wellBeingIcon/wellBeingIcon.png";
+import HomeIconButton from "../../components/icons/HomeIconButton";
+import SolidarityIconButton from "../../components/icons/SolidarityIconButton";
+import WellBeingIconButton from "../../components/icons/WellBeingIconButton";
 
 import { useSpring, animated } from "react-spring";
 
@@ -47,10 +48,16 @@ export default function Gallery() {
   const [galleryMode, exploreMode] = React.useState(false);
   const [list, setList] = React.useState([]);
   const [toggle, setToggle] = React.useState(false);
+  const [homeIcon, setHomeIconText] = React.useState(false); 
+
    
   const changeMode = () => {
   exploreMode(true);
   };
+
+  const showHomeIconText = () => {
+    setHomeIconText(true); 
+  }
 
   const props = useSpring({
     opacity: toggle ? 1 : 0,
@@ -59,9 +66,9 @@ export default function Gallery() {
   const items = [
       <UploadButton />,
       <Paper className={classes.paper} elevation={0} />,
-      <img src={homeIcon} alt="" width="130px" />,
-      <img src={solidarityIcon} alt="" width="130px" />,
-      <img src={wellBeingIcon} alt="" width="130px" />,
+      <HomeIconButton showHomeIconText={showHomeIconText}/> ,
+      <SolidarityIconButton />,
+      <WellBeingIconButton />,
       <Paper className={classes.paper} elevation={0} />,
       <Paper className={classes.paper} elevation={0} />,
       <ExploreButton changeMode={changeMode} />,
@@ -86,6 +93,9 @@ return() => clearTimeout(timer);
   if (galleryMode) {
     return <ExploreMode />;
   } else {
+    if(homeIcon) {
+      return <HomeIconText />; 
+    } else {
     return (
       <div>
         <br />
@@ -118,4 +128,4 @@ return() => clearTimeout(timer);
       </div>
     );
   }
-}
+  }}
