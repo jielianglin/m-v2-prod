@@ -5,6 +5,8 @@ import Home from "./Home";
 import Searchbar from "../../components/explore/Searchbar";
 import Visual from "../../components/explore/Visual"; 
 
+import P5Sketch from './P5Sketch';
+
 export default function ExploreMode() {
   const [exploreMode, galleryMode] = React.useState(false);
 
@@ -26,6 +28,8 @@ export default function ExploreMode() {
           <UploadButton />
           </div>
         <Visual/>
+
+        <P5Sketch />
 
       </div>
     );
