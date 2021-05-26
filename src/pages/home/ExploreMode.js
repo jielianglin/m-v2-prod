@@ -5,7 +5,8 @@ import Home from "./Home";
 import Searchbar from "../../components/explore/Searchbar";
 import Visual from "../../components/explore/Visual"; 
 
-import P5Sketch from './P5Sketch';
+import Sketch from '../../components/upload/annotation/P5Sketch';
+
 
 export default function ExploreMode() {
   const [exploreMode, galleryMode] = React.useState(false);
@@ -29,7 +30,7 @@ export default function ExploreMode() {
           </div>
         <Visual/>
 
-        <P5Sketch />
+        <Sketch />
 
       </div>
     );
