@@ -1,11 +1,11 @@
-import React from 'react'; 
+import React from 'react';
 import Particles from 'react-particles-js';
-import './Visual.css';
+import './VisualPreview.css'; 
 
 class Visual extends React.Component {
 	render () {
 		return (
-      <div className="particles">
+      <div style={{ borderRadius:"3px", height:"130px", width:"130px"}} className="particles">
 			<Particles  
         params={{
         particles: {
@@ -45,7 +45,7 @@ class Visual extends React.Component {
             }
           },
           size: {
-            value: 2,
+            value: 5,
             random: true,
             anim: {
               enable: true,
@@ -80,11 +80,11 @@ class Visual extends React.Component {
           detect_on: "window",
           events: {
             onhover: {
-              enable: true,
+              enable: false,
               mode: "bubble"
             },
             onclick: {
-              enable: true,
+              enable: false,
               mode: "bubble"
             },
             resize: true

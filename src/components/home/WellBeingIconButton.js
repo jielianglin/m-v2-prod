@@ -1,5 +1,5 @@
 import Button from "@material-ui/core/Button";
-import wellBeingIcon from "./wellBeingIcon/wellBeingIcon.png"
+import wellBeingIcon from "./icons/wellBeingIcon/wellBeingIcon.png"
 
 export default function WellBeingIcon(props){
   

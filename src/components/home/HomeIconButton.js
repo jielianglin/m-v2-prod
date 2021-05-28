@@ -1,6 +1,6 @@
 
 import Button from "@material-ui/core/Button";
-import homeIcon from "./homeIcon/homeIcon.png"
+import homeIcon from "./icons/homeIcon/homeIcon.png"
 
 
 export default function HomeIconButton(props){

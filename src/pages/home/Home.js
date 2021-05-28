@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
+import "./Home.css"; 
 
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 
+import VisualPreview from "../../components/home/VisualPreview"; 
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
 import IntroText from "../../components/IntroText";
 
-import HomeIconText from "./HomeIconText"; 
-import SolidarityIconText from "./SolidarityIconText";
-import WellBeingIconText from "./WellBeingIconText"; 
+import HomeIconText from "../../components/home/HomeIconText"; 
+import SolidarityIconText from "../../components/home/SolidarityIconText";
+import WellBeingIconText from "../../components/home/WellBeingIconText"; 
 
-import HomeIconButton from "../../components/icons/HomeIconButton";
-import SolidarityIconButton from "../../components/icons/SolidarityIconButton";
-import WellBeingIconButton from "../../components/icons/WellBeingIconButton";
+import HomeIconButton from "../../components/home/HomeIconButton";
+import SolidarityIconButton from "../../components/home/SolidarityIconButton";
+import WellBeingIconButton from "../../components/home/WellBeingIconButton";
 
 import { useSpring, animated } from "react-spring";
 
@@ -24,11 +25,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: "100px",
     flexShrink: 1,
-  },
-  paper: {
-    padding: theme.spacing(8),
-    textAlign: "center",
-    backgroundColor: "black",
   },
 }));
 
@@ -77,12 +73,12 @@ export default function Gallery() {
   
   const items = [
       <UploadButton />,
-      <Paper className={classes.paper} elevation={0} />,
+      <VisualPreview/>,
       <HomeIconButton showHomeIconText={showHomeIconText}/> ,
       <SolidarityIconButton showSolidarityIconText={showSolidarityIconText}/>,
       <WellBeingIconButton showWellBeingIconText={showWellBeingIconText}/>,
-      <Paper className={classes.paper} elevation={0} />,
-      <Paper className={classes.paper} elevation={0} />,
+      <VisualPreview/>,
+      <VisualPreview/>,
       <ExploreButton changeMode={changeMode} />,
 ]; 
 
@@ -115,7 +111,8 @@ return() => clearTimeout(timer);
           return <WellBeingIconText />; 
         } else {
     return (
-      <div>
+      
+      <div className="iconGallery" >
         <br />
         <IntroText/>
         <animated.div style={props}>
@@ -144,6 +141,7 @@ return() => clearTimeout(timer);
           </div>
         </animated.div>
       </div>
+      
     );
   }
   }}}}

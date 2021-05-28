@@ -9,7 +9,7 @@ import News from "./pages/News";
 
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <React.Fragment>
         <CssBaseline></CssBaseline>
       </React.Fragment>

@@ -28,13 +28,17 @@ export default function Marker() {
 
     const draw = p5 => {
         p5.image(img, 0, 0); 
-        if(p5.mouseIsPressed) {
+        
+       pg.strokeWeight(penSize);
+       pg.stroke(colorPicker.color());
+       pg.beginShape();
+       if(p5.mouseIsPressed) {
                 if (penState === 0){
                     pg.line(p5.mouseX, p5.mouseY,p5.pmouseX, p5.pmouseY);
                 }
         }
-       pg.strokeWeight(penSize);
-       pg.stroke(colorPicker.color());
+        
+       pg.endShape(p5.CLOSE);
         p5.image(pg, 0, 0);
     }
 

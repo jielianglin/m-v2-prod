@@ -1,6 +1,6 @@
 
 import Button from "@material-ui/core/Button";
-import solidarityIcon from "./solidarityIcon/solidarityIcon.png"
+import solidarityIcon from "./icons/solidarityIcon/solidarityIcon.png"
 
 export default function homeIconButton(props){
     return(
