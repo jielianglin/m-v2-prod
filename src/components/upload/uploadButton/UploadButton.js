@@ -9,10 +9,11 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
+import Sketch from '../../upload/annotation/P5Sketch';
 import Lasso from "../annotation/Lasso";
 import Caption from "../annotation/Caption"; 
-import Tags from "../annotation/Tags"; 
-import UploadIMG from "./uploadIMG/UploadIMG.png";
+import Tags from "../annotation/Tags";
+import UploadIMG from './uploadIMG/UploadIMG.png';  
 
 
 const styles = (theme) => ({
@@ -84,6 +85,7 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
+          <Sketch />
           <Lasso />
           <Caption />
           <Tags />
