@@ -111,7 +111,7 @@ return() => clearTimeout(timer);
           return <WellBeingIconText />; 
         } else {
     return (
-      
+  
       <div className="iconGallery" >
         <br />
         <IntroText/>

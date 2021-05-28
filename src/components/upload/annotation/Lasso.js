@@ -41,6 +41,7 @@ Choose image
 
 <ReactLassoSelect
         value={points}
+        stroke={'blue'}
         src={src}
         onChange={value => {
           setPoints(value);

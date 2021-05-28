@@ -5,7 +5,7 @@ import Home from "./Home";
 import Searchbar from "../../components/explore/Searchbar";
 import Visual from "../../components/explore/Visual"; 
 
-import Sketch from '../../components/upload/annotation/P5Sketch';
+
 
 
 export default function ExploreMode() {
@@ -29,8 +29,6 @@ export default function ExploreMode() {
           <UploadButton />
           </div>
         <Visual/>
-
-        <Sketch />
 
       </div>
     );
