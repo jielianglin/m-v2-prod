@@ -10,7 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import P5Vector from "../../upload/annotation/P5Vector"; 
-import P5Sketch from '../../upload/annotation/P5Sketch';
+import P5Mask from '../annotation/P5Mask';
 import Lasso from "../annotation/Lasso";
 import Caption from "../annotation/Caption"; 
 import Tags from "../annotation/Tags";
@@ -87,7 +87,7 @@ export default function CustomizedDialogs() {
         </DialogTitle>
         <DialogContent dividers>
          <P5Vector/>
-          <P5Sketch />
+          <P5Mask />
           <Lasso />
           <Caption />
           <Tags />

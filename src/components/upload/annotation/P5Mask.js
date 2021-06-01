@@ -1,9 +1,6 @@
 import Sketch from 'react-p5';
 import Sample from './sample/Sample.jpg';
 
-let penSize = 2;
-let penState = 0;
-
 let colorPicker;
 let height; 
 let color;
@@ -28,12 +25,10 @@ export default function Marker() {
 
     const draw = p5 => {
        p5.image(img, 0, 0);
-       pg.strokeWeight(penSize);
+       pg.fill(colorPicker.color())
        pg.stroke(colorPicker.color());
-       if(p5.mouseIsPressed) {
-                if (penState === 0){
-                    pg.line(p5.mouseX, p5.mouseY,p5.pmouseX, p5.pmouseY);
-                }
+       if(p5.mouseIsPressed) {   
+                    pg.ellipse(p5.mouseX, p5.mouseY, 25);
         }
         
         p5.image(pg, 0, 0);
