@@ -86,7 +86,7 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-          <P5Vector/> 
+         <P5Vector/>
           <P5Sketch />
           <Lasso />
           <Caption />
