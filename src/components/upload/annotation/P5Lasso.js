@@ -28,7 +28,7 @@ export default function Vector(){
         p5.createCanvas(600,600).parent(canvasParentRef);
         pg = p5.createGraphics(600, 600); 
         colorPicker = p5.createColorPicker('#ed225d');
-        colorPicker.position(p5.width/3, p5.height-20);         
+        colorPicker.position(p5.width/3, p5.height-20);        
     }
 
     const draw = p5 => {
@@ -43,10 +43,11 @@ export default function Vector(){
             if (p5.mouseIsPressed){
                     if (penState === 0){
                     pg.stroke(colorPicker.color()); 
-                    pg.line(x, y, px, py); 
+                    pg.line(x, y, px, py);
                     currentPath.push([x, y]); 
                     init = currentPath[0]; 
-                    console.log(init);}
+                    console.log(init);
+                }
             }
             p5.image(pg, 0, 0);
     }
