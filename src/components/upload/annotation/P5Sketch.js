@@ -27,7 +27,7 @@ export default function Marker() {
 
 
     const draw = p5 => {
-       p5.image(img, 0, 0); 
+       p5.image(img, 0, 0);
        pg.strokeWeight(penSize);
        pg.stroke(colorPicker.color());
        if(p5.mouseIsPressed) {
