@@ -1,3 +1,5 @@
+import React from 'react'; 
+
 import Sketch from 'react-p5';
 import Sample from './sample/Sample.jpg';
 
@@ -6,7 +8,9 @@ let penState = 0;
 
 let init; 
 var x, y, px, py;
-var coords = []; 
+var paths = [];
+var currentPath = [];
+
 
 let colorPicker;
 
@@ -40,8 +44,8 @@ export default function Vector(){
                     if (penState === 0){
                     pg.stroke(colorPicker.color()); 
                     pg.line(x, y, px, py); 
-                    coords.push([x, y]); 
-                    init = coords[0]; 
+                    currentPath.push([x, y]); 
+                    init = currentPath[0]; 
                     console.log(init);}
             }
             p5.image(pg, 0, 0);
@@ -49,6 +53,8 @@ export default function Vector(){
 
     const mouseReleased = () => { 
         pg.line(x, y, ...init); 
+        currentPath = []; 
+        paths.push(currentPath); 
     }
 
      return <Sketch preload={preload} setup={setup} draw={draw} mouseReleased={mouseReleased}/>  
