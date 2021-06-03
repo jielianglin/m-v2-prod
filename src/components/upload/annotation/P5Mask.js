@@ -21,8 +21,6 @@ export default function Marker() {
         colorPicker.position(0, height + 5);
     }
 
-
-
     const draw = p5 => {
        p5.image(img, 0, 0);
        pg.fill(colorPicker.color())
