@@ -21,6 +21,8 @@ import WellBeingIconButton from "../../components/home/WellBeingIconButton";
 
 import { useSpring, animated } from "react-spring";
 
+import DesertVisualisation from "../../components/home/DesertVisualization"; 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: "100px",
@@ -111,8 +113,9 @@ return() => clearTimeout(timer);
           return <WellBeingIconText />; 
         } else {
     return (
-  
+<div> <DesertVisualisation />
       <div className="iconGallery" >
+        
         <br />
         <IntroText/>
         <animated.div style={props}>
@@ -141,7 +144,7 @@ return() => clearTimeout(timer);
           </div>
         </animated.div>
       </div>
-      
+      </div>
     );
   }
   }}}}

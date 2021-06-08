@@ -1,12 +1,8 @@
 import React from 'react'; 
-
 import Sketch from 'react-p5';
 import Sample from './sample/Sample.jpg';
 
-
-
 var x, y; 
-
 
 var r; 
 
@@ -14,7 +10,6 @@ var r;
 
 
 export default function P5Mold(){
-
 
     const setup = (p5, canvasParentRef) => {
         p5.createCanvas(1200,600).parent(canvasParentRef);
@@ -33,10 +28,10 @@ export default function P5Mold(){
 
     const draw = p5 => {
         p5.background(225);
-        p5.translate(width/2, height/2); 
+        p5.translate(p5.width/2, p5.height/2); 
         
         p5.push();
-        p5.scale(mouseX/100, mouseY/100);
+        p5.scale(p5.mouseX/100, p5.mouseY/100);
         
         p5.translate(p5.width/2, p5.height/2); 
         p5.beginShape();
