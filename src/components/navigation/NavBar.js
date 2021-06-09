@@ -5,9 +5,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
 
+import LogoButton from './LogoButton.js'; 
 import MenuListComposition from "./MenuListComposition";
 
-import InfoModal from "./InfoModal";
+import Link from "@material-ui/core/Button"; 
+import logo from "./logo/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +29,7 @@ export default function NavBar() {
       <div className={classes.root}>
         <AppBar position="static" color="transparent" elevation={0}>
           <Toolbar>
-            <InfoModal />
+            <LogoButton />
             <Typography variant="h6" className={classes.title}></Typography>
             <MenuListComposition />
           </Toolbar>
