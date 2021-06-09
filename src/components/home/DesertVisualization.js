@@ -3,7 +3,7 @@ import Sketch from 'react-p5';
 
 var t;
 var alpha = []; 
-for(var i = 1; i > 0 && i <= 14; i++){
+for(var i = 1; i > 0, i <= 14; i++){
     alpha.push(i);
 }
 

@@ -44,9 +44,10 @@ const Intro = ({ in: inProp }) => (
           ...defaultStyle,
           ...transitionStyles[state],
           textAlign: "center",
+          padding:"50px"
         }}
       >
-        <Typography>
+        <Typography variant='h2'>
           {randomQuestion}
         </Typography>
       </div>

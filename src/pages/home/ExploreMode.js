@@ -15,7 +15,6 @@ export default function ExploreMode() {
     galleryMode(true);
   };
 
-
   if (exploreMode) {
     return <Home />;
   } else {

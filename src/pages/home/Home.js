@@ -9,7 +9,8 @@ import VisualPreview from "../../components/home/VisualPreview";
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
-import IntroText from "../../components/IntroText";
+import IntroText from "../../components/home/IntroText";
+import DesertVisualisation from "../../components/home/DesertVisualization"; 
 
 import HomeIconText from "../../components/home/HomeIconText"; 
 import SolidarityIconText from "../../components/home/SolidarityIconText";
@@ -21,7 +22,7 @@ import WellBeingIconButton from "../../components/home/WellBeingIconButton";
 
 import { useSpring, animated } from "react-spring";
 
-import DesertVisualisation from "../../components/home/DesertVisualization"; 
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -113,11 +114,16 @@ return() => clearTimeout(timer);
           return <WellBeingIconText />; 
         } else {
     return (
-<div> <DesertVisualisation />
-      <div className="iconGallery" >
+      <div > 
         
+        <div className="desertVisualisation" style={{position: "absolute", zIndex: 1}}>
+      <DesertVisualisation />
+      </div>
+      <div className="IntroText" style={{position:"absolute", zIndex: 2 }}>
+          <IntroText/>
+        </div>
+      <div className="iconGallery" style={{position:"absolute", left:"20%", zIndex: "auto" }} >
         <br />
-        <IntroText/>
         <animated.div style={props}>
           <div className={classes.root}>
             <Box
