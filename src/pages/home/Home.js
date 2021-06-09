@@ -120,9 +120,10 @@ return() => clearTimeout(timer);
       <DesertVisualisation />
       </div>
       <div className="IntroText" style={{position:"absolute", zIndex: 2 }}>
+        <br/>
           <IntroText/>
         </div>
-      <div className="iconGallery" style={{position:"absolute", left:"20%", zIndex: "auto" }} >
+      <div className="iconGallery" style={{position:"absolute", left:"50%", marginLeft:"-400px", zIndex: "auto" }} >
         <br />
         <animated.div style={props}>
           <div className={classes.root}>
