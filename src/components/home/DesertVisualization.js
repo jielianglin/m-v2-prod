@@ -2,11 +2,13 @@ import React from 'react';
 import Sketch from 'react-p5'; 
 
 var t;
-var alpha = []; 
-for(var i = 1; i > 0, i <= 14; i++){
-    alpha.push(i);
-}
 
+var n; 
+var alpha = []; 
+for(var i = 1; i <= 14; i++){
+    alpha.push(i);
+    alpha.splice(alpha.indexOf(n), 0);
+}
 var random; 
 
 export default function DesertVisualization() {
@@ -16,10 +18,8 @@ const setup = (p5, canvasParentRef) => {
   p5.noStroke();
   random = Math.floor(Math.random()* alpha.length); 
   console.log(random); 
-  p5.fill(230,218,202, random);
-  console.log(); 
+  p5.fill(230,218,202, random); 
   t = 0;
-  
 }
 
 const draw = p5 => {
@@ -37,8 +37,10 @@ const draw = p5 => {
   t += 0.005
 ;
 
-
   // clear the background every 500 frames using mod (%) operator
+ if (p5.frameCount % 1000 == 0) {
+	p5.noLoop();
+  }
 }
 
 return <Sketch setup={setup} draw={draw} />
