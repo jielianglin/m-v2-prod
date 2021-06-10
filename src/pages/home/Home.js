@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 
-import VisualPreview from "../../components/home/VisualPreview"; 
+import ParticlesPreview from "../../components/home/ParticlesPreview"; 
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
@@ -76,12 +76,12 @@ export default function Gallery() {
   
   const items = [
       <UploadButton />,
-      <VisualPreview/>,
+      <ParticlesPreview/>,
       <HomeIconButton showHomeIconText={showHomeIconText}/> ,
       <SolidarityIconButton showSolidarityIconText={showSolidarityIconText}/>,
       <WellBeingIconButton showWellBeingIconText={showWellBeingIconText}/>,
-      <VisualPreview/>,
-      <VisualPreview/>,
+      <ParticlesPreview/>,
+      <ParticlesPreview/>,
       <ExploreButton changeMode={changeMode} />,
 ]; 
 

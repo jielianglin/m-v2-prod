@@ -1,11 +1,19 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import './VisualPreview.css'; 
+import './ParticlesPreview.css'; 
 
 class Visual extends React.Component {
 	render () {
 		return (
-      <div style={{ borderRadius:"3px", height:"130px", width:"130px"}} className="particles">
+      <div 
+      style={{ 
+        borderRadius:"3px", 
+        height:"130px", 
+        width:"130px", 
+        boxShadow: "3px 3px 3px #b4beb7"
+      }} 
+        className="particles">
+
 			<Particles  
         params={{
         particles: {
