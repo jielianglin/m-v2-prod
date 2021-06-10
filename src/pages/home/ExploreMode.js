@@ -1,7 +1,7 @@
 import React from "react";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
-import Home from "./Home";
+import Landing from "./Landing";
 import Searchbar from "../../components/explore/Searchbar";
 import Visual from "../../components/explore/Visual"; 
 
@@ -16,7 +16,7 @@ export default function ExploreMode() {
   };
 
   if (exploreMode) {
-    return <Home />;
+    return <Landing />;
   } else {
     return (
       <div style={{ padding: "50px" }}>

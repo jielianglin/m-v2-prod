@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from '@material-ui/core/Typography'
 import P5Mold from '../upload/annotation/P5Mold'; 
+import WellBeingUpload from './WellBeingUpload'; 
 
 export default function WellBeingIconText() {
     return(
@@ -11,7 +12,7 @@ export default function WellBeingIconText() {
         The meaning of this word will be explored, and as well multi-cultural 
         rituals for wellbeing.
         </Typography>
-        <P5Mold/>
+        <WellBeingUpload/>
         </div>
     );
 }

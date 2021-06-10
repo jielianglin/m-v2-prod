@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from '@material-ui/core/Typography'
-import P5Lasso from "../upload/annotation/P5Lasso";
+import HomeUpload from "../landing/HomeUpload";
 
 export default function HomeIconText() {
     return(
@@ -14,8 +14,8 @@ export default function HomeIconText() {
             as well related. We would like to explore this topic from an embodied perspective 
             and to include memories, images and objects.
         </Typography>
-    <div style={{display:"block", margin:"0 auto", width:"42%"}}>
-    <P5Lasso/> 
+    <div style={{display:"block", margin:"0"}}>
+    <HomeUpload/> 
     </div>
     </div>
     );

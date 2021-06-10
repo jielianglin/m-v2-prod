@@ -8,8 +8,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import LogoButton from './LogoButton.js'; 
 import MenuListComposition from "./MenuListComposition";
 
-import Link from "@material-ui/core/Button"; 
-import logo from "./logo/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {

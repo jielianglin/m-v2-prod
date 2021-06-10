@@ -1,24 +1,24 @@
 import React, { useEffect } from "react";
-import "./Home.css"; 
+import "./Landing.css"; 
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 
-import ParticlesPreview from "../../components/home/ParticlesPreview"; 
+import ParticlesPreview from "../../components/landing/ParticlesPreview"; 
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
-import IntroText from "../../components/home/IntroText";
-import DesertVisualisation from "../../components/home/DesertVisualization"; 
+import IntroText from "../../components/landing/IntroText";
+import DesertVisualisation from "../../components/landing/DesertVisualization"; 
 
-import HomeIconText from "../../components/home/HomeIconText"; 
-import SolidarityIconText from "../../components/home/SolidarityIconText";
-import WellBeingIconText from "../../components/home/WellBeingIconText"; 
+import HomeIconText from "../../components/landing/HomeIconText"; 
+import SolidarityIconText from "../../components/landing/SolidarityIconText";
+import WellBeingIconText from "../../components/landing/WellBeingIconText"; 
 
-import HomeIconButton from "../../components/home/HomeIconButton";
-import SolidarityIconButton from "../../components/home/SolidarityIconButton";
-import WellBeingIconButton from "../../components/home/WellBeingIconButton";
+import HomeIconButton from "../../components/landing/HomeIconButton";
+import SolidarityIconButton from "../../components/landing/SolidarityIconButton";
+import WellBeingIconButton from "../../components/landing/WellBeingIconButton";
 
 import { useSpring, animated } from "react-spring";
 
