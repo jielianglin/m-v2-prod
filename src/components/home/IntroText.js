@@ -17,12 +17,12 @@ const transitionStyles = {
 
 let questions = [
   "Can transforming AI practices be a healing proccess?",
-  "How is the way we perceive the world changing due to image recognition algorithms?",
-  "Who are the AI labourers?",
-  "How can everyday users collaberate on AI?",
+  "How is the way we perceive the world changing due to image recognition?",
+  "Who are the AI labourers, and where are they?",
+  "How can everyday users collaberate on AI together?",
   "What do we sacrifice for automation?",
   "What creates AI bias, and who is affected?",
-  "How can those who are underrepresented have a voice in the future media landscape?",
+  "Can underrepresented peoples have a voice in the future media landscape?",
   "How can we build inclusive technologies?",
   "How can we source data ethnically?",
   "How do AI technologies impact migration flows? What are digital borders?"

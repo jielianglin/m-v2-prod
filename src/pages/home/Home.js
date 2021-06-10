@@ -123,7 +123,7 @@ return() => clearTimeout(timer);
         <br/>
           <IntroText/>
         </div>
-      <div className="iconGallery" style={{position:"absolute", left:"50%", marginLeft:"-400px", zIndex: "auto" }} >
+      <div className="iconGallery" style={{position:"absolute", left:"50%", marginLeft:"-400px", zIndex: 3 }} >
         <br />
         <animated.div style={props}>
           <div className={classes.root}>
