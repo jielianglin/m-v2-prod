@@ -9,9 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
-import P5Lasso from "../annotation/P5Lasso"; 
-import P5Mask from '../annotation/P5Mask';
-import Lasso from "../annotation/Lasso";
 import Caption from "../annotation/Caption"; 
 import Tags from "../annotation/Tags";
 import UploadIMG from './uploadIMG/UploadIMG.png';  
@@ -86,9 +83,6 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-         <P5Lasso/>
-          <P5Mask />
-          <Lasso />
           <Caption />
           <Tags />
         </DialogContent>
