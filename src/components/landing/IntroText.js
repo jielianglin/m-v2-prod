@@ -16,10 +16,10 @@ const transitionStyles = {
 };
 
 let questions = [
-  "Can transforming AI practices be a healing proccess?",
+  "Can transforming AI practices be a healing process?",
   "How is the way we perceive the world changing due to image recognition?",
   "Who are the AI labourers, and where are they?",
-  "How can everyday users collaberate on AI together?",
+  "Can everyday users collaberate on AI?",
   "What do we sacrifice for automation?",
   "What creates AI bias, and who is affected?",
   "Can underrepresented peoples have a voice in the future media landscape?",

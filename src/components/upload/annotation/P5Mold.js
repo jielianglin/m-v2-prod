@@ -3,11 +3,7 @@ import Sketch from 'react-p5';
 import Sample from './sample/Sample.jpg';
 
 var x, y; 
-
 var r; 
-
-
-
 
 export default function P5Mold(){
 
