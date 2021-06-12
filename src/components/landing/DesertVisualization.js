@@ -38,7 +38,7 @@ const draw = p5 => {
 ;
 
   // clear the background every 500 frames using mod (%) operator
- if (p5.frameCount % 400 == 0) {
+ if (p5.frameCount % 400 === 0) {
 	p5.noLoop();
   }
 }

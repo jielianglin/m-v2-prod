@@ -1,6 +1,5 @@
 import React from "react";
-import Typography from '@material-ui/core/Typography'
-import P5Mold from '../upload/annotation/P5Mold'; 
+import Typography from '@material-ui/core/Typography' 
 import WellBeingUpload from './WellBeingUpload'; 
 
 export default function WellBeingIconText() {

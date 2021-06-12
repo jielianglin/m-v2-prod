@@ -1,3 +1,4 @@
+import React from 'react'; 
 import Button from "@material-ui/core/Button";
 import wellBeingIcon from "./icons/wellBeingIcon/wellBeingIcon.png"
 

@@ -1,4 +1,4 @@
-
+import React from 'react'; 
 import Button from "@material-ui/core/Button";
 import solidarityIcon from "./icons/solidarityIcon/solidarityIcon.png"
 

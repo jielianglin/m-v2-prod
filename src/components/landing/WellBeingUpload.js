@@ -13,7 +13,7 @@ import P5Mold from "../upload/annotation/P5Mold";
 import Caption from "../upload/annotation/Caption"; 
 import Tags from "../upload/annotation/Tags";
 import UploadIMG from '../upload/uploadButton/uploadIMG/UploadIMG.png';  
-
+import FileInput from "../upload/FileInput"; 
 
 const styles = (theme) => ({
   root: {
@@ -55,12 +55,17 @@ const DialogContent = withStyles((theme) => ({
 
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
+  const [image, setImage] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const selectedImage = (img) => {
+    setImage(img);
   };
 
   return (
@@ -84,7 +89,8 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-        <P5Mold /> 
+          <FileInput selectedImage={selectedImage}/>
+          <P5Mold image={image}/> 
           <Caption />
           <Tags />
         </DialogContent>
