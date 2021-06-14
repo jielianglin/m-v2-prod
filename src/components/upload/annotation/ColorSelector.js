@@ -1,46 +1,34 @@
-import React from 'react'; 
-import Sketch from 'react-p5'; 
+import React from 'react';
+import { CirclePicker } from 'react-color';
 
-let c = "black"; 
-let cnv; 
+let colors = [
+"#f44336", 
+"#e91e63", 
+"#9c27b0", 
+"#673ab7", 
+"#3f51b5", 
+"#2196f3", 
+"#03a9f4", 
+"#00bcd4", 
+"#009688", 
+"#4caf50", 
+"#8bc34a", 
+"#cddc39", 
+"#ffeb3b", 
+"#ffc107", 
+"#ff9800", 
+"#ff5722", 
+"#795548", 
+"#607d8b"];
 
-export default function ColorSelector(props){
-
-const setup = (p5, canvasParentRef) => {
-cnv = p5.createCanvas(100, 20);
-cnv.position(300, 150); 
-p5.background(205);
-}
-
-const draw = p5 => {
-  if (p5.mouseIsPressed) {
-	p5.stroke(c);
-    p5.line(p5.mouseX, p5.mouseY, p5.pmouseX, p5.pmouseY);
-  }
-        p5.noStroke();
-        p5.fill("red");
-        p5.ellipse(0, 10, 20);
-        c = "red";
-
-        p5.noStroke(); 
-        p5.fill("blue");
-        p5.ellipse(40, 10, 20);
-        c="blue"; 
-
-        if (p5.mouseIsPressed) {
-  if (p5.mouseX > 0 && p5.mouseX < 10 && p5.mouseY > 0 && p5.mouseY < 10) {
-    //set the variables to random values
-    c = "red";
-  }
-  if (p5.mouseX > 0 && p5.mouseX < 80 && p5.mouseY > 0 && p5.mouseY < 10) {
-    //set the variables to random values
-    c = "blue";
-  }
-}
-}
-
-return <Sketch setup={setup} draw ={draw} />
-    
-
-
+export default function ColorSelector(){
+  return (
+  <CirclePicker
+  width="80px"
+  colors={colors}
+  circleSize={28}
+  circleSpacing={10}
+  onSwatchHover={ () => console.log()}
+  />
+  ); 
 }

@@ -1,6 +1,6 @@
 import React from 'react'; 
 import Sketch from 'react-p5';
-import ColorSelector from "./ColorSelector"; 
+
 
 import Sample from './sample/Sample.jpg';
 
