@@ -1,99 +1,29 @@
 import React from "react";
 
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-
-
 import P5Lasso from "../upload/annotation/P5Lasso";
 import ColorSelector from '../upload/annotation/ColorSelector'; 
 import Caption from "../upload/annotation/Caption"; 
 import Tags from "../upload/annotation/Tags";
-import UploadIMG from '../upload/uploadButton/uploadIMG/UploadIMG.png';  
 
 
-const styles = (theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-    color: "#9611ff",
-  },
-  closeButton: {
-    position: "absolute",
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
+export default function HomeUpload() {
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-export default function CustomizedDialogs() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <Button className="upload-button" onClick={handleClickOpen}>
-        <img src={UploadIMG} width="110px" alt="upload" />
-      </Button>
-
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-        maxWidth="md"
-        fullWidth={true}
-      >
-        <DialogTitle
-          //newTitle={newTitle}
-          id="customized-dialog-title"
-          onClose={handleClose}
-        >
-          Upload Image
-        </DialogTitle>
-        <DialogContent dividers>
+return (
       <div className="homeUploadComponents">
+        <br/>
+        <div style={{display: "flex", justifyContent:"center"}}>
         <P5Lasso /> 
+        </div>
+        <div style={{display: "flex", justifyContent:"center"}}>
         <ColorSelector /> 
+        </div>
+        <div style={{display: "flex", justifyContent:"center"}}>
         <Caption />
-        <Tags />  
+        </div>
+        <div style={{display: "flex", justifyContent:"center"}}>
+        <Tags />
+        <br/>
+        </div> 
          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
   );
-}
+  }

@@ -34,6 +34,7 @@ export default function ColorSelector(){
     onSwatchHover={ () => console.log()}
     />
     </div>
+    <br/>
     </div>
   ); 
 }

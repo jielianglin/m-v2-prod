@@ -34,7 +34,7 @@ export default function Vector(){
         py = p5.pmouseY;
 
         
-        p5.background(255);
+        p5.background(0, 0, 0, 0);
         input = p5.createFileInput(handleFile);
         input.position(p5.width/2, p5.height/2); 
         if (img) {
