@@ -31,12 +31,15 @@ const colorsArr = colors.map((color, index) => (
 export default function ColorSelector(props){
   const [color, setColor] = React.useState("#FFFFFF");
 
-  const recordColor = (color) => {
-    console.log(color.hex); 
+  const recordColor = (color, event) => {
+    props.selectColor(color.hex);
+    
+    setColor(color.hex);
+    console.log(color.hex);
   }
 
   const changeColor = (color) => {
-    setColor(color); 
+    setColor(color.hex); 
     console.log(color.hex); 
   }
 

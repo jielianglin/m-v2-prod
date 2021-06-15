@@ -1,5 +1,4 @@
 import React from "react";
-
 import P5Lasso from "../upload/annotation/P5Lasso";
 import ColorSelector from '../upload/annotation/ColorSelector'; 
 import Caption from "../upload/annotation/Caption"; 
@@ -13,9 +12,6 @@ return (
         <br/>
         <div style={{display: "flex", justifyContent:"center"}}>
         <P5Lasso /> 
-        </div>
-        <div style={{display: "flex", justifyContent:"center"}}>
-        <ColorSelector /> 
         </div>
         <div style={{display: "flex", justifyContent:"center"}}>
         <Caption />
