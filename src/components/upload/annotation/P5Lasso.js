@@ -13,7 +13,7 @@ var currentPath = [];
 let img; 
 let pg; 
 
-let c; 
+let c = "red"; 
 
 let input; 
 
@@ -24,7 +24,22 @@ export default function Vector(){
         
         pg = p5.createGraphics(400, 400);
         pg.position =(0, 300)
+
+        input = p5.createFileInput(handleFile);
+        input.position(p5.width/2, p5.height/2); 
         
+    }
+
+    
+    const handleFile = (p5) => {
+    
+    if (p5.file.type === 'image') {
+        img = p5.createImg(p5.file.data, "");
+        console.log(p5.file); 
+    } else {
+        img = null;
+        console.log(null); 
+        }
     }
 
     const draw = p5 => {
@@ -33,11 +48,10 @@ export default function Vector(){
         px = p5.pmouseX;
         py = p5.pmouseY;
 
-        
-        p5.background(0, 0, 0, 0);
-        input = p5.createFileInput(handleFile);
-        input.position(p5.width/2, p5.height/2); 
+
+
         if (img) {
+            
             p5.image(img, 0, 0, p5.width/2, p5.height/2); 
         }
         pg.strokeWeight(penSize); 
@@ -55,21 +69,16 @@ export default function Vector(){
             p5.image(pg, 0, 300);
     }
 
+
+
     const mouseReleased = () => { 
+        if (img !== null) {
         pg.line(x, y, ...init); 
         currentPath = []; 
-        paths.push(currentPath); 
+        paths.push(currentPath); }
     }
 
-    const handleFile = (p5, file) => {
-        p5.print(file);
-        if (file.type === 'image') {
-            img = p5.createImg(file.data, '');
-            img.hide();
-        } else {
-            img = null; 
-        }
-    }
+
 
      return (
        <Sketch setup={setup} draw={draw} mouseReleased={mouseReleased} handleFile={handleFile}/> 

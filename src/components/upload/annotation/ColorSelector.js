@@ -21,7 +21,26 @@ let colors = [
 "#795548", 
 "#607d8b"];
 
-export default function ColorSelector(){
+const colorsArr = colors.map((color, index) => (
+  <div key={index}>
+    {color}
+  </div>
+    )); 
+
+
+export default function ColorSelector(props){
+  const [color, setColor] = React.useState("#FFFFFF");
+
+  const recordColor = (color) => {
+    console.log(color.hex); 
+  }
+
+  const changeColor = (color) => {
+    setColor(color); 
+    console.log(color.hex); 
+  }
+
+
   return (
     <div>
       <br/>
@@ -29,9 +48,11 @@ export default function ColorSelector(){
     <CirclePicker
     width="100%"
     colors={colors}
+    color={color}
     circleSize={28}
     circleSpacing={10}
-    onSwatchHover={ () => console.log()}
+    onSwatchHover={recordColor}
+    onClick={changeColor}
     />
     </div>
     <br/>
