@@ -23,12 +23,17 @@ let colors = [
 
 export default function ColorSelector(){
   return (
-  <CirclePicker
-  width="80px"
-  colors={colors}
-  circleSize={28}
-  circleSpacing={10}
-  onSwatchHover={ () => console.log()}
-  />
+    <div>
+      <br/>
+    <div>
+    <CirclePicker
+    width="100%"
+    colors={colors}
+    circleSize={28}
+    circleSpacing={10}
+    onSwatchHover={ () => console.log()}
+    />
+    </div>
+    </div>
   ); 
 }

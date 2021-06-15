@@ -1,9 +1,6 @@
 import React from 'react'; 
 import Sketch from 'react-p5';
 
-
-import Sample from './sample/Sample.jpg';
-
 let cvs; 
 let penSize = 5;
 let penState = 0;
@@ -17,16 +14,17 @@ let img;
 let pg; 
 
 let c; 
-export default function Vector(){
 
-    const preload = p5 => {
-    img = p5.loadImage(`${Sample}`);
-    }
+let input; 
+
+export default function Vector(){
 
     const setup = (p5, canvasParentRef) => {
         cvs = p5.createCanvas(600, 600).parent(canvasParentRef);
+        
         pg = p5.createGraphics(400, 400);
-        pg.position =(0, 300)     
+        pg.position =(0, 300)
+        
     }
 
     const draw = p5 => {
@@ -35,8 +33,13 @@ export default function Vector(){
         px = p5.pmouseX;
         py = p5.pmouseY;
 
-
-        p5.image(img, 0, 100);
+        
+        p5.background(255);
+        input = p5.createFileInput(handleFile);
+        input.position(p5.width/2, p5.height/2); 
+        if (img) {
+            p5.image(img, 0, 0, p5.width/2, p5.height/2); 
+        }
         pg.strokeWeight(penSize); 
     
         
@@ -58,5 +61,17 @@ export default function Vector(){
         paths.push(currentPath); 
     }
 
-     return <Sketch preload={preload} setup={setup} draw={draw} mouseReleased={mouseReleased}/>  
+    const handleFile = (p5, file) => {
+        p5.print(file);
+        if (file.type === 'image') {
+            img = p5.createImg(file.data, '');
+            img.hide();
+        } else {
+            img = null; 
+        }
+    }
+
+     return (
+       <Sketch setup={setup} draw={draw} mouseReleased={mouseReleased} handleFile={handleFile}/> 
+       ); 
     }
