@@ -6,7 +6,8 @@ const [src, setSrc]= useState(null);
 const fileInput = useRef(null);
   
 const handleImageSelection = (event) => {
-  props.selectedImage(event.target.files[0]); 
+    props.selectImage(event.target.files[0].name); 
+    console.log(event.target.files[0].name);
 
     let file = event.target.files[0];
     let reader = new FileReader();

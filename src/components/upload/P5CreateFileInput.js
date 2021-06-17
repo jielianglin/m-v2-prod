@@ -5,11 +5,11 @@ let file;
 let input;
 let img;
 
-export default function News() {
+export default function P5CreateFileInput() {
 
   function setup(p5) {
   input = p5.createFileInput(handleFile);
-  input.p5.position(0, 0);
+  input.position(0, 0);
 }
 
 function draw(p5) {
@@ -21,9 +21,8 @@ function draw(p5) {
 
 function handleFile(p5, file) {
   console.log(file);
-  if (file.type === 'image') {
-    img = p5.createImg(file.data, '');
-    img.p5.hide();
+  if (p5.file.type === 'image') {
+    img = p5.createImg(p5.file.data, '');
   } else {
     img = null;
   }

@@ -1,88 +1,105 @@
-import React from 'react'; 
+import React, { useRef } from 'react';
 import Sketch from 'react-p5';
-import ColorSelector from './ColorSelector'; 
+import ColorSelector from './ColorSelector';
+import FileInput from '../FileInput';
 
-let cvs; 
+let cvs;
 let penSize = 5;
 let penState = 0;
 
-let init; 
+let init;
 var x, y, px, py;
 var paths = [];
 var currentPath = [];
 
-let img; 
-let pg; 
+let img;
+let pg;
+let path;
 
 
-let input; 
+export default function P5Lasso() {
+  const [color, setColor] = React.useState(['#ff0000']);
+  const [src, setSrc] = React.useState(null);
+  const fileInput = useRef(null);
 
-export default function P5Lasso(){
-const [color, setColor] = React.useState(['#ff0000']); 
+  const handleImageSelection = (event) => {
 
-    const setup = (p5, canvasParentRef) => {
-        cvs = p5.createCanvas(600, 600).parent(canvasParentRef);
-        pg = p5.createGraphics(400, 400);
-        pg.position =(0, 300)
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      setSrc(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
-        input = p5.createFileInput(handleFile);
-        input.position(p5.width/2, p5.height/2); 
-        
+  const openFileInput = () => {
+    fileInput.current.click();
+  };
+
+  function setup(p5, canvasParentRef) {
+    cvs = p5.createCanvas(600, 600).parent(canvasParentRef);
+    pg = p5.createGraphics(600, 600);
+    img = p5.loadImage(`${src}`);
+  }
+
+  function draw(p5) {
+    x = p5.mouseX;
+    y = p5.mouseY;
+    px = p5.pmouseX;
+    py = p5.pmouseY;
+
+    p5.image(img, 0, 0, 300, 300)
+    pg.strokeWeight(penSize);
+
+    if (p5.mouseIsPressed) {
+      if (penState === 0) {
+        console.log(color);
+        pg.stroke(color);
+
+        pg.line(x, y, px, py);
+        currentPath.push([x, y]);
+        init = currentPath[0];
+        console.log(init);
+      }
     }
+    p5.image(pg, 0, 0);
+    console.log('graphics renderer');
+  }
 
-    
-    const handleFile = (p5) => {
-    if (p5.file.type === 'image') {
-        img = p5.createImg(p5.file.data, "");
-        console.log(p5.file); 
-    } else {
-        img = null;
-        console.log(null); 
-        }
+  function mouseReleased(pg) {
+    if (src !== null) {
+      pg.line(x, y, ...init);
+      currentPath = [];
+      paths.push(currentPath);
     }
+  }
 
-    const draw = p5 => {
-        x = p5.mouseX;
-        y = p5.mouseY;
-        px = p5.pmouseX;
-        py = p5.pmouseY;
+  return (
 
-        if (img) {
-            
-            p5.image(img, 0, 0, p5.width/2, p5.height/2); 
-        }
-        pg.strokeWeight(penSize); 
-    
-        
-            if (p5.mouseIsPressed){
-                    if (penState === 0){
-                    console.log(color);   
-                    pg.stroke(color); 
-                     
-                    pg.line(x, y, px, py);
-                    currentPath.push([x, y]); 
-                    init = currentPath[0]; 
-                    console.log(init);
-                }
-            }
-            p5.image(pg, 0, 300);
-    }
+    <div>
+      <div>
+        <button onClick={openFileInput}>upload</button>
+        <img
+          style={{ height: "100%" }}
+          className="loaded-image"
+          src={src}
+          alt=""
+        />
+        <label>
+          <input
+            ref={fileInput}
+            style={{ display: "none" }}
+            type="file"
+            accept="image/*"
+            onChange={handleImageSelection}
+          />
+        </label>
+      </div>
+      <div>
+        <Sketch setup={setup} draw={draw} mouseReleased={mouseReleased} />
+        <ColorSelector selectColor={color => setColor(color)} />
+      </div>
+    </div>
 
-
-
-    const mouseReleased = () => { 
-        if (img !== null) {
-        pg.line(x, y, ...init); 
-        currentPath = []; 
-        paths.push(currentPath); }
-    }
-
-
-
-     return (
-         <div>
-       <Sketch setup={setup} draw={draw} mouseReleased={mouseReleased} handleFile={handleFile}/> 
-       <ColorSelector selectColor={color => setColor(color) }/>
-       </div>
-       ); 
-    }
+  );
+}
