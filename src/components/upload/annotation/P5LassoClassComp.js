@@ -75,6 +75,7 @@ export default class P5LassoClassComp extends React.Component {
 
 
                 pg.stroke(`${this.p5.color}`);
+                
                 console.log(`${this.p5.color}`);
 
                 pg.line(x, y, px, py);

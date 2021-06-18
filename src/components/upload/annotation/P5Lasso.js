@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
+import p5 from 'p5';
 
 let cvs;
 let penSize = 5;
@@ -14,32 +15,20 @@ var currentPath = [];
 
 let img;
 let pg;
-let path;
+
 
 
 export default function P5Lasso() {
   const [color, setColor] = React.useState(['#ff0000']);
-  const [src, setSrc] = React.useState(null);
-  const fileInput = useRef(null);
+  const [image, setImage] = React.useState(null);
 
-  const handleImageSelection = (event) => {
-
-    let file = event.target.files[0];
-    let reader = new FileReader();
-    reader.onload = function (e) {
-      setSrc(e.target.result);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const openFileInput = () => {
-    fileInput.current.click();
-  };
 
   function setup(p5, canvasParentRef) {
     cvs = p5.createCanvas(600, 600).parent(canvasParentRef);
     pg = p5.createGraphics(600, 600);
-    img = p5.loadImage(`${src}`);
+    img = p5.loadImage(image, img => {
+      p5.image(img, 0, 0);
+    });
   }
 
   function draw(p5) {
@@ -48,7 +37,8 @@ export default function P5Lasso() {
     px = p5.pmouseX;
     py = p5.pmouseY;
 
-    p5.image(img, 0, 0, 300, 300)
+
+    p5.image(img, 0, 0);
     pg.strokeWeight(penSize);
 
     if (p5.mouseIsPressed) {
@@ -66,40 +56,29 @@ export default function P5Lasso() {
     console.log('graphics renderer');
   }
 
-  function mouseReleased(pg) {
-    if (src !== null) {
+  function mouseReleased(p5) {
+    if (image) {
       pg.line(x, y, ...init);
       currentPath = [];
       paths.push(currentPath);
     }
   }
 
-  return (
+  if (image) {
+    return (
 
-    <div>
       <div>
-        <button onClick={openFileInput}>upload</button>
-        <img
-          style={{ height: "100%" }}
-          className="loaded-image"
-          src={src}
-          alt=""
-        />
-        <label>
-          <input
-            ref={fileInput}
-            style={{ display: "none" }}
-            type="file"
-            accept="image/*"
-            onChange={handleImageSelection}
-          />
-        </label>
-      </div>
-      <div>
-        <Sketch setup={setup} draw={draw} mouseReleased={mouseReleased} />
+        {image && (
+          <div>
+            <Sketch setup={setup} draw={draw} mouseReleased={mouseReleased} />
+          </div>
+        )}
         <ColorSelector selectColor={color => setColor(color)} />
       </div>
-    </div>
-
-  );
+    )
+  } else {
+    return (
+      <FileInput selectImage={setImage} />
+    );
+  }
 }

@@ -1,28 +1,31 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-export default function FileInput(props) { 
+export default function FileInput(props) {
 
-const [src, setSrc]= useState(null); 
-const fileInput = useRef(null);
-  
-const handleImageSelection = (event) => {
-    props.selectImage(event.target.files[0].name); 
-    console.log(event.target.files[0].name);
+  const [src, setSrc] = useState(null);
+  const fileInput = useRef(null);
 
+  const handleImageSelection = (event) => {
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = function (e) {
-    setSrc(e.target.result);
+      setSrc(e.target.result);
     };
     reader.readAsDataURL(file);
-};
+  };
 
-const openFileInput = () => {
+  useEffect(() => {
+    if (src) {
+      props.selectImage(src);
+    }
+  }, [src]);
+
+  const openFileInput = () => {
     fileInput.current.click();
   };
 
-return (
-  <div
+  return (
+    <div
       className="image-input"
       onClick={openFileInput}
       style={{
@@ -31,9 +34,9 @@ return (
         border: "2px solid",
         borderRadius: "5px",
         color: "black",
-  
+
       }}
-    
+
     >
       <img
         style={{ height: "100%" }}
@@ -52,5 +55,5 @@ return (
         />
       </label>
     </div>
- ); 
+  );
 }
