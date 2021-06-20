@@ -2,7 +2,6 @@ import React from 'react';
 import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
-import p5 from 'p5';
 
 let cvs;
 let penSize = 5;
