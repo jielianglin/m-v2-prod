@@ -3,17 +3,16 @@ import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 
-let cvs;
-let penSize = 5;
-let penState = 0;
+var penSize = 5;
+var penState = 0;
 
-let init;
+var init;
 var x, y, px, py;
 var paths = [];
 var currentPath = [];
 
-let img;
-let pg;
+var img;
+var pg;
 
 
 
@@ -23,7 +22,7 @@ export default function P5Lasso() {
 
 
   function setup(p5, canvasParentRef) {
-    cvs = p5.createCanvas(600, 600).parent(canvasParentRef);
+    p5.createCanvas(600, 600).parent(canvasParentRef);
     pg = p5.createGraphics(600, 600);
     img = p5.loadImage(image, img => {
       p5.image(img, 0, 0);
@@ -52,7 +51,6 @@ export default function P5Lasso() {
       }
     }
     p5.image(pg, 0, 0);
-    console.log('graphics renderer');
   }
 
   function mouseReleased(p5) {

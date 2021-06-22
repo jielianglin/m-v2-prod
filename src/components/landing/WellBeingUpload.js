@@ -1,100 +1,27 @@
 import React from "react";
-
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-
-import P5Mold from "../upload/annotation/P5Mold"; 
-import Caption from "../upload/annotation/Caption"; 
+import P5Mold from "../upload/annotation/P5Mold";
+import Caption from "../upload/annotation/Caption";
 import Tags from "../upload/annotation/Tags";
-import UploadIMG from '../upload/uploadButton/uploadIMG/UploadIMG.png';  
-import FileInput from "../upload/FileInput"; 
 
-const styles = (theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-    color: "#9611ff",
-  },
-  closeButton: {
-    position: "absolute",
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
-
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
-
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-export default function CustomizedDialogs() {
-  const [open, setOpen] = React.useState(false);
-  const [image, setImage] = React.useState(null);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const selectedImage = (img) => {
-    setImage(img);
-  };
+export default function WellBeingUpload() {
 
   return (
-    <div>
-      <Button className="upload-button" onClick={handleClickOpen}>
-        <img src={UploadIMG} width="110px" alt="upload" />
-      </Button>
+    <div className="wellBeingComponents">
+      <br />
 
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-        maxWidth="md"
-        fullWidth={true}
-      >
-        <DialogTitle
-          //newTitle={newTitle}
-          id="customized-dialog-title"
-          onClose={handleClose}
-        >
-          Upload Image
-        </DialogTitle>
-        <DialogContent dividers>
-          <FileInput selectedImage={selectedImage}/>
-          <P5Mold image={image}/> 
-          <Caption />
-          <Tags />
-        </DialogContent>
-      </Dialog>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <P5Mold />
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Caption />
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Tags />
+      </div>
+
+      <br />
     </div>
   );
 }

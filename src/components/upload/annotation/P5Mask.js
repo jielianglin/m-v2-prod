@@ -1,6 +1,5 @@
 import React from 'react';
 import Sketch from 'react-p5';
-
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 
