@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/navigation/NavBar";
 import About from "./pages/About";
-import Home from "./pages/home/Home";
+import Landing from "./pages/home/Landing";
 import News from "./pages/News";
 
 export default function App() {
   return (
-    <div>
+    <div className="app">
       <React.Fragment>
         <CssBaseline></CssBaseline>
       </React.Fragment>
@@ -25,7 +25,7 @@ export default function App() {
             </Route>
 
             <Route path="/">
-              <Home />
+              <Landing />
             </Route>
           </Switch>
         </main>

@@ -90,7 +90,7 @@ export default function MenuListComposition() {
                       <Link to="/news">News</Link>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <Link to="about">About</Link>
+                      <Link to="/about">About</Link>
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

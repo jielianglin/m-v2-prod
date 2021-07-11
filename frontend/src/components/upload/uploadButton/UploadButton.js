@@ -1,4 +1,5 @@
 import React from "react";
+
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,8 +9,10 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
-import UploadIMG from "./uploadIMG/UploadIMG.png";
-import Annotator from "../annotation/Annotator.js";
+import Caption from "../annotation/Caption"; 
+import Tags from "../annotation/Tags";
+import UploadIMG from './uploadIMG/UploadIMG.png';  
+
 
 const styles = (theme) => ({
   root: {
@@ -80,7 +83,8 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-          <Annotator />
+          <Caption />
+          <Tags />
         </DialogContent>
       </Dialog>
     </div>
