@@ -5,7 +5,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import LogoButton from './LogoButton.js'; 
+import LogoButton from './LogoButton.js';
+import UserLoginIcon from './UserLoginIcon';
 import MenuListComposition from "./MenuListComposition";
 
 
@@ -29,6 +30,7 @@ export default function NavBar() {
           <Toolbar>
             <LogoButton />
             <Typography variant="h6" className={classes.title}></Typography>
+            <UserLoginIcon />
             <MenuListComposition />
           </Toolbar>
         </AppBar>
