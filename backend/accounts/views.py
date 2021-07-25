@@ -1,13 +1,24 @@
 from django.shortcuts import render, redirect
+<<<<<<< HEAD
+from django.contrib.auth import (
+    authenticate,
+=======
 
 from django.contrib.auth import (
     authenticate,
     get_user_model,
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
     login,
     logout
 )
 
+<<<<<<< HEAD
+from .forms import UserLoginForm
+
+from .forms import UserRegisterForm
+=======
 from .forms import UserLoginForm, UserRegisterForm
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
 
 
 def login_view(request):
@@ -25,7 +36,10 @@ def login_view(request):
     context = {
         'form': form,
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
     return render(request, 'login.html', context)
 
 
@@ -46,7 +60,10 @@ def register_view(request):
     context = {
         'form': form,
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
     return render(request, 'signup.html', context)
 
 

@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+from pathlib import Path
+import os
+
+import secrets
+print(secrets.token_urlsafe())
+
+=======
 """
 Django settings for database project.
 
@@ -12,6 +20,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
+SECRET_KEY = os.environ.get('SECRET_KEY',
+                            '5tlXSxV4l8VfdEoIH7RycPo1Qenq4cgESxTmdrK3nKc')
+=======
 SECRET_KEY = 'django-insecure-(cujq3(oa-sk&v-%-^gxpu*nq7q&agvokccr5@zm3(9pgu^=qn'
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,12 +52,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
+    'django_extensions',
+    'django_filters',
+    'corsheaders',
+    'rest_framework',
+    'upload',
+    'accounts',
+    'search'
+]
+
+AUTH_USER_MODEL = 'accounts.User'
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+=======
     'accounts'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,8 +157,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+=======
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+<<<<<<< HEAD
+
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000'
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
+=======
+>>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
