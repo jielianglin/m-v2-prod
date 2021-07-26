@@ -2,24 +2,19 @@ import React from 'react';
 import { CirclePicker } from 'react-color';
 
 let colors = [
-  "#f44336",
-  "#e91e63",
-  "#9c27b0",
-  "#673ab7",
-  "#3f51b5",
-  "#2196f3",
-  "#03a9f4",
-  "#00bcd4",
-  "#009688",
-  "#4caf50",
-  "#8bc34a",
-  "#cddc39",
-  "#ffeb3b",
-  "#ffc107",
-  "#ff9800",
-  "#ff5722",
-  "#795548",
-  "#607d8b"];
+  "#FFFECA",
+  "#B32F23",
+  "#3477D2",
+  "#E6DAC8",
+  "#3D5320",
+  "#4A8037",
+  "#C77D56",
+  "#D562B7",
+  "#643779",
+  "#B272CE",
+  "#2C4466",
+  "#6FC5A8",
+];
 
 export default function ColorSelector(props) {
   const [color, setColor] = React.useState("#FFFFFF");
