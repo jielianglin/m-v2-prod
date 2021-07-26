@@ -2,10 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-<<<<<<< HEAD
   "proxy": "http://localhost:8000",
-=======
->>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -13,10 +10,7 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
-<<<<<<< HEAD
     "axios": "^0.21.1",
-=======
->>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
     "p5": "^1.3.1",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
@@ -54,8 +48,4 @@
       "last 1 safari version"
     ]
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8dd004ffcbde8691d0914c23e803764fcefd1a53
