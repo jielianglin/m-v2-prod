@@ -2,6 +2,7 @@ import React from 'react';
 import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
+import EraserIcon from './eraser/eraserIcon/EraserIcon.png'
 
 var smoothValue = 0.05;
 var init;
@@ -20,19 +21,19 @@ export default function P5Lasso() {
   const [image, setImage] = React.useState(null);
 
   function setup(p5, canvasParentRef) {
-    p5.createCanvas(300, 300).parent(canvasParentRef);
-    pg = p5.createGraphics(600, 600);
+    p5.createCanvas(300, 600).parent(canvasParentRef);
+    p5.background('black');
+    pg = p5.createGraphics(300, 600);
     img = p5.loadImage(image, img => {
       p5.image(img, 0, 0);
     });
 
-    clearButton = p5.createButton('Clear').style(
-      'margin: 10px; width: 100px; height: 100px'
+    clearButton = p5.createImg(`${EraserIcon}`).style(
+      'margin: 10px; width: 50px; height: 50px'
     )
-
+    clearButton.position(200, 200);
     clearButton.mousePressed(resetSketch);
   }
-
 
   function draw(p5) {
     x = p5.lerp(x, p5.mouseX, smoothValue);
@@ -41,18 +42,14 @@ export default function P5Lasso() {
     p5.image(img, 0, 0);
 
     if (p5.mouseIsPressed) {
-      lasso();
+      pg.fill(color);
+      pg.stroke(color);
+      pg.strokeWeight(5);
+      pg.ellipse(x, y, 30, 30);
+      currentPath.push([x, y]);
+      init = currentPath[0];
     }
     p5.image(pg, 0, 0);
-  }
-
-  function lasso(p5) {
-    pg.fill(color);
-    pg.stroke(color);
-    pg.strokeWeight(5);
-    pg.ellipse(x, y, 30, 30);
-    currentPath.push([x, y]);
-    init = currentPath[0];
   }
 
   function mouseReleased(p5) {
@@ -79,6 +76,7 @@ export default function P5Lasso() {
             />
           </div>
         )}
+        <br />
         <ColorSelector selectColor={color => setColor(color)} />
       </div>
     )
