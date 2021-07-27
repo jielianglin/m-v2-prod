@@ -7,14 +7,12 @@ var smoothValue = 0.05;
 var init;
 var x = 0;
 var y = 0;
-var px;
-var py;
 var path = [];
 var currentPath = [];
 var img;
 var pg;
 
-var weight;
+var clearButton;
 
 
 export default function P5Lasso() {
@@ -22,45 +20,52 @@ export default function P5Lasso() {
   const [image, setImage] = React.useState(null);
 
   function setup(p5, canvasParentRef) {
-    p5.createCanvas(600, 600).parent(canvasParentRef);
+    p5.createCanvas(300, 300).parent(canvasParentRef);
     pg = p5.createGraphics(600, 600);
     img = p5.loadImage(image, img => {
       p5.image(img, 0, 0);
     });
+
+    clearButton = p5.createButton('Clear').style(
+      'margin: 10px; width: 100px; height: 100px'
+    )
+
+    clearButton.mousePressed(resetSketch);
   }
 
-  function draw(p5) {
 
+  function draw(p5) {
     x = p5.lerp(x, p5.mouseX, smoothValue);
     y = p5.lerp(y, p5.mouseY, smoothValue);
-    px = p5.mouseX;
-    py = p5.mouseY;
 
     p5.image(img, 0, 0);
-    pg.strokeWeight(5);
-
 
     if (p5.mouseIsPressed) {
-      console.log(color);
-      pg.fill(color);
-      pg.stroke(color);
-      pg.ellipse(x, y, 30, 30);
-      currentPath.push([x, y]);
-      init = currentPath[0];
-      console.log(init);
+      lasso();
     }
-
     p5.image(pg, 0, 0);
   }
 
+  function lasso(p5) {
+    pg.fill(color);
+    pg.stroke(color);
+    pg.strokeWeight(5);
+    pg.ellipse(x, y, 30, 30);
+    currentPath.push([x, y]);
+    init = currentPath[0];
+  }
 
   function mouseReleased(p5) {
     if (image) {
-      pg.strokeWeight(30);
+      pg.strokeWeight(35);
       pg.line(x, y, ...init);
       currentPath = [];
       path.push(currentPath);
     }
+  }
+
+  function resetSketch(p5) {
+    pg.clear();
   }
 
   if (image) {
