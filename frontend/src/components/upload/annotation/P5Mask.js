@@ -4,7 +4,9 @@ import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 import EraserIcon from './eraser/EraserIcon.png'
 
-var smoothValue = 0.05;
+var slider;
+var diameter;
+var smoothValue = 0.03;
 let img;
 let pg;
 var clearButton;
@@ -30,29 +32,42 @@ export default function Mask() {
         )
         clearButton.position(200, 200);
         clearButton.mousePressed(resetSketch);
+
+        slider = p5.createSlider(10, 100, 50);
+        slider.position(200, 280);
+        slider.style('width', '80px');
+        slider.mousePressed(getDiameter);
+
     }
 
+    function getDiameter(p5) {
+        diameter = slider.value();
+        return (diameter);
+    }
     const draw = p5 => {
-        x = p5.lerp(x, p5.mouseX, smoothValue);
-        y = p5.lerp(y, p5.mouseY, smoothValue);
+        if (color) {
+            x = p5.lerp(x, p5.mouseX, smoothValue);
+            y = p5.lerp(y, p5.mouseY, smoothValue);
 
-        imgWidth = img.width;
-        imgHeight = img.height;
 
-        if (imgWidth > 0 && imgHeight > 0) {
-            p5.resizeCanvas(imgWidth, imgHeight);
-        }
+            imgWidth = img.width;
+            imgHeight = img.height;
 
-        p5.image(img, 0, 0);
+            if (imgWidth > 0 && imgHeight > 0) {
+                p5.resizeCanvas(imgWidth, imgHeight);
+            }
 
-        var transparency = p5.color(color);
-        transparency.setAlpha(5);
-        pg.noStroke();
-        pg.fill(transparency);
-        if (p5.mouseIsPressed) {
-            pg.ellipse(x, y, 50, 50);
-        }
-        p5.image(pg, 0, 0, imgWidth, imgHeight);
+            p5.image(img, 0, 0);
+
+            var transparency = p5.color(color);
+            transparency.setAlpha(7);
+            pg.noStroke();
+            pg.fill(transparency);
+            if (p5.mouseIsPressed) {
+                pg.ellipse(x, y, diameter, diameter);
+            }
+            p5.image(pg, 0, 0, imgWidth, imgHeight);
+        } else { return null }
     }
 
     function resetSketch(p5) {
