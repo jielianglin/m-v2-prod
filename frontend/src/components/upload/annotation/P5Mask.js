@@ -12,6 +12,7 @@ var x = 0;
 var y = 0;
 var imgWidth;
 var imgHeight;
+var shapeColor;
 
 export default function Mask() {
     const [color, setColor] = React.useState(['#ff0000']);
@@ -43,11 +44,13 @@ export default function Mask() {
         }
 
         p5.image(img, 0, 0);
-        pg.fill(color)
-        pg.stroke(color);
-        pg.strokeWeight(5);
+
+        var transparency = p5.color(color);
+        transparency.setAlpha(5);
+        pg.noStroke();
+        pg.fill(transparency);
         if (p5.mouseIsPressed) {
-            pg.ellipse(x, y, 30, 30);
+            pg.ellipse(x, y, 50, 50);
         }
         p5.image(pg, 0, 0, imgWidth, imgHeight);
     }
