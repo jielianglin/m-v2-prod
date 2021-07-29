@@ -1,24 +1,25 @@
 import React, { useEffect } from "react";
-import "./Landing.css"; 
+import "./Landing.css";
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 
-import ParticlesPreview from "../../components/landing/ParticlesPreview"; 
+import ParticlesPreview from "../../components/landing/ParticlesPreview";
 import UploadButton from "../../components/upload/uploadButton/UploadButton";
 import ExploreButton from "../../components/explore/exploreButton/ExploreButton";
 import ExploreMode from "./ExploreMode";
 import IntroText from "../../components/landing/IntroText";
-import DesertVisualisation from "../../components/landing/DesertVisualization"; 
+import DesertVisualisation from "../../components/landing/DesertVisualization";
 
-import HomeIconText from "../../components/landing/HomeIconText"; 
+import HomeIconText from "../../components/landing/HomeIconText";
 import SolidarityIconText from "../../components/landing/SolidarityIconText";
-import WellBeingIconText from "../../components/landing/WellBeingIconText"; 
+import WellBeingIconText from "../../components/landing/WellBeingIconText";
 
 import HomeIconButton from "../../components/landing/HomeIconButton";
 import SolidarityIconButton from "../../components/landing/SolidarityIconButton";
 import WellBeingIconButton from "../../components/landing/WellBeingIconButton";
+import useIntro from "../../components/landing/SessionStorage";
 
 import { useSpring, animated } from "react-spring";
 
@@ -47,111 +48,175 @@ function shuffle(arra1) {
 
 export default function Gallery() {
   const classes = useStyles();
+  const showAnimation = useIntro();
   const [galleryMode, exploreMode] = React.useState(false);
   const [list, setList] = React.useState([]);
   const [toggle, setToggle] = React.useState(false);
   const [homeIcon, setHomeIconText] = React.useState(false);
-  const [solidarityIcon, setSolidarityIconText] = React.useState(false);  
-  const [wellBeingIcon, setWellBeingIconText] = React.useState(false); 
-   
+  const [solidarityIcon, setSolidarityIconText] = React.useState(false);
+  const [wellBeingIcon, setWellBeingIconText] = React.useState(false);
+
+
   const changeMode = () => {
-  exploreMode(true);
+    exploreMode(true);
   };
 
   const showHomeIconText = () => {
-    setHomeIconText(true); 
+    setHomeIconText(true);
   }
 
   const showSolidarityIconText = () => {
-    setSolidarityIconText(true); 
+    setSolidarityIconText(true);
   }
 
   const showWellBeingIconText = () => {
-    setWellBeingIconText(true); 
+    setWellBeingIconText(true);
   }
 
   const props = useSpring({
     opacity: toggle ? 1 : 0,
   });
-  
-  const items = [
-      <UploadButton />,
-      <ParticlesPreview/>,
-      <HomeIconButton showHomeIconText={showHomeIconText}/> ,
-      <SolidarityIconButton showSolidarityIconText={showSolidarityIconText}/>,
-      <WellBeingIconButton showWellBeingIconText={showWellBeingIconText}/>,
-      <ParticlesPreview/>,
-      <ParticlesPreview/>,
-      <ExploreButton changeMode={changeMode} />,
-]; 
 
-const row = items.map((item, index) => (
+  const items = [
+    <UploadButton />,
+    <ParticlesPreview />,
+    <HomeIconButton showHomeIconText={showHomeIconText} />,
+    <SolidarityIconButton showSolidarityIconText={showSolidarityIconText} />,
+    <WellBeingIconButton showWellBeingIconText={showWellBeingIconText} />,
+    <ParticlesPreview />,
+    <ParticlesPreview />,
+    <ExploreButton changeMode={changeMode} />,
+  ];
+
+  const row = items.map((item, index) => (
     <React.Fragment key={index}>
       <Grid item>{item}</Grid>
     </React.Fragment>
   ));
 
-useEffect(() => {
-const timer = setTimeout(() => { 
-  setToggle(true); 
-    console.log("activated_fade");
-  setList(shuffle(row));
-    console.log("mounted"); 
-}, 8000);
-return() => clearTimeout(timer);
-}, []);
-  
+  useEffect(() => {
+    const seconds = () => {
+      if (showAnimation === true) {
+        seconds = 8000
+      } else {
+        seconds = 0
+      }
+      return seconds;
+    }
+
+    const timer = setTimeout(() => {
+      setToggle(true);
+      console.log("activated_fade");
+      setList(shuffle(row));
+      console.log("mounted");
+    }, seconds);
+    return () => clearTimeout(timer);
+  }, []);
+
   if (galleryMode) {
     return <ExploreMode />;
   } else {
     if (homeIcon) {
-      return <HomeIconText />; 
+      return <HomeIconText />;
     } else {
       if (solidarityIcon) {
-        return <SolidarityIconText />; 
+        return <SolidarityIconText />;
       } else {
         if (wellBeingIcon) {
-          return <WellBeingIconText />; 
+          return <WellBeingIconText />;
         } else {
-    return (
-      <div > 
-        
-        <div className="desertVisualisation" style={{position: "absolute", zIndex: 1}}>
-      <DesertVisualisation />
-      </div>
-      <div className="IntroText" style={{position:"absolute", zIndex: 2 }}>
-        <br/>
-          <IntroText/>
-        </div>
-      <div className="iconGallery" style={{position:"absolute", left:"50%", marginLeft:"-400px", zIndex: 3 }} >
-        <br />
-        <animated.div style={props}>
-          <div className={classes.root}>
-            <Box
-              display="flex"
-              flexDirection="row"
-              flexWrap="wrap"
-              justifyContent="center"
-              alignItems="center"
-              maxWidth="800px"
-              minWidth="100px"
-              margin="0 auto"
-            >
-              <Grid
-                container
-                display="flex"
-                flexDirection="column"
-                justify="center"
-                alignItems="center"
-                spacing={10}
-              >
-                {list}
-              </Grid>
-            </Box>
-          </div>
-        </animated.div>
-      </div>
-      </div>
-    );
+
+          return (
+
+            <div>
+
+              {showAnimation ? (
+                <div >
+                  <div className="desertVisualisation" style={{ position: "absolute", zIndex: 1 }}>
+                    <DesertVisualisation />
+                  </div>
+                  <div className="IntroText" style={{ position: "absolute", zIndex: 2 }}>
+                    <br />
+                    <IntroText />
+                  </div>
+                  <div className="iconGallery"
+                    style={{
+                      position: "absolute",
+                      left: "50%",
+                      marginLeft: "-400px",
+                      zIndex: 3
+                    }} >
+                    <br />
+                    <animated.div style={props}>
+                      <div className={classes.root}>
+                        <Box
+                          display="flex"
+                          flexDirection="row"
+                          flexWrap="wrap"
+                          justifyContent="center"
+                          alignItems="center"
+                          maxWidth="800px"
+                          minWidth="100px"
+                          margin="0 auto"
+                        >
+                          <Grid
+                            container
+                            display="flex"
+                            flexDirection="column"
+                            justify="center"
+                            alignItems="center"
+                            spacing={10}
+                          >
+                            {list}
+                          </Grid>
+                        </Box>
+                      </div>
+                    </animated.div>
+                  </div>
+                </div>
+              ) :
+
+                (
+                  <div className="iconGallery"
+                    style={{
+                      position: "absolute",
+                      left: "50%",
+                      marginLeft: "-400px",
+                      zIndex: 3
+                    }} >
+                    <br />
+                    <animated.div style={props}>
+                      <div className={classes.root}>
+                        <Box
+                          display="flex"
+                          flexDirection="row"
+                          flexWrap="wrap"
+                          justifyContent="center"
+                          alignItems="center"
+                          maxWidth="800px"
+                          minWidth="100px"
+                          margin="0 auto"
+                        >
+                          <Grid
+                            container
+                            display="flex"
+                            flexDirection="column"
+                            justify="center"
+                            alignItems="center"
+                            spacing={10}
+                          >
+                            {list}
+                          </Grid>
+                        </Box>
+                      </div>
+                    </animated.div>
+                  </div>
+                )}
+            </div>
+
+          );
+        }
+      }
+    }
   }
-  }}}}
+}

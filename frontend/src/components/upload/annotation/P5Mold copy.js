@@ -4,24 +4,20 @@ import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 import EraserIcon from './eraser/EraserIcon.png'
 
-var slider;
-var diameter;
-var smoothValue = 0.03;
-let img;
-let pg;
 var clearButton;
-var x = 0;
-var y = 0;
+var r;
+var img;
+var pg;
 var imgWidth;
 var imgHeight;
 
-
-export default function Mask() {
+export default function P5Mold() {
     const [color, setColor] = React.useState(['#ff0000']);
     const [image, setImage] = React.useState(null);
 
-    function setup(p5, canvasParentRef) {
-        p5.createCanvas(600, 600).parent(canvasParentRef);
+
+    const setup = (p5, canvasParentRef) => {
+        p5.createCanvas(400, 400).parent(canvasParentRef);
         pg = p5.createGraphics(600, 600);
         img = p5.loadImage(image, img => {
             p5.image(img, 0, 0);
@@ -32,22 +28,10 @@ export default function Mask() {
         )
         clearButton.position(200, 200);
         clearButton.mousePressed(resetSketch);
-
-        slider = p5.createSlider(10, 100, 50);
-        slider.position(200, 280);
-        slider.style('width', '80px');
-        slider.mousePressed(getDiameter);
     }
 
-    function getDiameter(p5) {
-        diameter = slider.value();
-        return (diameter);
-    }
     const draw = p5 => {
         if (color) {
-            x = p5.lerp(x, p5.mouseX, smoothValue);
-            y = p5.lerp(y, p5.mouseY, smoothValue);
-
 
             imgWidth = img.width;
             imgHeight = img.height;
@@ -58,16 +42,23 @@ export default function Mask() {
 
             p5.image(img, 0, 0);
 
-            var transparency = p5.color(color);
-            transparency.setAlpha(7);
-            pg.noStroke();
-            pg.fill(transparency);
-
             if (p5.mouseIsPressed) {
-                pg.ellipse(x, y, diameter, diameter);
-            }
+                r = p5.width * 0.50;
+                p5.noStroke();
+                p5.fill(color);
+                p5.translate(p5.width / 2, p5.height / 2);
 
-            p5.image(pg, 0, 0, imgWidth, imgHeight);
+                p5.push();
+                p5.scale(p5.mouseX / 100, p5.mouseY / 100);
+                p5.translate(p5.width / 2, p5.height / 2);
+                p5.beginShape();
+                p5.vertex(0, -r);
+                p5.quadraticVertex(r, -r, r, 0);
+                p5.quadraticVertex(r, r, 0, r);
+                p5.quadraticVertex(-r, r, -r, 0);
+                p5.quadraticVertex(-r, -r, 0, -r);
+                p5.endShape();
+            }
         } else {
             return null
         }
@@ -77,8 +68,8 @@ export default function Mask() {
         pg.clear();
     }
 
-
     if (image) {
+
         return (
             <div>
                 {image && (
@@ -89,9 +80,11 @@ export default function Mask() {
                 <ColorSelector selectColor={color => setColor(color)} />
             </div>
         )
+
     } else {
         return (
             <FileInput selectImage={setImage} />
         );
     }
 }
+
