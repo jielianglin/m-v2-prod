@@ -94,16 +94,16 @@ export default function Gallery() {
     </React.Fragment>
   ));
 
-  useEffect(() => {
-    const seconds = () => {
-      if (showAnimation === true) {
-        seconds = 8000
-      } else {
-        seconds = 0
-      }
-      return seconds;
+  const seconds = () => {
+    if (showAnimation === true) {
+      seconds = 8000
+    } else {
+      seconds = 0
     }
+    return seconds;
+  }
 
+  useEffect(() => {
     const timer = setTimeout(() => {
       setToggle(true);
       console.log("activated_fade");

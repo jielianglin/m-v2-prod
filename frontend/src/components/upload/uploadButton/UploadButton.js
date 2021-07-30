@@ -1,5 +1,6 @@
 import React from "react";
 
+import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -8,11 +9,22 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import Box from '@material-ui/core/Box';
+import Popover from "@material-ui/core/Popover";
 
-import Caption from "../annotation/Caption"; 
+import Caption from "../annotation/Caption";
 import Tags from "../annotation/Tags";
-import UploadIMG from './uploadIMG/UploadIMG.png';  
+import UploadIMG from './uploadIMG/UploadIMG.png';
 
+const useStyles = makeStyles((theme) => ({
+  popover: {
+    pointerEvents: 'none',
+  },
+  paper: {
+    padding: theme.spacing(1),
+    backgroundColor: 'transparent',
+  },
+}));
 
 const styles = (theme) => ({
   root: {
@@ -52,7 +64,10 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
+
 export default function CustomizedDialogs() {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -62,12 +77,52 @@ export default function CustomizedDialogs() {
     setOpen(false);
   };
 
+  const showPopover = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const closePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const openPopover = Boolean(anchorEl);
+
   return (
     <div>
-      <Button className="upload-button" onClick={handleClickOpen}>
+      <Button
+        className="upload-button"
+        onClick={handleClickOpen}
+        onMouseEnter={showPopover}
+        onMouseLeave={closePopover}
+      >
         <img src={UploadIMG} width="110px" alt="upload" />
       </Button>
-
+      <Popover
+        id="mouse-over-popover"
+        className={classes.popover}
+        classes={{
+          paper: classes.paper,
+        }}
+        elevation={0}
+        open={openPopover}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        onClose={closePopover}
+        disableRestoreFocus
+      >
+        <Typography variant='h6'>
+          <Box fontWeight="fontWeightRegular" >
+            upload
+          </Box>
+        </Typography>
+      </Popover>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
