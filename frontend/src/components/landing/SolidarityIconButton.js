@@ -5,6 +5,8 @@ import solidarityIcon from "./icons/solidarityIcon/solidarityIcon.png"
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from "@material-ui/core/Popover";
 import Box from '@material-ui/core/Box';
+import Chip from "@material-ui/core/Chip";
+import Avatar from '@material-ui/core/Avatar';
 
 // import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
@@ -90,7 +92,7 @@ export default function HomeIconButton(props) {
         <div>
             <img src={solidarityIcon}
                 alt=""
-                width="130px"
+                width="110px"
                 onMouseEnter={showPopover}
                 onMouseLeave={closePopover}
                 onClick={() => {
@@ -118,9 +120,7 @@ export default function HomeIconButton(props) {
                 disableRestoreFocus
             >
                 <Typography fontweight='fontWeightLight' variant='h6'>
-                    <Box fontWeight="fontWeightRegular" >
-                        Solidarity
-                    </Box>
+                    <Chip avatar={<Avatar>#</Avatar>} label="Solidarity" />
                 </Typography>
             </Popover>
         </div>

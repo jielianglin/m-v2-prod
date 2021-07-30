@@ -16,6 +16,9 @@ import Caption from "../annotation/Caption";
 import Tags from "../annotation/Tags";
 import UploadIMG from './uploadIMG/UploadIMG.png';
 
+import Chip from "@material-ui/core/Chip";
+import Avatar from '@material-ui/core/Avatar';
+
 const useStyles = makeStyles((theme) => ({
   popover: {
     pointerEvents: 'none',
@@ -95,7 +98,7 @@ export default function CustomizedDialogs() {
         onMouseEnter={showPopover}
         onMouseLeave={closePopover}
       >
-        <img src={UploadIMG} width="110px" alt="upload" />
+        <img src={UploadIMG} alt="upload" width="110px" />
       </Button>
       <Popover
         id="mouse-over-popover"
@@ -118,9 +121,7 @@ export default function CustomizedDialogs() {
         disableRestoreFocus
       >
         <Typography variant='h6'>
-          <Box fontWeight="fontWeightRegular" >
-            upload
-          </Box>
+          <Chip avatar={<Avatar>#</Avatar>} label="upload" />
         </Typography>
       </Popover>
       <Dialog

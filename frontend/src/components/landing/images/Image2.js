@@ -92,7 +92,7 @@ export default function Image2() {
                 }}
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 onClose={closePopover}
                 disableRestoreFocus

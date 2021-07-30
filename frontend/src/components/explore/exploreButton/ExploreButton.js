@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import Popover from "@material-ui/core/Popover";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
+import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles((theme) => ({
   popover: {
@@ -64,9 +65,7 @@ export default function ExploreButton(props) {
         disableRestoreFocus
       >
         <Typography variant='h6'>
-          <Box fontWeight="fontWeightRegular" >
-            explore
-          </Box>
+          <Chip label="explore" />
         </Typography>
       </Popover>
     </div>

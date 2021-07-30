@@ -5,6 +5,8 @@ import Box from '@material-ui/core/Box';
 import homeIcon from "./icons/homeIcon/homeIcon.png";
 import Popover from "@material-ui/core/Popover";
 import { makeStyles } from '@material-ui/core/styles';
+import Chip from "@material-ui/core/Chip";
+import Avatar from '@material-ui/core/Avatar';
 
 // import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
@@ -86,7 +88,7 @@ export default function HomeIconButton(props) {
       <img
         src={homeIcon}
         alt=""
-        width="130px"
+        width="110px"
         onMouseEnter={showPopover}
         onMouseLeave={closePopover}
         onClick={() => {
@@ -114,9 +116,7 @@ export default function HomeIconButton(props) {
         disableRestoreFocus
       >
         <Typography variant='h6'>
-          <Box fontWeight="fontWeightRegular">
-            Home
-          </Box>
+          <Chip avatar={<Avatar>#</Avatar>} label="Home" />
         </Typography>
       </Popover>
     </div>

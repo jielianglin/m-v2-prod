@@ -4,7 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import wellBeingIcon from "./icons/wellBeingIcon/wellBeingIcon.png"
 import Popover from "@material-ui/core/Popover";
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
+import Chip from "@material-ui/core/Chip";
+import Avatar from '@material-ui/core/Avatar';
 
 // import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
@@ -87,7 +89,7 @@ export default function WellBeingIcon(props) {
         <div>
             <img src={wellBeingIcon}
                 alt=""
-                width="130px"
+                width="110px"
                 onMouseEnter={showPopover}
                 onMouseLeave={closePopover}
                 onClick={() => {
@@ -115,9 +117,7 @@ export default function WellBeingIcon(props) {
                 disableRestoreFocus
             >
                 <Typography variant='h6'>
-                    <Box fontWeight="fontWeightRegular" >
-                        Well-being
-                    </Box>
+                    <Chip avatar={<Avatar>#</Avatar>} label="Well-Being" />
                 </Typography>
             </Popover>
         </div >
