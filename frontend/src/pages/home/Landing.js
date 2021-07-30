@@ -20,6 +20,9 @@ import HomeIconButton from "../../components/landing/HomeIconButton";
 import SolidarityIconButton from "../../components/landing/SolidarityIconButton";
 import WellBeingIconButton from "../../components/landing/WellBeingIconButton";
 import useIntro from "../../components/landing/SessionStorage";
+import Image1 from "../../components/landing/images/Image1";
+import Image2 from "../../components/landing/images/Image2";
+import Image3 from "../../components/landing/images/Image3";
 
 import { useSpring, animated } from "react-spring";
 
@@ -79,12 +82,12 @@ export default function Gallery() {
 
   const items = [
     <UploadButton />,
-    <ParticlesPreview />,
+    <Image1 />,
     <HomeIconButton showHomeIconText={showHomeIconText} />,
     <SolidarityIconButton showSolidarityIconText={showSolidarityIconText} />,
     <WellBeingIconButton showWellBeingIconText={showWellBeingIconText} />,
-    <ParticlesPreview />,
-    <ParticlesPreview />,
+    <Image2 />,
+    <Image3 />,
     <ExploreButton changeMode={changeMode} />,
   ];
 
