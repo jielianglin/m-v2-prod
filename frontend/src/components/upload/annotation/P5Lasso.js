@@ -4,7 +4,7 @@ import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 import EraserIcon from './eraser/EraserIcon.png'
 
-var smoothValue = 0.05;
+var smoothValue = 0.07;
 var init;
 var x = 0;
 var y = 0;
@@ -53,8 +53,8 @@ export default function P5Lasso() {
     if (p5.mouseIsPressed) {
       pg.fill(color);
       pg.stroke(color);
-      pg.strokeWeight(5);
-      pg.ellipse(x, y, 30, 30);
+      pg.strokeWeight(1);
+      pg.ellipse(x, y, 7, 7);
       currentPath.push([x, y]);
       init = currentPath[0];
     }
@@ -63,7 +63,7 @@ export default function P5Lasso() {
 
   function mouseReleased(p5) {
     if (image) {
-      pg.strokeWeight(35);
+      pg.strokeWeight(8);
       pg.line(x, y, ...init);
       currentPath = [];
       path.push(currentPath);
