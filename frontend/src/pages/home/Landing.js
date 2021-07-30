@@ -97,16 +97,17 @@ export default function Gallery() {
     </React.Fragment>
   ));
 
-  const seconds = () => {
+
+
+
+  useEffect(() => {
+    let seconds;
     if (showAnimation === true) {
       seconds = 8000
     } else {
       seconds = 0
     }
-    return seconds;
-  }
 
-  useEffect(() => {
     const timer = setTimeout(() => {
       setToggle(true);
       console.log("activated_fade");
@@ -179,13 +180,16 @@ export default function Gallery() {
                 </div>
               ) :
 
-                (
+                (<div>
+                  <div className="desertVisualisation" style={{ position: "absolute", zIndex: 1 }}>
+                    <DesertVisualisation />
+                  </div>
                   <div className="iconGallery"
                     style={{
                       position: "absolute",
                       left: "50%",
                       marginLeft: "-400px",
-                      zIndex: 3
+                      zIndex: 2
                     }} >
                     <br />
                     <animated.div style={props}>
@@ -214,6 +218,7 @@ export default function Gallery() {
                       </div>
                     </animated.div>
                   </div>
+                </div>
                 )}
             </div>
 

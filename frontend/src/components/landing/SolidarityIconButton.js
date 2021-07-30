@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import solidarityIcon from "./icons/solidarityIcon/solidarityIcon.png"
 import { makeStyles } from '@material-ui/core/styles';
 import Popover from "@material-ui/core/Popover";
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Chip from "@material-ui/core/Chip";
 import Avatar from '@material-ui/core/Avatar';
 

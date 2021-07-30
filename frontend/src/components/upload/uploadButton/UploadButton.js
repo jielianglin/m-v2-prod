@@ -17,7 +17,7 @@ import Tags from "../annotation/Tags";
 import UploadIMG from './uploadIMG/UploadIMG.png';
 
 import Chip from "@material-ui/core/Chip";
-import Avatar from '@material-ui/core/Avatar';
+
 
 const useStyles = makeStyles((theme) => ({
   popover: {
@@ -121,7 +121,7 @@ export default function CustomizedDialogs() {
         disableRestoreFocus
       >
         <Typography variant='h6'>
-          <Chip avatar={<Avatar>#</Avatar>} label="upload" />
+          <Chip label="upload" />
         </Typography>
       </Popover>
       <Dialog
