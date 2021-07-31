@@ -97,9 +97,6 @@ export default function Gallery() {
     </React.Fragment>
   ));
 
-
-
-
   useEffect(() => {
     let seconds;
     if (showAnimation === true) {

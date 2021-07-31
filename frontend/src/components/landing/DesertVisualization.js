@@ -43,8 +43,7 @@ export default function DesertVisualization() {
 
     p5.bezier(x1, y1, x2, y2, x3, y3, x4, y4);
 
-    t += 0.002
-      ;
+    t += 0.002;
 
     // clear the background every 500 frames using mod (%) operator
     if (p5.frameCount % 400 === 0) {
