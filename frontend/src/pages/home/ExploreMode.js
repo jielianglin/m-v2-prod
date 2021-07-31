@@ -33,9 +33,9 @@ export default function ExploreMode() {
         </div>
         <div className="controlBar"
           style={{
-            padding: "10px 25px 10px 15px",
+            padding: "10px 45px 10px 35px",
             backgroundColor: "rgba(255, 255, 255, 0.5)",
-            borderRadius: "10px",
+            borderRadius: "150px 150px 150px 150px",
             position: "absolute",
             zIndex: 2,
             width: "90%"
