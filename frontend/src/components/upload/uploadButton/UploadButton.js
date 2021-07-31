@@ -9,7 +9,6 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import Box from '@material-ui/core/Box';
 import Popover from "@material-ui/core/Popover";
 
 import Caption from "../annotation/Caption";

@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import ExploreIMG from "./exploreIMG/ExploreIMG.png";
-import Box from '@material-ui/core/Box';
 import Popover from "@material-ui/core/Popover";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";

@@ -128,9 +128,7 @@ export default function Gallery() {
         } else {
 
           return (
-
             <div>
-
               {showAnimation ? (
                 <div >
                   <div className="desertVisualisation" style={{ position: "absolute", zIndex: 1 }}>
