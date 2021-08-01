@@ -1,49 +1,49 @@
-/* eslint-disable no-use-before-define */
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import Button from '@material-ui/core/Button';
-import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import SearchBar from "material-ui-search-bar";
+import { Typography, Chip, Avatar } from "@material-ui/core";
+import Modal from "@material-ui/core/Modal";
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, DotGroup } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
-import SearchbarCarousel from './SearchbarCarousel';
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    backgroundColor: "transparent",
+    boxShadow: theme.shadows[5],
+    outline: "none",
+    borderRadius: "5px",
+  },
+  modal: {
+    display: "flex",
+    padding: "none",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
 
-const filter = createFilterOptions();
-
-export default function FreeSoloCreateOptionDialog() {
-  const [value, setValue] = React.useState(null);
-  const [open, toggleOpen] = React.useState(false);
+export default function SearchBar() {
+  const classes = useStyles();
+  const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [imageCarousel, showImageCarousel] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleClose = () => {
-    setDialogValue({
-      tags: '',
-      // themes: ''
-    });
-
-    toggleOpen(false);
+    setOpen(false);
   };
 
-  const [dialogValue, setDialogValue] = React.useState({
-    tags: '',
-    themes: ''
-  });
+  function onSubmit(e) {
+    e.preventDefault();
+    setQuery(search);
+    console.log(search);
+  }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setQuery(value);
-    console.log(value);
-    setValue({
-      tags: dialogValue.tags,
-      themes: dialogValue.themes,
-    });
-    handleClose();
-  };
+  function onSearch(e) {
+    setSearch(e.target.value);
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -54,7 +54,7 @@ export default function FreeSoloCreateOptionDialog() {
         const json = await response.json();
         console.log({ json });
         setResults(json);
-        showImageCarousel(true);
+        handleOpen();
       } catch (error) { }
     }
 
@@ -66,102 +66,119 @@ export default function FreeSoloCreateOptionDialog() {
 
   return (
     <div>
+      <SearchBar
+        placeholder='Search a tag about migration'
+        value={search}
+        onChange={onSearch}
+        onRequestSearch={onSubmit}
+      />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        className={classes.modal}
+      >
+        <CarouselProvider
+          naturalSlideWidth={100}
+          naturalSlideHeight={125}
+          totalSlides={Object.keys(data.json[i]).length}
+        >
+          <Slider className="slider">
 
-      <React.Fragment>
-        <Autocomplete
-          value={value}
-          onChange={(event, newValue) => {
-            if (typeof newValue === 'string') {
-              // timeout to avoid instant validation of the dialog's form.
-              setTimeout(() => {
-                toggleOpen(true);
-                setDialogValue({
-                  tags: newValue,
-                });
-              });
-            } else if (newValue && newValue.inputValue) {
-              toggleOpen(true);
-              setDialogValue({
-                tags: newValue.inputValue,
-              });
-            } else {
-              setValue(newValue);
-            }
-          }}
-          filterOptions={(options, params) => {
-            const filtered = filter(options, params);
+            {results.map((item) => (
+              <div>
+                <div key={item.id} className="paper-slider">
+                  <div className="slide">
+                    <Slide index={item.id}>
+                      <img
+                        key={item.id}
+                        src={`http://localhost:8000/images/${identifier}.jpeg`}
+                        alt="img-result"
+                      // onClick={handleOpen}
+                      />
 
-            if (params.inputValue !== '') {
-              filtered.push({
-                inputValue: params.inputValue,
-                title: `Add "${params.inputValue}"`,
-              });
-            }
+                    </Slide>
+                    <DotGroup />
+                  </div>
+                  <div className="caption">
+                    <Typography
+                      variant="h6"
+                      component="p"
+                      className="caption-wrap"
+                    >
+                      <i>"{item.caption}"</i>
+                    </Typography>
+                  </div>
 
-            return filtered;
-          }}
-          id="free-solo-dialog-demo"
-          options={top100Films}
-          getOptionLabel={(option) => {
-            // e.g value selected with enter, right from the input
-            if (typeof option === 'string') {
-              return option;
-            }
-            if (option.inputValue) {
-              return option.inputValue;
-            }
-            return option.title;
-          }}
-          selectOnFocus
-          clearOnBlur
-          handleHomeEndKeys
-          renderOption={(option) => option.title}
-          style={{ width: 300 }}
-          freeSolo
-          renderInput={(params) => (
-            <TextField {...params} label="Search tags about migration" variant="outlined" />
-          )}
-        />
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <form onSubmit={handleSubmit}>
-            <DialogTitle id="form-dialog-title">Search</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Search tags about migration
-              </DialogContentText>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                value={dialogValue.tags}
-                onChange={(event) => setDialogValue({ ...dialogValue, tags: event.target.value })}
-                label="title"
-                type="text"
-              />
-              <TextField
-                margin="dense"
-                id="name"
-                value={dialogValue.themes}
-                onChange={(event) => setDialogValue({ ...dialogValue, themes: event.target.value })}
-                label="year"
-                type="number"
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Cancel
-              </Button>
-              <Button type="submit" color="primary">
-                Add
-              </Button>
-            </DialogActions>
-          </form>
-        </Dialog>
-      </React.Fragment>
-      {imageCarousel &&
-        <SearchbarCarousel props={results} />
-      }
+                  <div className="mtag-wrap">
+                    <Typography className="mtag-label">
+                      Our tags:
+                    </Typography>
+                    {item.tags.map((posttag) => {
+                      console.log(posttag.tag);
+                      return (
+                        <Chip
+                          className="chip1"
+                          avatar={
+                            <Avatar>
+                              <AiOutlineNumber />
+                            </Avatar>
+                          }
+                          key={posttag.id}
+                          label={posttag.tag}
+                          component="a"
+                          href="#chip"
+                          variant="outlined"
+                          color="primary"
+                          clickable
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className="ntag-wrap">
+                    <Typography className="ntag-label">
+                      AI tags (from ImageNet):
+                    </Typography>
 
+                    {item.ai_tags.map((posttag) => {
+                      console.log(posttag.tag);
+                      return (
+                        <Chip
+                          className="chip2"
+                          style={{ color: "#668389" }}
+                          avatar={
+                            <Avatar style={{ background: "#668389" }}>
+                              <AiOutlineNumber style={{ color: "white" }} />
+                            </Avatar>
+                          }
+                          key={posttag.id}
+                          label={posttag.tag}
+                          component="a"
+                          href="#chip"
+                          clickable
+                        />
+                      );
+                    })}
+                  </div>
+                  <div>
+                    {item.ai_tags.map((aiitem) => {
+                      return (
+                        <MatchBar
+                          match={parseFloat(aiitem.confidence)}
+                          aitag={aiitem.tag}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
+          <ButtonBack>Back</ButtonBack>
+          <ButtonNext>Next</ButtonNext>
+        </CarouselProvider>
+      </Modal>
     </div>
   );
 }

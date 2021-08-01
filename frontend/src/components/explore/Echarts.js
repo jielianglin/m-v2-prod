@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
 import Popover from "@material-ui/core/Popover";
-import EchartsCarousel from "EchartsCarousel";
+
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -20,8 +20,8 @@ export default function Chart() {
     // const [response, setResponse] = React.useState( {tags: null, preview: null, carousel: null})
     const [graph, setGraph] = React.useState({ nodes: [], links: [] });
     const [imagePreview, setImagePreview] = React.useState([]);
-    const [images, setImages] = React.useState([]);
-    const [carousel, setCarousel] = React.useState(false);
+    // const [images, setImages] = React.useState([]);
+    // const [gallery, setGallery] = React.useState(false);
 
     const showPopover = (event) => {
         setAnchorEl(event.currentTarget);
@@ -40,13 +40,13 @@ export default function Chart() {
         return color;
     }
 
-    const showCarousel = () => {
-        setCarousel(true);
-    }
+    // const showCarousel = () => {
+    //     setCarousel(true);
+    // }
 
     const onEvents = {
         'mouseMove': showPopover,
-        'click': showCarousel
+        // 'click': showCarousel
     }
 
     useEffect(() => {
@@ -55,9 +55,8 @@ export default function Chart() {
             setGraph(tags.data);
             const preview = await axios.get("http://127.0.0.1:8000/images/thumbnail");
             setImagePreview(preview.data[0]);
-            const images = await axios.get("http://127.0.0.1:8000/images/image")
-            setImages(images.data);
-
+            // const images = await axios.get("http://127.0.0.1:8000/images/image")
+            // setImages(images.data);
         }
         fetchData();
     }, []);
@@ -112,11 +111,23 @@ export default function Chart() {
                 onClose={closePopover}
                 disableRestoreFocus
             >
-                {imagePreview}
+                <div
+                    style={{
+                        borderRadius: "3px",
+                        height: "110px",
+                        width: "110px",
+                        boxShadow: "3px 3px 3px #b4beb7"
+                    }}
+                >
+                    <img src={imagePreview}
+                        width="110px" alt=""
+                        style={{
+                            borderRadius: "3px",
+                            onMouseLeave={ closePopover }
+                        }}
+                        alt="" />
+                </div>
             </Popover>
-            {carousel && (
-                <EchartsCarousel images={images} />
-            )
-            }
+
         </div>);
 }
