@@ -2,7 +2,9 @@ import React from 'react';
 import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
-import EraserIcon from './eraser/EraserIcon.png'
+import EraserIcon from './eraser/EraserIcon.png';
+import Tags from './Tags';
+import Caption from './Caption';
 
 var smoothValue = 0.07;
 var init;
@@ -33,7 +35,7 @@ export default function P5Lasso() {
     clearButton = p5.createImg(`${EraserIcon}`).style(
       'margin: 10px; width: 50px; height: 50px'
     )
-    clearButton.position(200, 200);
+    clearButton.position(1175, 500);
     clearButton.mousePressed(resetSketch);
   }
 
@@ -46,6 +48,9 @@ export default function P5Lasso() {
 
     if (imgWidth > 0 && imgHeight > 0) {
       p5.resizeCanvas(imgWidth, imgHeight);
+      if (imgWidth > 800) {
+        p5.resizeCanvas(800, imgHeight);
+      }
     }
 
     p5.image(img, 0, 0);
@@ -78,15 +83,23 @@ export default function P5Lasso() {
     return (
 
       <div>
-        {image && (
-          <div>
-            <Sketch setup={setup} draw={draw}
-              mouseReleased={mouseReleased}
-            />
-          </div>
-        )}
         <br />
+        <div style={{ backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
+          <Caption />
+          {image && (
+
+            <div>
+              <br />
+              <Sketch setup={setup} draw={draw}
+                mouseReleased={mouseReleased}
+              />
+            </div>
+          )}
+          <br />
+          <Tags />
+        </div>
         <ColorSelector selectColor={color => setColor(color)} />
+
       </div>
     )
   } else {

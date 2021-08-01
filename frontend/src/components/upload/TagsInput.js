@@ -29,20 +29,21 @@ export default function TagsInput(props) {
     };
 
     return (
-        <div className="tags-input">
+        <div>
             <div>
                 {tags.map((tag, index) => (
-                    <Chip
-                        className="tags-chip"
-                        style={{ marginTop: "20px", marginRight: "5px" }}
-                        key={index}
-                        label={tag}
-                        onDelete={() => removeTags(index)}
-                        variant="outlined"
-                    />
+                    <div >
+                        <Chip
+                            className="tags-chip"
+                            style={{ marginTop: "20px", marginRight: "5px" }}
+                            key={index}
+                            label={tag}
+                            onDelete={() => removeTags(index)}
+                            variant="outlined"
+                        />
+                    </div>
                 ))}
             </div>
-            <br />
             <ThemeProvider theme={theme}>
                 <TextField
                     className="input-form"

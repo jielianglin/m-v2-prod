@@ -8,10 +8,10 @@ import { ThemeProvider } from "@material-ui/styles";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#9611ff",
+      main: "#b272ce",
     },
     secondary: {
-      main: "#668389",
+      main: "#b272ce",
     },
   },
 });
@@ -34,7 +34,7 @@ export default function TagsInput() {
         {tags.map((tag, index) => (
           <Chip
             className="tags-chip"
-            style={{ marginTop: "20px", marginRight: "5px" }}
+            style={{ marginTop: "20px", marginRight: "5px", color: "" }}
             key={index}
             label={tag}
             onDelete={() => removeTags(index)}

@@ -3,6 +3,8 @@ import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 import EraserIcon from './eraser/EraserIcon.png'
+import Tags from './Tags';
+import Caption from './Caption';
 
 var slider;
 var diameter;
@@ -30,11 +32,11 @@ export default function Mask() {
         clearButton = p5.createImg(`${EraserIcon}`).style(
             'margin: 10px; width: 50px; height: 50px'
         )
-        clearButton.position(200, 200);
+        clearButton.position(1175, 500);
         clearButton.mousePressed(resetSketch);
 
         slider = p5.createSlider(10, 100, 50);
-        slider.position(200, 280);
+        slider.position(1175, 600);
         slider.style('width', '80px');
         slider.mousePressed(getDiameter);
     }
@@ -54,6 +56,9 @@ export default function Mask() {
 
             if (imgWidth > 0 && imgHeight > 0) {
                 p5.resizeCanvas(imgWidth, imgHeight);
+                if (imgWidth > 800) {
+                    p5.resizeCanvas(800, imgHeight);
+                }
             }
 
             p5.image(img, 0, 0);
@@ -81,12 +86,19 @@ export default function Mask() {
     if (image) {
         return (
             <div>
-                {image && (
-                    <div>
-                        <Sketch setup={setup} draw={draw} />
-                    </div>
-                )}
-                <ColorSelector selectColor={color => setColor(color)} />
+                <br />
+                <div style={{ padding: "50px", height: "auto", backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7" }}>
+                    <Caption />
+                    {image && (
+                        <div>
+                            <br />
+                            <Sketch setup={setup} draw={draw} />
+                        </div>
+                    )}
+                    <ColorSelector selectColor={color => setColor(color)} />
+                    <Tags />
+                </div>
+                <br />
             </div>
         )
     } else {

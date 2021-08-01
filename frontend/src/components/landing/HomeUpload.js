@@ -12,12 +12,6 @@ export default function HomeUpload() {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <P5Lasso />
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Caption />
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Tags />
-      </div>
 
       <br />
     </div>

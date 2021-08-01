@@ -35,13 +35,13 @@ export default function ColorSelector(props) {
   return (
     <div>
       <br />
-      <div>
+      <div style={{ position: 'absolute', left: '1000px', bottom: '350px', transform: 'rotate(90deg)' }}>
         <CirclePicker
-          width="100%"
+          width="50%"
           colors={colors}
           color={color}
           circleSize={28}
-          circleSpacing={10}
+          circleSpacing={15}
           onSwatchHover={recordColor}
           onClick={changeColor}
         />

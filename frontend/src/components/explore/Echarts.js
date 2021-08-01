@@ -54,7 +54,8 @@ export default function Chart() {
             const tags = await axios.get("http://127.0.0.1:8000/tags/network");
             setGraph(tags.data);
             const preview = await axios.get("http://127.0.0.1:8000/images/thumbnail");
-            setImagePreview(preview.data[0]);
+            var randomPreview = preview[Math.floor(Math.random() * preview.length)];
+            setImagePreview(randomPreview);
             // const images = await axios.get("http://127.0.0.1:8000/images/image")
             // setImages(images.data);
         }

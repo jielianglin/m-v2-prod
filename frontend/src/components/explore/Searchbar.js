@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from "material-ui-search-bar";
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, DotGroup } from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, DotGroup, Image } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchBar() {
+export default function Search() {
   const classes = useStyles();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
@@ -41,7 +43,7 @@ export default function SearchBar() {
     console.log(search);
   }
 
-  function onSearch(e) {
+  const onSearch = (e) => {
     setSearch(e.target.value);
   }
 
@@ -66,12 +68,15 @@ export default function SearchBar() {
 
   return (
     <div>
-      <SearchBar
-        placeholder='Search a tag about migration'
-        value={search}
-        onChange={onSearch}
-        onRequestSearch={onSubmit}
-      />
+      <div style={{ padding: "15px 20px 0px 0px" }}>
+        <SearchBar
+          placeholder='Search a tag'
+          value={search}
+          onChange={onSearch}
+          onRequestSearch={onSubmit}
+          cancelOnEscape="true"
+        />
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
@@ -79,21 +84,20 @@ export default function SearchBar() {
         aria-describedby="simple-modal-description"
         className={classes.modal}
       >
-        <CarouselProvider
+        {/* <CarouselProvider
           naturalSlideWidth={100}
           naturalSlideHeight={125}
           totalSlides={Object.keys(data.json[i]).length}
         >
-          <Slider className="slider">
+          {/* <Slider className="slider">
 
-            {results.map((item) => (
+            {/* {results.map((item) => (
               <div>
                 <div key={item.id} className="paper-slider">
                   <div className="slide">
                     <Slide index={item.id}>
-                      <img
-                        key={item.id}
-                        src={`http://localhost:8000/images/${identifier}.jpeg`}
+                      <Image
+                        src={`http://localhost:8000/images/${item.id}.jpeg`}
                         alt="img-result"
                       // onClick={handleOpen}
                       />
@@ -134,14 +138,14 @@ export default function SearchBar() {
                           clickable
                         />
                       );
-                    })}
-                  </div>
-                  <div className="ntag-wrap">
+                    })} */}
+        {/* </div> */}
+        {/* <div className="ntag-wrap">
                     <Typography className="ntag-label">
                       AI tags (from ImageNet):
-                    </Typography>
+                    </Typography> */}
 
-                    {item.ai_tags.map((posttag) => {
+        {/* {item.ai_tags.map((posttag) => {
                       console.log(posttag.tag);
                       return (
                         <Chip
@@ -160,8 +164,8 @@ export default function SearchBar() {
                         />
                       );
                     })}
-                  </div>
-                  <div>
+                  </div> */}
+        {/* <div>
                     {item.ai_tags.map((aiitem) => {
                       return (
                         <MatchBar
@@ -170,14 +174,14 @@ export default function SearchBar() {
                         />
                       );
                     })}
-                  </div>
-                </div>
+                  </div> */}
+        {/* </div>
               </div>
-            ))}
-          </Slider>
-          <ButtonBack>Back</ButtonBack>
+            ))} */}
+        {/* </Slider> */}
+        {/* <ButtonBack>Back</ButtonBack>
           <ButtonNext>Next</ButtonNext>
-        </CarouselProvider>
+        </CarouselProvider> */}
       </Modal>
     </div>
   );

@@ -13,14 +13,6 @@ export default function WellBeingUpload() {
         <P5Mold />
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Caption />
-      </div>
-
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Tags />
-      </div>
-
       <br />
     </div>
   );
