@@ -1,6 +1,4 @@
 import React from 'react';
-import Sketch from 'react-p5';
-import ColorSelector from './ColorSelector';
 import FileInput from '../FileInput';
 import Tags from './Tags';
 import Caption from './Caption';
@@ -12,13 +10,15 @@ export default function P5Mold() {
 
     if (image) {
         return (
-            <div style={{ padding: "50px", height: "auto", backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7" }}>
+            <div style={{ padding: "50px", backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7" }}>
                 <Caption />
                 <br />
-                <img src={image} alt="" />
+                <div >
+                    <img src={image} alt="" style={{ width: "100%", maxWidth: "800px" }} />
+                </div>
                 <br />
                 <Tags />
-            </div>
+            </div >
         )
 
     } else {

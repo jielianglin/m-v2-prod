@@ -7,8 +7,8 @@ import Tags from './Tags';
 import Caption from './Caption';
 
 var slider;
-var diameter;
-var smoothValue = 0.03;
+var diameter = 50;
+var smoothValue = 0.05;
 let img;
 let pg;
 var clearButton;
@@ -35,20 +35,22 @@ export default function Mask() {
         clearButton.position(1175, 500);
         clearButton.mousePressed(resetSketch);
 
-        slider = p5.createSlider(10, 100, 50);
+        slider = p5.createSlider(10, 100, 50, 10);
         slider.position(1175, 600);
         slider.style('width', '80px');
         slider.mousePressed(getDiameter);
     }
 
     function getDiameter(p5) {
+
         diameter = slider.value();
+
         return (diameter);
     }
     const draw = p5 => {
         if (color) {
-            x = p5.lerp(x, p5.mouseX, smoothValue);
-            y = p5.lerp(y, p5.mouseY, smoothValue);
+            x = p5.lerp(p5.pmouseX, p5.mouseX, smoothValue);
+            y = p5.lerp(p5.pmouseY, p5.mouseY, smoothValue);
 
 
             imgWidth = img.width;
@@ -57,7 +59,7 @@ export default function Mask() {
             if (imgWidth > 0 && imgHeight > 0) {
                 p5.resizeCanvas(imgWidth, imgHeight);
                 if (imgWidth > 800) {
-                    p5.resizeCanvas(800, imgHeight);
+                    p5.resizeCanvas(700, imgHeight);
                 }
             }
 
