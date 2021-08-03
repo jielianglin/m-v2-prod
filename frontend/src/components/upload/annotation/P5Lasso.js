@@ -6,7 +6,7 @@ import EraserIcon from './eraser/EraserIcon.png';
 import Tags from './Tags';
 import Caption from './Caption';
 
-var smoothValue = 0.07;
+var smoothValue = 0.05;
 var init;
 var x = 0;
 var y = 0;
@@ -48,8 +48,8 @@ export default function P5Lasso() {
 
     if (imgWidth > 0 && imgHeight > 0) {
       p5.resizeCanvas(imgWidth, imgHeight);
-      if (imgWidth > 800) {
-        p5.resizeCanvas(800, imgHeight);
+      if (imgWidth > 700) {
+        p5.resizeCanvas(700, imgHeight);
       }
     }
 
@@ -59,7 +59,7 @@ export default function P5Lasso() {
       pg.fill(color);
       pg.stroke(color);
       pg.strokeWeight(1);
-      pg.ellipse(x, y, 7, 7);
+      pg.ellipse(x, y, 15, 15);
       currentPath.push([x, y]);
       init = currentPath[0];
     }
@@ -68,7 +68,7 @@ export default function P5Lasso() {
 
   function mouseReleased(p5) {
     if (image) {
-      pg.strokeWeight(8);
+      pg.strokeWeight(15);
       pg.line(x, y, ...init);
       currentPath = [];
       path.push(currentPath);

@@ -98,7 +98,7 @@ export default function Image2() {
                 disableRestoreFocus
             >
                 <Typography fontweight='fontWeightLight' variant='h6'>
-                    <Chip avatar={<Avatar>#</Avatar>} label="sea" />
+                    <Chip avatar={<Avatar>#</Avatar>} label="mountains" />
                 </Typography>
             </Popover>
 

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Typography from "@material-ui/core/Typography";
 
 export default function FileInput(props) {
 
@@ -31,13 +32,22 @@ export default function FileInput(props) {
       style={{
         width: "100%",
         height: "400px",
-        border: "2px solid",
-        borderRadius: "5px",
+
         color: "black",
 
       }}
 
     >
+      <Typography variant="h1">
+        <div style={{ textAlign: "center" }}>
+          <br />
+          click
+          <br />
+          +
+          <br />
+          upload
+        </div>
+      </Typography>
       <img
         style={{ height: "100%" }}
         className="loaded-image"

@@ -67,7 +67,7 @@ export default function Image3() {
                 disableRestoreFocus
             >
                 <Typography fontweight='fontWeightLight' variant='h6'>
-                    <Chip avatar={<Avatar>#</Avatar>} label="healing">
+                    <Chip avatar={<Avatar>#</Avatar>} label="memories">
 
                     </Chip>
                 </Typography>
@@ -94,7 +94,7 @@ export default function Image3() {
                 disableRestoreFocus
             >
                 <Typography fontweight='fontWeightLight' variant='h6'>
-                    <Chip avatar={<Avatar>#</Avatar>} label="nature" />
+                    <Chip avatar={<Avatar>#</Avatar>} label="photographs" />
                 </Typography>
             </Popover>
 
@@ -119,7 +119,7 @@ export default function Image3() {
                 disableRestoreFocus
             >
                 <Typography fontweight='fontWeightLight' variant='h6'>
-                    <Chip avatar={<Avatar>#</Avatar>} label="cool_air" />
+                    <Chip avatar={<Avatar>#</Avatar>} label="history" />
                 </Typography>
             </Popover>
         </div>

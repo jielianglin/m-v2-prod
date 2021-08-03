@@ -18,13 +18,20 @@ export default function SolidarityIconText() {
       </div>);
   } else {
     return (
-      <div className="solidarity">
-        <Typography variant="h2" style={{ textAlign: "center" }}> Solidarity </Typography>
-
-        <Typography style={{ margin: "50px" }}>
-          Under the topic solidarity, the connection and empathy towards one another will be strengthened. Acknowledging the different backgrounds, migration stories and experiences, the search is to create a deeper understanding of one another and explore the presence of solidarity and the absence of judgment.
-        </Typography>
-
+      <div className="solidarity" >
+        <Typography variant="h2" style={{ textAlign: "center", margin: "50px" }}> Solidarity </Typography>
+        <div style={{ margin: "100px 200px 100px 200px" }}>
+          <Typography>
+            Acknowledging and celebrating different backgrounds, migration stories, and experiences,
+            our search is to create a deeper understanding of one another, and to explore the presence
+            of solidarity and the absence of judgment. Connection and empathy towards one another will be
+            strengthened.
+            <br />
+            <br />
+            The image dataset for “Solidarity” focuses on images related to strong and complex emotions.
+            Users can respond to their pictures by mapping their emotions and sensations on to them, like painting.
+          </Typography>
+        </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button className="homeUploadButton" onClick={changeState}>
             <img src={UploadIMG} width="110px" alt="" />

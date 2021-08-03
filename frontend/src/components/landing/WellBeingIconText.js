@@ -18,11 +18,19 @@ export default function WellBeingIconText() {
     } else {
         return (
             <div>
-                <Typography variant="h4" style={{ textAlign: "center" }}>Well-Being</Typography>
-                <Typography style={{ margin: "50px" }}> Wellbeing takes different shapes in different territories.
+                <Typography variant="h2" style={{ textAlign: "center", margin: "50px" }}>Well-Being</Typography>
+                <Typography style={{ margin: "100px 200px 100px 200px" }}>
+                    Wellbeing takes different shapes in different territories.
                     In some there are collective practices while in others individuals.
                     The meaning of this word will be explored, and as well multi-cultural
                     rituals for wellbeing.
+                    <br />
+                    <br />
+                    The “Well-Being” dataset focuses on sharing happy and positive memories of migration experiences.
+                    These perspectives are often missing in  the mainstream media narrative of migration and migrants.
+                    We want to provide better photographic descriptions of migrant experiences that are not focused
+                    on victimhood and suffering. In the time of the global pandemic, we are also focused on sharing and
+                    connecting intercultural concepts of well-being for the global community.
                 </Typography>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button className="wellBeingUploadButton" onClick={changeState}>
