@@ -8,12 +8,28 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
-import Gallery from 'react-grid-gallery';
 import image1 from './Gallery/image1/image1.jpg';
 import image2 from './Gallery/image2/image2.jpg';
 import image3 from './Gallery/image3/image3.png';
 
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: "#E6DAC8",
+    },
+    imageList: {
+        width: 500,
+        height: 450,
+    },
+}));
 
 const styles = (theme) => ({
     root: {
@@ -73,46 +89,38 @@ const DialogContent = withStyles((theme) => ({
 
 export default function Dashboard() {
     const [open, setOpen] = React.useState(false);
-    const [select, setSelect] = React.useState(false);
-    const [gallery, setGallery] = React.useState("");
+    const classes = useStyles();
+    // const [select, setSelect] = React.useState(false);
+    // const [gallery, setGallery] = React.useState("");
 
-    const selectImage = (onClick) => {
-        setSelect(true);
-    }
+    // const selectImage = (onClick) => {
+    //     setSelect(true);
+    // }
 
     const images = [
         {
             src: `${image1}`,
-            onSelect: select,
-            thumbnail: "",
-            thumbnailWidth: 100,
-            thumbnailHeight: 100,
+
         },
         {
             src: `${image2}`,
-            onSelect: select,
-            thumbnail: "",
-            thumbnailWidth: 100,
-            thumbnailHeight: 100,
+
 
         },
         {
             src: `${image3}`,
-            onSelect: select,
-            thumbnail: "",
-            thumbnailWidth: 100,
-            thumbnailHeight: 100,
+
         },
     ]
 
-    setGallery(images);
+    // setGallery(images);
 
-    const deleteHandler = () => {
-        if (select === true) {
-            setGallery(images.filter(el => el.src !== images.src))
-        }
-        return images;
-    }
+    // const deleteHandler = () => {
+    //     if (select === true) {
+    //         setGallery(images.filter(el => el.src !== images.src))
+    //     }
+    //     return images;
+    // }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -143,17 +151,25 @@ export default function Dashboard() {
                     <Typography variant="h5">Manage my pictures</Typography>
                 </DialogTitle>
                 <DialogContent dividers>
-                    <Gallery images={images} onSelectImage={selectImage} />
-                </DialogContent>
-                <DialogContent dividers>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                        <DeleteButton onClick={deleteHandler}>
-                            <Typography variant="h8">
-                                DELETE
-                            </Typography>
-                        </DeleteButton>
+                    <div className={classes.root}>
+                        <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                            {images.map((image) => (
+                                <ImageListItem key={image.src} cols={image.cols || 1}>
+                                    <img src={image.src} alt="" />
+                                </ImageListItem>
+                            ))}
+                        </ImageList>
                     </div>
                 </DialogContent>
+
+                <div style={{ display: "flex", justifyContent: "center", backgroundColor: "#E6DAC8", padding: "10px" }}>
+                    <DeleteButton >
+                        <Typography variant="h8">
+                            DELETE
+                        </Typography>
+                    </DeleteButton>
+                </div>
+
 
             </Dialog>
         </div>
