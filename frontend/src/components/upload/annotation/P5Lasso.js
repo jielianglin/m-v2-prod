@@ -5,6 +5,7 @@ import FileInput from '../FileInput';
 import EraserIcon from './eraser/EraserIcon.png';
 import Tags from './Tags';
 import Caption from './Caption';
+import LassoInstructions from './LassoInstructions';
 
 var smoothValue = 0.05;
 var init;
@@ -83,6 +84,7 @@ export default function P5Lasso() {
     return (
 
       <div>
+
         <br />
         <div style={{ backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
           <Caption />
@@ -99,6 +101,7 @@ export default function P5Lasso() {
           <Tags />
         </div>
         <ColorSelector selectColor={color => setColor(color)} />
+
 
       </div>
     )
