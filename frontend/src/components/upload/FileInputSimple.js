@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 export default function FileInput(props) {
 
   const [src, setSrc] = useState(null);
+  const [text, showImage] = useState(true);
   const fileInput = useRef(null);
 
   const handleImageSelection = (event) => {
@@ -17,8 +18,8 @@ export default function FileInput(props) {
 
   useEffect(() => {
     if (src) {
-      props.selectImage(src);
-      // props.showInputForms();
+      props.showInputForms();
+      showImage(false);
     }
   }, [src]);
 
@@ -30,31 +31,34 @@ export default function FileInput(props) {
     <div
       className="image-input"
       onClick={openFileInput}
-      style={{
-        width: "100%",
-        height: "400px",
-
-        color: "black",
-      }}
-
     >
-      <Typography variant="h2" style={{ color: "#2B4466" }}>
-        <div style={{ textAlign: "center", backgroundColor: "#E6DAC8", }}>
-          <br />
-          click
-          <br />
-          +
-          <br />
-          upload
-        </div>
-      </Typography>
-      <img
-        style={{ height: "100%" }}
-        className="loaded-image"
-        src={src}
-        alt=""
-      />
+      {text &&
+        <div
+          style={{
+            width: "100%",
+            maxHeight: "400px",
+          }}>
 
+          <Typography variant="h2" style={{ color: "#2B4466" }}>
+            <div style={{ textAlign: "center", backgroundColor: "#E6DAC8", }}>
+              <br />
+              click
+              <br />
+              +
+              <br />
+              upload
+            </div>
+          </Typography>
+        </div>
+      }
+      <div style={{ display: "flex", justifyContent: "center", padding: "40px" }}>
+        <img
+          style={{ height: "100%" }}
+          className="loaded-image"
+          src={src}
+          alt=""
+        />
+      </div>
       <label>
         <input
           ref={fileInput}

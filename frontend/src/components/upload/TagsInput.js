@@ -35,7 +35,7 @@ export default function TagsInput(props) {
                     <div >
                         <Chip
                             className="tags-chip"
-                            style={{ marginTop: "20px", marginRight: "5px" }}
+                            style={{ marginTop: "30px", marginRight: "5px" }}
                             key={index}
                             label={tag}
                             onDelete={() => removeTags(index)}

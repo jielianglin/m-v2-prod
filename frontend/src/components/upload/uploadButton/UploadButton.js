@@ -1,6 +1,6 @@
 import React from "react";
 
-import { withStyles } from "@material-ui/core/styles";
+import FileInputSimple from "../FileInputSimple";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -16,6 +16,7 @@ import UploadIMG from './uploadIMG/UploadIMG.png';
 
 import Chip from "@material-ui/core/Chip";
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,8 @@ const styles = (theme) => ({
   root: {
     margin: 0,
     padding: theme.spacing(2),
-    color: "#9611ff",
+    color: "#2B4466",
+    backgroundColor: "#E6DAC8",
   },
   closeButton: {
     position: "absolute",
@@ -63,14 +65,16 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
+    backgroundColor: "#E6DAC8",
   },
 }))(MuiDialogContent);
 
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
+  const [forms, setForms] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -88,6 +92,10 @@ export default function CustomizedDialogs() {
   };
 
   const openPopover = Boolean(anchorEl);
+
+  const showInputForms = () => {
+    setForms(true);
+  }
 
   return (
     <div>
@@ -138,8 +146,11 @@ export default function CustomizedDialogs() {
           Upload Image
         </DialogTitle>
         <DialogContent dividers>
-          <Caption />
-          <Tags />
+          {forms && <Caption />}
+          <FileInputSimple
+            showInputForms={showInputForms}
+          />
+          {forms && <Tags />}
         </DialogContent>
       </Dialog>
     </div>
