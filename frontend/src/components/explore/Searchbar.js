@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from "material-ui-search-bar";
 import { Typography, Chip, Avatar } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, DotGroup, Image } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import Carousel from 'react-material-ui-carousel'
+import { Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,6 +26,8 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [gallery, setGallery] = React.useState(true);
+  const [carousel, setCarousel] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -66,9 +66,30 @@ export default function Search() {
     }
   }, [query]);
 
+  const showCarousel = () => {
+    setGallery(false);
+    setCarousel(true);
+
+    return (
+      <Carousel>
+        {results.map((image) => (
+          <div key={image.id} cols={image.cols || 1} >
+            <img src={image.id} alt="" maxHeight="100px" onClick={showCarousel}
+            />
+          </div>
+        ))}
+      </Carousel>
+    )
+  }
+
+  const showGallery = () => {
+    setCarousel(false);
+    setGallery(true);
+  }
+
   return (
     <div>
-      <div style={{ padding: "15px 20px 0px 0px" }}>
+      <div className="searchBar" style={{ padding: "15px 20px 0px 0px" }}>
         <SearchBar
           placeholder='Search a tag'
           value={search}
@@ -77,112 +98,46 @@ export default function Search() {
           cancelOnEscape="true"
         />
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        className={classes.modal}
-      >
-        {/* <CarouselProvider
-          naturalSlideWidth={100}
-          naturalSlideHeight={125}
-          totalSlides={Object.keys(data.json[i]).length}
+      <div className="eChartsGallery">
+        <Dialog
+          onClose={handleClose}
+          aria-labelledby="simple-dialog-title"
+          open={open}
+
+          maxWidth="md"
+          fullWidth={true}
         >
-          {/* <Slider className="slider">
-
-            {/* {results.map((item) => (
-              <div>
-                <div key={item.id} className="paper-slider">
-                  <div className="slide">
-                    <Slide index={item.id}>
-                      <Image
-                        src={`http://localhost:8000/images/${item.id}.jpeg`}
-                        alt="img-result"
-                      // onClick={handleOpen}
-                      />
-
-                    </Slide>
-                    <DotGroup />
-                  </div>
-                  <div className="caption">
-                    <Typography
-                      variant="h6"
-                      component="p"
-                      className="caption-wrap"
-                    >
-                      <i>"{item.caption}"</i>
-                    </Typography>
-                  </div>
-
-                  <div className="mtag-wrap">
-                    <Typography className="mtag-label">
-                      Our tags:
-                    </Typography>
-                    {item.tags.map((posttag) => {
-                      console.log(posttag.tag);
-                      return (
-                        <Chip
-                          className="chip1"
-                          avatar={
-                            <Avatar>
-                              <AiOutlineNumber />
-                            </Avatar>
-                          }
-                          key={posttag.id}
-                          label={posttag.tag}
-                          component="a"
-                          href="#chip"
-                          variant="outlined"
-                          color="primary"
-                          clickable
+          <DialogTitle
+            //newTitle={newTitle}
+            id="customized-dialog-title"
+            onClose={handleClose}
+          >
+            <Typography variant="h5">Images for `${search}`</Typography>
+          </DialogTitle>
+          <DialogContent dividers>
+            {gallery && (
+              <div className="gallery">
+                <div className={classes.root}>
+                  <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                    {results.map((image) => (
+                      <ImageListItem key={image.id} cols={image.cols || 1} >
+                        <img src={image.id} alt="" maxHeight="100px" onClick={showCarousel}
                         />
-                      );
-                    })} */}
-        {/* </div> */}
-        {/* <div className="ntag-wrap">
-                    <Typography className="ntag-label">
-                      AI tags (from ImageNet):
-                    </Typography> */}
-
-        {/* {item.ai_tags.map((posttag) => {
-                      console.log(posttag.tag);
-                      return (
-                        <Chip
-                          className="chip2"
-                          style={{ color: "#668389" }}
-                          avatar={
-                            <Avatar style={{ background: "#668389" }}>
-                              <AiOutlineNumber style={{ color: "white" }} />
-                            </Avatar>
-                          }
-                          key={posttag.id}
-                          label={posttag.tag}
-                          component="a"
-                          href="#chip"
-                          clickable
-                        />
-                      );
-                    })}
-                  </div> */}
-        {/* <div>
-                    {item.ai_tags.map((aiitem) => {
-                      return (
-                        <MatchBar
-                          match={parseFloat(aiitem.confidence)}
-                          aitag={aiitem.tag}
-                        />
-                      );
-                    })}
-                  </div> */}
-        {/* </div>
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+                </div>
               </div>
-            ))} */}
-        {/* </Slider> */}
-        {/* <ButtonBack>Back</ButtonBack>
-          <ButtonNext>Next</ButtonNext>
-        </CarouselProvider> */}
-      </Modal>
+            )}
+            {carousel && (
+              <div className="carousel">
+                <img src={image.id} alt="" maxHeight="100px" onClick={showGallery} />
+              </div>
+            )
+            }
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   );
 }
