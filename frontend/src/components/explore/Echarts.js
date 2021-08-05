@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
 import Popover from "@material-ui/core/Popover";
-
+import MainGallery from "./MainGallery";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -14,6 +14,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
+const DialogContent = withStyles((theme) => ({
+    root: {
+        padding: theme.spacing(2),
+        backgroundColor: "#E6DAC8"
+    },
+}))(MuiDialogContent);
+
 export default function Chart() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,7 +30,7 @@ export default function Chart() {
     const [graph, setGraph] = React.useState({ nodes: [], links: [] });
     const [imagePreview, setImagePreview] = React.useState([]);
     // const [images, setImages] = React.useState([]);
-    // const [gallery, setGallery] = React.useState(false);
+    const [gallery, setGallery] = React.useState(false);
 
     const showPopover = (event) => {
         setAnchorEl(event.currentTarget);
@@ -40,13 +49,13 @@ export default function Chart() {
         return color;
     }
 
-    // const showCarousel = () => {
-    //     setCarousel(true);
-    // }
+    const showGallery = () => {
+        setGallery(true);
+    }
 
     const onEvents = {
         'mouseMove': showPopover,
-        // 'click': showCarousel
+        'click': showGallery
     }
 
     useEffect(() => {
@@ -91,44 +100,79 @@ export default function Chart() {
     };
     return (
         <div>
-            <ReactEcharts style={{ width: "100%", height: "100vh" }} option={option} onEvents={onEvents} />
-            <Popover
-                id="mouse-over-popover"
-                className={classes.popover}
-                classes={{
-                    paper: classes.paper,
-                }}
-                elevation={0}
-                open={openPopover}
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                    vertical: 'center',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                onClose={closePopover}
-                disableRestoreFocus
-            >
-                <div
-                    style={{
-                        borderRadius: "3px",
-                        height: "110px",
-                        width: "110px",
-                        boxShadow: "3px 3px 3px #b4beb7"
+            <div className="eCharts">
+                <ReactEcharts style={{ width: "100%", height: "100vh" }} option={option} onEvents={onEvents} />
+            </div>
+            <div className="eChartsPreview">
+                <Popover
+                    id="mouse-over-popover"
+                    className={classes.popover}
+                    classes={{
+                        paper: classes.paper,
                     }}
+                    elevation={0}
+                    open={openPopover}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'center',
+                        horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    onClose={closePopover}
+                    disableRestoreFocus
                 >
-                    <img src={imagePreview}
-                        width="110px" alt=""
+                    <div
                         style={{
                             borderRadius: "3px",
-                            onMouseLeave={ closePopover }
+                            height: "110px",
+                            width: "110px",
+                            boxShadow: "3px 3px 3px #b4beb7"
                         }}
-                        alt="" />
-                </div>
-            </Popover>
+                    >
+                        <img src={imagePreview}
+                            width="110px" alt=""
+                            style={{
+                                borderRadius: "3px",
+                                onMouseLeave={ closePopover }
+                            }}
+                            alt="" />
+                    </div>
+                </Popover>
+            </div>
+            <div className="eChartsGallery">
+                <Dialog
+                    onClose={handleClose}
+                    aria-labelledby="simple-dialog-title"
+                    open={open}
+
+                    maxWidth="md"
+                    fullWidth={true}
+                >
+                    <DialogTitle
+                        //newTitle={newTitle}
+                        id="customized-dialog-title"
+                        onClose={handleClose}
+                    >
+                        <Typography variant="h5">Manage my pictures</Typography>
+                    </DialogTitle>
+                    <DialogContent dividers>
+                        <div className={classes.root}>
+                            <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                                {pics.map((image) => (
+                                    <ImageListItem key={image.src} cols={image.cols || 1} >
+                                        <img src={image.src} alt="" maxHeight="100px"
+                                        //onClick={showCarousel} 
+                                        />
+                                    </ImageListItem>
+                                ))}
+                            </ImageList>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+            </div>
 
         </div>);
 }
