@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,6 +16,7 @@ import image3 from './Gallery/image3/image3.png';
 
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -87,40 +88,28 @@ const DialogContent = withStyles((theme) => ({
     },
 }))(MuiDialogContent);
 
+const images = [
+    { id: 1, src: `${image1}` },
+    { id: 2, src: `${image2}` },
+    { id: 3, src: `${image3}` },
+]
 export default function Dashboard() {
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
     // const [select, setSelect] = React.useState(false);
-    // const [gallery, setGallery] = React.useState("");
+    const [pics, setPics] = React.useState([]);
 
-    // const selectImage = (onClick) => {
-    //     setSelect(true);
-    // }
+    const removeImage = (src) => {
+        setPics((oldState) => oldState.filter((item) => item.src !== src));
+    };
 
-    const images = [
-        {
-            src: `${image1}`,
-
-        },
-        {
-            src: `${image2}`,
+    useEffect(() => {
+        //fake fetch data
+        setPics(images);
+        console.log(images)
+    }, []);
 
 
-        },
-        {
-            src: `${image3}`,
-
-        },
-    ]
-
-    // setGallery(images);
-
-    // const deleteHandler = () => {
-    //     if (select === true) {
-    //         setGallery(images.filter(el => el.src !== images.src))
-    //     }
-    //     return images;
-    // }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -129,6 +118,7 @@ export default function Dashboard() {
         setOpen(false);
 
     };
+
 
     return (
         <div>
@@ -153,9 +143,12 @@ export default function Dashboard() {
                 <DialogContent dividers>
                     <div className={classes.root}>
                         <ImageList rowHeight={160} className={classes.imageList} cols={3}>
-                            {images.map((image) => (
-                                <ImageListItem key={image.src} cols={image.cols || 1}>
-                                    <img src={image.src} alt="" />
+                            {pics.map((image) => (
+                                <ImageListItem key={image.src} cols={image.cols || 1} >
+                                    <div style={{ position: "absolute", zIndex: 2 }}>
+                                        <IconButton size="small" onClick={() => removeImage(image.src)}><HighlightOffIcon /></IconButton>
+                                    </div>
+                                    <img src={image.src} alt="" maxHeight="100px" />
                                 </ImageListItem>
                             ))}
                         </ImageList>
@@ -172,6 +165,6 @@ export default function Dashboard() {
 
 
             </Dialog>
-        </div>
+        </div >
     )
 }
