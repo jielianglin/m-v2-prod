@@ -18,6 +18,14 @@ import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
+import Carousel from 'react-material-ui-carousel'
+
+const images = [
+    { id: 1, src: `${image1}` },
+    { id: 2, src: `${image2}` },
+    { id: 3, src: `${image3}` },
+]
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -48,20 +56,6 @@ const styles = (theme) => ({
     },
 });
 
-const DeleteButton = withStyles({
-    root: {
-        background: '#2B4466',
-        borderRadius: 3,
-        border: 0,
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
-        boxShadow: '0 3px 5px 2px #b4beb7',
-    },
-    label: {
-        textTransform: 'capitalize',
-    },
-})(Button);
 
 const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
@@ -88,16 +82,15 @@ const DialogContent = withStyles((theme) => ({
     },
 }))(MuiDialogContent);
 
-const images = [
-    { id: 1, src: `${image1}` },
-    { id: 2, src: `${image2}` },
-    { id: 3, src: `${image3}` },
-]
+
 export default function Dashboard() {
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
     // const [select, setSelect] = React.useState(false);
     const [pics, setPics] = React.useState([]);
+    const [gallery, setGallery] = React.useState(true);
+    const [carousel, setCarousel] = React.useState(false);
+    const [slidePosition, setSlidePosition] = React.useState([]);
 
     const removeImage = (src) => {
         setPics((oldState) => oldState.filter((item) => item.src !== src));
@@ -109,8 +102,6 @@ export default function Dashboard() {
         console.log(images)
     }, []);
 
-
-
     const handleClickOpen = () => {
         setOpen(true);
     }
@@ -119,12 +110,27 @@ export default function Dashboard() {
 
     };
 
+    const showCarousel = (e) => {
+        setGallery(false);
+        setSlidePosition(e.target.id);
+        setCarousel(true);
+
+
+        // return (
+
+        // )
+    }
+
+    const showGallery = () => {
+        setCarousel(false);
+        setGallery(true);
+    }
 
     return (
         <div>
-            <Button onClick={handleClickOpen}>
+            <IconButton onClick={handleClickOpen}>
                 <AccountCircleIcon style={{ fontSize: 80, color: "#FFFFFF" }} />
-            </Button>
+            </IconButton>
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="simple-dialog-title"
@@ -141,29 +147,36 @@ export default function Dashboard() {
                     <Typography variant="h5">Manage my pictures</Typography>
                 </DialogTitle>
                 <DialogContent dividers>
-                    <div className={classes.root}>
-                        <ImageList rowHeight={160} className={classes.imageList} cols={3}>
-                            {pics.map((image) => (
-                                <ImageListItem key={image.src} cols={image.cols || 1} >
-                                    <div style={{ position: "absolute", zIndex: 2 }}>
-                                        <IconButton size="small" onClick={() => removeImage(image.src)}><HighlightOffIcon /></IconButton>
-                                    </div>
-                                    <img src={image.src} alt="" maxHeight="100px" />
-                                </ImageListItem>
+                    {gallery && (
+                        <div className="gallery">
+                            <div className={classes.root}>
+                                <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                                    {pics.map((image, index) => (
+                                        <ImageListItem key={index} cols={image.cols || 1} >
+                                            <div style={{ position: "absolute", zIndex: 2 }}>
+                                                <IconButton size="small" onClick={() => removeImage(image.src)}><HighlightOffIcon /></IconButton>
+                                            </div>
+                                            <img key={index} id={image.id} src={image.src} alt="" maxHeight="100px"
+                                                onClick={showCarousel}
+                                            />
+                                        </ImageListItem>
+                                    ))}
+                                </ImageList>
+                            </div>
+                        </div>
+                    )}
+                    {carousel && (
+                        <Carousel>
+                            {images.map((image, index) => (
+                                <div key={index} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
+                                    <img key={index} id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                                    />
+                                </div>
                             ))}
-                        </ImageList>
-                    </div>
+                        </Carousel>
+                    )
+                    }
                 </DialogContent>
-
-                <div style={{ display: "flex", justifyContent: "center", backgroundColor: "#E6DAC8", padding: "10px" }}>
-                    <DeleteButton >
-                        <Typography variant="h8">
-                            DELETE
-                        </Typography>
-                    </DeleteButton>
-                </div>
-
-
             </Dialog>
         </div >
     )

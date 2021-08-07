@@ -4,7 +4,26 @@ import { Typography, Chip, Avatar } from "@material-ui/core";
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
+import { withStyles } from "@material-ui/core/styles";
+
+import image1 from './Gallery/image1/image1.jpg';
+import image2 from './Gallery/image2/image2.jpg';
+import image3 from './Gallery/image3/image3.png';
+
+const images = [
+  { id: 1, src: `${image1}` },
+  { id: 2, src: `${image2}` },
+  { id: 3, src: `${image3}` },
+]
+// styling for dialog
 const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "transparent",
@@ -19,6 +38,47 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
 }));
+
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+    color: "#2B4466",
+    backgroundColor: "#E6DAC8",
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+    backgroundColor: "#E6DAC8"
+  },
+}))(MuiDialogContent);
 
 export default function Search() {
   const classes = useStyles();
@@ -70,16 +130,9 @@ export default function Search() {
     setGallery(false);
     setCarousel(true);
 
-    return (
-      <Carousel>
-        {results.map((image) => (
-          <div key={image.id} cols={image.cols || 1} >
-            <img src={image.id} alt="" maxHeight="100px" onClick={showCarousel}
-            />
-          </div>
-        ))}
-      </Carousel>
-    )
+    //   return (
+
+    //   )
   }
 
   const showGallery = () => {
@@ -103,7 +156,6 @@ export default function Search() {
           onClose={handleClose}
           aria-labelledby="simple-dialog-title"
           open={open}
-
           maxWidth="md"
           fullWidth={true}
         >
@@ -130,9 +182,14 @@ export default function Search() {
               </div>
             )}
             {carousel && (
-              <div className="carousel">
-                <img src={image.id} alt="" maxHeight="100px" onClick={showGallery} />
-              </div>
+              <Carousel>
+                {images.map((image) => (
+                  <div key={image.id} cols={image.cols || 1} >
+                    <img src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                    />
+                  </div>
+                ))}
+              </Carousel>
             )
             }
           </DialogContent>
