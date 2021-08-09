@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import Typography from "@material-ui/core/Typography";
+import { Typography, Chip, Avatar } from "@material-ui/core";
+
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { withStyles } from "@material-ui/core/styles";
@@ -21,9 +22,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Carousel from 'react-material-ui-carousel'
 
 const images = [
-    { id: 1, src: `${image1}` },
-    { id: 2, src: `${image2}` },
-    { id: 3, src: `${image3}` },
+    { id: 1, src: `${image1}`, tags: ["tag1", "tag2", "tag3"], caption: "Here is caption1", ai_tags: ["ai_tag1", "ai_tag2", "ai_tag3"] },
+    { id: 2, src: `${image2}`, tags: ["tag4", "tag5", "tag6"], caption: "Here is caption2", ai_tags: ["ai_tag4", "ai_tag5", "ai_tag6"] },
+    { id: 3, src: `${image3}`, tags: ["tag7", "tag8", "tag9"], caption: "Here is caption3", ai_tags: ["ai_tag7", "ai_tag8", "ai_tag9"] },
 ]
 
 const useStyles = makeStyles((theme) => ({
@@ -86,21 +87,30 @@ const DialogContent = withStyles((theme) => ({
 export default function Dashboard() {
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
-    // const [select, setSelect] = React.useState(false);
-    const [pics, setPics] = React.useState([]);
+    const [results, setResults] = React.useState([]);
     const [gallery, setGallery] = React.useState(true);
     const [carousel, setCarousel] = React.useState(false);
-    const [slidePosition, setSlidePosition] = React.useState([]);
+    // const [slidePosition, setSlidePosition] = React.useState([]);
 
     const removeImage = (src) => {
-        setPics((oldState) => oldState.filter((item) => item.src !== src));
+        setResults((oldState) => oldState.filter((item) => item.src !== src));
     };
 
-    useEffect(() => {
-        //fake fetch data
-        setPics(images);
-        console.log(images)
-    }, []);
+    // useEffect(() => {
+
+    //         async function fetchData() {
+    //             try {
+    //                 const response = await fetch(
+    //                     `http://127.0.0.1:8000/username`
+    //                 );
+    //                 const images = await response.json();
+    //                 console.log({ images });
+    //                 setResults(images);
+    //             } catch (error) {} 
+
+    //             }
+    // }, []);
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -112,12 +122,9 @@ export default function Dashboard() {
 
     const showCarousel = (e) => {
         setGallery(false);
-        setSlidePosition(e.target.id);
+        // setSlidePosition(e.target.id);
         setCarousel(true);
-
-
         // return (
-
         // )
     }
 
@@ -151,14 +158,14 @@ export default function Dashboard() {
                         <div className="gallery">
                             <div className={classes.root}>
                                 <ImageList rowHeight={160} className={classes.imageList} cols={3}>
-                                    {pics.map((image, index) => (
-                                        <ImageListItem key={index} cols={image.cols || 1} >
+                                    {results.map((image) => (
+
+                                        <ImageListItem key={image.id} cols={image.cols || 1} >
                                             <div style={{ position: "absolute", zIndex: 2 }}>
                                                 <IconButton size="small" onClick={() => removeImage(image.src)}><HighlightOffIcon /></IconButton>
                                             </div>
-                                            <img key={index} id={image.id} src={image.src} alt="" maxHeight="100px"
-                                                onClick={showCarousel}
-                                            />
+                                            <img id={image.id} src={image.src} alt="" maxHeight="100px"
+                                                onClick={showCarousel} />
                                         </ImageListItem>
                                     ))}
                                 </ImageList>
@@ -167,12 +174,69 @@ export default function Dashboard() {
                     )}
                     {carousel && (
                         <Carousel>
-                            {images.map((image, index) => (
-                                <div key={index} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
-                                    <img key={index} id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
-                                    />
-                                </div>
-                            ))}
+                            {results.map((image) => (
+                                <div className="carouselResults">
+                                    <Typography className="mtag-label"> {image.caption}
+                                    </Typography>
+                                    <div key={image.id} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
+                                        <img id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                                        />
+                                    </div>
+
+                                    <div className="metadata" >
+                                        <div style={{ display: "block", textAlign: "center" }}>
+                                            <Typography className="mtag-label"> Our Tags:
+                                            </Typography>
+                                        </div>
+                                        <div className="userTags" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
+
+
+                                            {image.tags.map((sampletag) => {
+
+                                                return (
+                                                    <Chip className="chip1" avatar={
+                                                        <Avatar>
+                                                            #
+                                                        </Avatar>
+                                                    }
+                                                        key={image.id}
+                                                        label={sampletag}
+                                                        component="a"
+                                                        href="#chip"
+                                                        variant="outlined"
+                                                        color="primary"
+                                                        clickable
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+
+                                        <div style={{ display: "block", textAlign: "center" }}>
+                                            <Typography className="ai_tags"> ImageNet Tags:
+                                            </Typography>
+                                        </div>
+                                        <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
+
+
+                                            {image.ai_tags.map((sampletag) => {
+
+                                                return (
+                                                    <Chip className="chip2" style={{ color: "#668389" }} avatar={
+                                                        <Avatar style={{ background: "#668389" }}>
+                                                            #
+                                                        </Avatar>
+                                                    }
+                                                        key={image.id}
+                                                        label={sampletag}
+                                                        component="a"
+                                                        href="#chip"
+                                                        clickable
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>))}
                         </Carousel>
                     )
                     }

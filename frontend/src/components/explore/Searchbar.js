@@ -183,12 +183,69 @@ export default function Search() {
             )}
             {carousel && (
               <Carousel>
-                {images.map((image) => (
-                  <div key={image.id} cols={image.cols || 1} >
-                    <img src={image.src} alt="" maxHeight="100px" onClick={showGallery}
-                    />
-                  </div>
-                ))}
+                {results.map((image) => (
+                  <div className="carouselResults">
+                    <Typography className="mtag-label"> {image.caption}
+                    </Typography>
+                    <div key={image.id} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
+                      <img id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                      />
+                    </div>
+
+                    <div className="metadata" >
+                      <div style={{ display: "block", textAlign: "center" }}>
+                        <Typography className="mtag-label"> Our Tags:
+                        </Typography>
+                      </div>
+                      <div className="userTags" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
+
+
+                        {image.tags.map((sampletag) => {
+
+                          return (
+                            <Chip className="chip1" avatar={
+                              <Avatar>
+                                #
+                              </Avatar>
+                            }
+                              key={image.id}
+                              label={sampletag}
+                              component="a"
+                              href="#chip"
+                              variant="outlined"
+                              color="primary"
+                              clickable
+                            />
+                          );
+                        })}
+                      </div>
+
+                      <div style={{ display: "block", textAlign: "center" }}>
+                        <Typography className="ai_tags"> ImageNet Tags:
+                        </Typography>
+                      </div>
+                      <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
+
+
+                        {image.ai_tags.map((sampletag) => {
+
+                          return (
+                            <Chip className="chip2" style={{ color: "#668389" }} avatar={
+                              <Avatar style={{ background: "#668389" }}>
+                                #
+                              </Avatar>
+                            }
+                              key={image.id}
+                              label={sampletag}
+                              component="a"
+                              href="#chip"
+                              clickable
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>))}
               </Carousel>
             )
             }

@@ -2,7 +2,20 @@ import React, { useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
 import Popover from "@material-ui/core/Popover";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import { Typography, Chip, Avatar } from "@material-ui/core";
 
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
+
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -83,7 +96,9 @@ export default function Chart() {
     // const [response, setResponse] = React.useState( {tags: null, preview: null, carousel: null})
     const [graph, setGraph] = React.useState({ nodes: [], links: [] });
     const [imagePreview, setImagePreview] = React.useState([]);
-    const [pics, setPics] = React.useState([]);
+    const [results, setResults] = React.useState([]);
+    const [gallery, setGallery] = React.useState(true);
+    const [carousel, setCarousel] = React.useState(false);
 
     const showGallery = () => {
         setOpen(true);
@@ -126,7 +141,7 @@ export default function Chart() {
             var randomPreview = preview[Math.floor(Math.random() * preview.length)];
             setImagePreview(randomPreview);
             const images = await axios.get("http://127.0.0.1:8000/images/image")
-             setPics(images.data);
+            setResults(images.data);
         }
         fetchData();
     }, []);
@@ -158,6 +173,16 @@ export default function Chart() {
             },
         ],
     };
+    const showCarousel = (e) => {
+        setGallery(false);
+        setSlidePosition(e.target.id);
+        setCarousel(true);
+
+    }
+    const showGallery = () => {
+        setCarousel(false);
+        setGallery(true);
+    }
     return (
         <div>
             <div className="eCharts">
@@ -219,17 +244,89 @@ export default function Chart() {
                         <Typography variant="h5">Images for `${graph.n}`</Typography>
                     </DialogTitle>
                     <DialogContent dividers>
-                        <div className={classes.root}>
-                            <ImageList rowHeight={160} className={classes.imageList} cols={3}>
-                                {pics.map((image) => (
-                                    <ImageListItem key={image.id} cols={image.cols || 1} >
-                                        <img src={image.id} alt="" maxHeight="100px"
-                                        //onClick={showCarousel} 
-                                        />
-                                    </ImageListItem>
-                                ))}
-                            </ImageList>
-                        </div>
+                        {gallery && (
+                            <div className="gallery">
+                                <div className={classes.root}>
+                                    <ImageList rowHeight={160} className={classes.imageList} cols={3}>
+                                        {results.map((image) => (
+                                            <ImageListItem key={image.id} cols={image.cols || 1} >
+                                                <img src={image.id} alt="" maxHeight="100px"
+                                                    onClick={showCarousel}
+                                                />
+                                            </ImageListItem>
+                                        ))}
+                                    </ImageList>
+                                </div>
+                            </div>
+                        )}
+                        {carousel && (
+                            <Carousel>
+                                {results.map((image) => (
+                                    <div className="carouselResults">
+                                        <Typography className="mtag-label"> {image.caption}
+                                        </Typography>
+                                        <div key={image.id} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
+                                            <img id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                                            />
+                                        </div>
+
+                                        <div className="metadata" >
+                                            <div style={{ display: "block", textAlign: "center" }}>
+                                                <Typography className="mtag-label"> Our Tags:
+                                                </Typography>
+                                            </div>
+                                            <div className="userTags" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
+
+
+                                                {image.tags.map((sampletag) => {
+
+                                                    return (
+                                                        <Chip className="chip1" avatar={
+                                                            <Avatar>
+                                                                #
+                                                            </Avatar>
+                                                        }
+                                                            key={image.id}
+                                                            label={sampletag}
+                                                            component="a"
+                                                            href="#chip"
+                                                            variant="outlined"
+                                                            color="primary"
+                                                            clickable
+                                                        />
+                                                    );
+                                                })}
+                                            </div>
+
+                                            <div style={{ display: "block", textAlign: "center" }}>
+                                                <Typography className="ai_tags"> ImageNet Tags:
+                                                </Typography>
+                                            </div>
+                                            <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
+
+
+                                                {image.ai_tags.map((sampletag) => {
+
+                                                    return (
+                                                        <Chip className="chip2" style={{ color: "#668389" }} avatar={
+                                                            <Avatar style={{ background: "#668389" }}>
+                                                                #
+                                                            </Avatar>
+                                                        }
+                                                            key={image.id}
+                                                            label={sampletag}
+                                                            component="a"
+                                                            href="#chip"
+                                                            clickable
+                                                        />
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>))}
+                            </Carousel>
+                        )
+                        }
                     </DialogContent>
                 </Dialog>
             </div>
