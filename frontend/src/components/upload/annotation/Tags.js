@@ -21,6 +21,7 @@ export default function TagsInput() {
   const addTags = (event) => {
     if (event.key === "Enter" && event.target.value !== "") {
       setTags([...tags, event.target.value]);
+      props.selectedTags([...tags, event.target.value]);
       event.target.value = "";
     }
   };
@@ -38,7 +39,7 @@ export default function TagsInput() {
             key={index}
             label={tag}
             onDelete={() => removeTags(index)}
-            variant="outlined"
+            variant="filled"
           />
         ))}
       </div>

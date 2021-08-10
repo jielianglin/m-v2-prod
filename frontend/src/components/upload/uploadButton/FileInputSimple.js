@@ -4,10 +4,12 @@ import Typography from "@material-ui/core/Typography";
 export default function FileInput(props) {
 
   const [src, setSrc] = useState(null);
-  const [text, showImage] = useState(true);
+  const [text, showText] = useState(true);
   const fileInput = useRef(null);
 
   const handleImageSelection = (event) => {
+    props.selectedImage(event.target.files[0]);
+
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = function (e) {
@@ -19,7 +21,7 @@ export default function FileInput(props) {
   useEffect(() => {
     if (src) {
       props.showInputForms();
-      showImage(false);
+      showText(false);
     }
   }, [src]);
 

@@ -14,7 +14,11 @@ const theme = createMuiTheme({
   },
 });
 
-export default function Caption() {
+export default function Caption(props) {
+  function handleImageCaption(event) {
+    props.enteredCaption(event.target.value);
+  }
+
   return (
     <div className="image-caption">
       <ThemeProvider theme={theme}>
@@ -23,7 +27,7 @@ export default function Caption() {
           name="image-caption-input"
           label="Description"
           variant="outlined"
-          onChange={""}
+          onChange={handleImageCaption}
           placeholder="Caption your picture"
           fullWidth
         />

@@ -137,10 +137,11 @@ export default function Chart() {
         async function fetchData() {
             const tags = await axios.get("http://127.0.0.1:8000/tags/network");
             setGraph(tags.data);
+            //not sure about the preview call
             const preview = await axios.get("http://127.0.0.1:8000/images/thumbnail");
             var randomPreview = preview[Math.floor(Math.random() * preview.length)];
             setImagePreview(randomPreview);
-            const images = await axios.get("http://127.0.0.1:8000/images/image")
+            const images = await axios.get(`http://127.0.0.1:8000/images?tag=${graph}`)
             setResults(images.data);
         }
         fetchData();
