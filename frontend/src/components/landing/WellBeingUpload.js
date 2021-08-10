@@ -1,7 +1,6 @@
 import React from "react";
-import P5Mold from "../upload/annotation/P5Mold";
-import Caption from "../upload/annotation/Caption";
-import Tags from "../upload/annotation/Tags";
+import WellBeingTool from "../upload/annotation/WellBeingTool";
+
 
 export default function WellBeingUpload() {
 
@@ -10,7 +9,7 @@ export default function WellBeingUpload() {
       <br />
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <P5Mold />
+        <WellBeingTool />
       </div>
 
       <br />

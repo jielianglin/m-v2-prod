@@ -5,7 +5,7 @@ import UploadIMG from './uploadIMG/UploadIMG.png';
 
 import Caption from "../annotation/Caption";
 import Tags from "../annotation/Tags";
-import FileInputSimple from "../FileInputSimple";
+import FileInputSimple from "./FileInputSimple";
 
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -14,10 +14,11 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
+
 
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+
 import Popover from "@material-ui/core/Popover";
 
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -320,4 +321,4 @@ export default function CustomizedDialogs(props) {
     </div>
   );
 }
-}
+

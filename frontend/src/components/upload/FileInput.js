@@ -7,6 +7,8 @@ export default function FileInput(props) {
   const fileInput = useRef(null);
 
   const handleImageSelection = (event) => {
+    props.selectedImage(event.target.files[0]);
+
     let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = function (e) {
@@ -17,7 +19,9 @@ export default function FileInput(props) {
 
   useEffect(() => {
     if (src) {
+      //select image for canvas or post request
       props.selectImage(src);
+
       // props.showInputForms();
     }
   }, [src]);

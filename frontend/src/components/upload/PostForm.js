@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
-import TagsInput from "./TagsInput";
+
+import TagsInput from "./uploadButton/TagsSimple";
 import ImageCaption from "./ImageCaption";
+
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import { AiOutlineNumber } from "react-icons/ai";
 import { createMuiTheme } from "@material-ui/core/styles";
