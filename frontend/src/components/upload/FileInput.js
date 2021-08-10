@@ -19,7 +19,7 @@ export default function FileInput(props) {
 
   useEffect(() => {
     if (src) {
-      //select image for canvas or post request
+      //select image for canvas
       props.selectImage(src);
 
       // props.showInputForms();
