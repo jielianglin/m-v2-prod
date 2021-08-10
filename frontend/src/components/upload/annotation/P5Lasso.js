@@ -72,7 +72,7 @@ export default function P5Lasso() {
     pg = p5.createGraphics(600, 600);
 
     //Preparing graphics for post
-    let imageBase64String = pg.toDataURL();
+    let imageBase64String = pg.elt.toDataURL();
     P5PostData = { Vector: imageBase64String };
 
     p5.background('black');
