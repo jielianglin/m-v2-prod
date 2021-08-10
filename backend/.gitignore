@@ -1,1 +1,6 @@
 database/settings.py
+.vscode/
+frontend/node_modules
+backend/venv/
+.idea/
+*.pyc
