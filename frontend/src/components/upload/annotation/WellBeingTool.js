@@ -26,7 +26,7 @@ const theme = createMuiTheme({
     },
 });
 
-export default function P5Mold() {
+export default function WellBeingTool(props) {
     const [image, setImage] = React.useState(null);
 
     const [post, setPost] = React.useState(false);
@@ -34,6 +34,7 @@ export default function P5Mold() {
     const [src, setSrc] = React.useState(null);
     const [caption, setCaption] = React.useState(null);
     const [returnCaption, setReturnCaption] = React.useState(null);
+    const [returnTags, setReturnTags] = React.useState([]);
     const [returnAITags, setReturnAITags] = React.useState([]);
     const [progress, setProgress] = React.useState(false);
 
@@ -111,7 +112,7 @@ export default function P5Mold() {
                                         className="returned-tags-chip"
                                         avatar={
                                             <Avatar>
-                                                <AiOutlineNumber />
+                                                #
                                             </Avatar>
                                         }
                                         key={item.id}
@@ -136,7 +137,7 @@ export default function P5Mold() {
                                         className="returned-ai-tags-chip"
                                         avatar={
                                             <Avatar style={{ background: "#668389" }}>
-                                                <AiOutlineNumber style={{ color: "white" }} />
+                                                #
                                             </Avatar>
                                         }
                                         key={item.id}
@@ -185,7 +186,7 @@ export default function P5Mold() {
 
             <FileInput
                 //is this needed okay? 
-                selectImage={image}
+                selectImage={setImage}
                 selectedImage={selectedImage}
             />
         );

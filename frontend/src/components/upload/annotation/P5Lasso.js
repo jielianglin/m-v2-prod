@@ -14,6 +14,8 @@ import Button from "@material-ui/core/Button";
 
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { createMuiTheme } from "@material-ui/core/styles";
+
 
 var smoothValue = 0.05;
 var init;
@@ -48,6 +50,7 @@ export default function P5Lasso() {
   const [src, setSrc] = React.useState(null);
   const [caption, setCaption] = React.useState(null);
   const [returnCaption, setReturnCaption] = React.useState(null);
+  const [returnTags, setReturnTags] = React.useState([])
   const [returnAITags, setReturnAITags] = React.useState([]);
   const [progress, setProgress] = React.useState(false);
 
@@ -201,7 +204,7 @@ export default function P5Lasso() {
                     className="returned-tags-chip"
                     avatar={
                       <Avatar>
-                        <AiOutlineNumber />
+                        #
                       </Avatar>
                     }
                     key={item.id}
@@ -226,7 +229,7 @@ export default function P5Lasso() {
                     className="returned-ai-tags-chip"
                     avatar={
                       <Avatar style={{ background: "#668389" }}>
-                        <AiOutlineNumber style={{ color: "white" }} />
+                        #
                       </Avatar>
                     }
                     key={item.id}

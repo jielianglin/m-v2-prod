@@ -15,7 +15,7 @@ const theme = createMuiTheme({
     },
   },
 });
-export default function TagsInput() {
+export default function TagsInput(props) {
   const [tags, setTags] = React.useState([]);
 
   const addTags = (event) => {

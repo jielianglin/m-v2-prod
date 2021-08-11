@@ -19,7 +19,7 @@ export default function SolidarityIconText() {
   } else {
     return (
       <div className="solidarity" >
-        <Typography variant="h2" style={{ textAlign: "center", margin: "50px" }}> Solidarity </Typography>
+        <Typography variant="h2" style={{ textAlign: "left", margin: "50px", backgroundColor: "#E6DAC8" }}> Solidarity </Typography>
         <div style={{ margin: "100px 200px 100px 200px" }}>
           <Typography>
             Acknowledging and celebrating different backgrounds, migration stories, and experiences,

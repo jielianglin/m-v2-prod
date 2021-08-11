@@ -14,14 +14,15 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Popover from "@material-ui/core/Popover";
+import { ThemeProvider } from "@material-ui/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-//popover styling
+import { createMuiTheme } from "@material-ui/core/styles";
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 
-import Chip from "@material-ui/core/Chip";
 
-//dialog styling
+//popover styling
 const useStyles = makeStyles((theme) => ({
     popover: {
         pointerEvents: 'none',
@@ -32,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// return form styling
+
+// dialog styling
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -45,6 +47,18 @@ const styles = (theme) => ({
         right: theme.spacing(1),
         top: theme.spacing(1),
         color: theme.palette.grey[500],
+    },
+});
+
+// return form styling
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#9611ff",
+        },
+        secondary: {
+            main: "#668389",
+        },
     },
 });
 
@@ -84,8 +98,9 @@ export default function CustomizedDialogs(props) {
     const [image, setImage] = React.useState(null);
     const [tags, setTags] = React.useState([]);
     const [src, setSrc] = React.useState(null);
+    const [returnTags, setReturnTags] = React.useState(null);
     const [caption, setCaption] = React.useState(null);
-    const [returnCaption, setReturnCaption] = React.useState(null);
+    const [returnCaption, setReturnCaption] = React.useState([]);
     const [returnAITags, setReturnAITags] = React.useState([]);
     const [progress, setProgress] = React.useState(false);
 
@@ -130,7 +145,7 @@ export default function CustomizedDialogs(props) {
         formData.append("tags", tags.join(","));
         formData.append("caption", caption);
         let response = await axios.post("http://localhost:8000/images", formData);
-        props.newTitle();
+        // props.newTitle();
         setSrc(`http://localhost:8000/images/${response.data.id}.jpeg`);
         console.log(response.data.caption);
         setReturnCaption(response.data.caption);
@@ -150,7 +165,9 @@ export default function CustomizedDialogs(props) {
                 onMouseEnter={showPopover}
                 onMouseLeave={closePopover}
             >
-                <img src={UploadIMG} alt="upload" width="70px" />
+                <div style={{ padding: "10px 0px 10px 10px" }}>
+                    <img src={UploadIMG} alt="upload" width="40px" />
+                </div>
             </Button>
             <Popover
                 id="mouse-over-popover"
@@ -226,7 +243,7 @@ export default function CustomizedDialogs(props) {
                                             className="returned-tags-chip"
                                             avatar={
                                                 <Avatar>
-                                                    <AiOutlineNumber />
+                                                    #
                                                 </Avatar>
                                             }
                                             key={item.id}
@@ -251,7 +268,7 @@ export default function CustomizedDialogs(props) {
                                             className="returned-ai-tags-chip"
                                             avatar={
                                                 <Avatar style={{ background: "#668389" }}>
-                                                    <AiOutlineNumber style={{ color: "white" }} />
+                                                    #
                                                 </Avatar>
                                             }
                                             key={item.id}

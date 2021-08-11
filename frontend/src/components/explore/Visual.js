@@ -5,7 +5,8 @@ import './Visual.css';
 class Visual extends React.Component {
   render() {
     return (
-      <div className="particles" style={{ borderRadius: "10px", boxShadow: "0px 0px 50px 50px #17192F" }}>
+
+      <div className="particles" style={{ borderRadius: "10px", backgroundColor: "black" }}>
         <Particles
           params={{
             particles: {
@@ -17,13 +18,13 @@ class Visual extends React.Component {
                 }
               },
               color: {
-                value: "#ffffff"
+                value: "#FFFFFF",
               },
               shape: {
                 type: "circle",
                 stroke: {
                   width: 0,
-                  color: "#000000"
+                  color: "black"
                 },
                 polygon: {
                   nb_sides: 4
@@ -57,7 +58,7 @@ class Visual extends React.Component {
               line_linked: {
                 enable: false,
                 distance: 150,
-                color: "#ffffff",
+                color: "black",
                 opacity: 0.3687847739990702,
                 width: 0.6413648243462091
               },
@@ -118,6 +119,7 @@ class Visual extends React.Component {
             retina_detect: true
           }} />
       </div>
+
     )
   }
 }

@@ -13,11 +13,13 @@ import MenuListComposition from "./MenuListComposition";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+
   },
   menuIcon: {},
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
+
 }));
 
 export default function NavBar() {
@@ -26,7 +28,7 @@ export default function NavBar() {
   return (
     <div>
       <div className={classes.root}>
-        <AppBar position="static" color="transparent" elevation={0}>
+        <AppBar position="static" elevation={0} style={{ backgroundColor: "#E6DAC8" }}>
           <Toolbar>
             <LogoButton />
             <Typography variant="h6" className={classes.title}></Typography>

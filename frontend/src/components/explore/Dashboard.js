@@ -136,7 +136,7 @@ export default function Dashboard() {
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <AccountCircleIcon style={{ fontSize: 80, color: "#FFFFFF" }} />
+                <AccountCircleIcon style={{ fontSize: 50, color: "#FFFFFF" }} />
             </IconButton>
             <Dialog
                 onClose={handleClose}

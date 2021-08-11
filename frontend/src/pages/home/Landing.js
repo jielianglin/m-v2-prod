@@ -127,7 +127,7 @@ export default function Gallery() {
         } else {
 
           return (
-            <div>
+            <div >
               {showAnimation ? (
                 <div >
                   <div className="desertVisualisation" style={{ position: "absolute", zIndex: 1 }}>
@@ -142,7 +142,8 @@ export default function Gallery() {
                       position: "absolute",
                       left: "50%",
                       marginLeft: "-400px",
-                      zIndex: 3
+                      zIndex: 3,
+                      backgroundColor: "#E6DAC8"
                     }} >
                     <br />
                     <animated.div style={props}>
@@ -175,45 +176,49 @@ export default function Gallery() {
               ) :
 
                 (<div>
-                  <div className="desertVisualisation" style={{ position: "absolute", zIndex: 1 }}>
-                    <DesertVisualisation />
-                  </div>
-                  <div className="iconGallery"
-                    style={{
-                      position: "absolute",
-                      left: "50%",
-                      marginLeft: "-400px",
-                      zIndex: 2
-                    }} >
-                    <br />
-                    <animated.div style={props}>
-                      <div className={classes.root}>
-                        <Box
-                          display="flex"
-                          flexDirection="row"
-                          flexWrap="wrap"
-                          justifyContent="center"
-                          alignItems="center"
-                          maxWidth="800px"
-                          minWidth="100px"
-                          margin="0 auto"
-                        >
-                          <Grid
-                            container
+                  <div style={{ zIndex: 1, backgroundColor: "#E6DAC8" }}>
+                    <div className="desertVisualisation" style={{ position: "absolute", zIndex: 2 }}>
+                      <DesertVisualisation />
+                    </div>
+                    <div className="iconGallery"
+                      style={{
+                        position: "absolute",
+                        left: "50%",
+                        marginLeft: "-400px",
+                        zIndex: 3
+
+                      }} >
+                      <br />
+                      <animated.div style={props}>
+                        <div className={classes.root}>
+                          <Box
                             display="flex"
-                            flexDirection="column"
-                            justify="center"
+                            flexDirection="row"
+                            flexWrap="wrap"
+                            justifyContent="center"
                             alignItems="center"
-                            spacing={10}
+                            maxWidth="800px"
+                            minWidth="100px"
+                            margin="0 auto"
                           >
-                            {list}
-                          </Grid>
-                        </Box>
-                      </div>
-                    </animated.div>
+                            <Grid
+                              container
+                              display="flex"
+                              flexDirection="column"
+                              justify="center"
+                              alignItems="center"
+                              spacing={10}
+                            >
+                              {list}
+                            </Grid>
+                          </Box>
+                        </div>
+                      </animated.div>
+                    </div>
                   </div>
                 </div>
                 )}
+
             </div>
 
           );

@@ -17,8 +17,8 @@ export default function HomeIconText() {
             </div>);
     } else {
         return (
-            <div className="home">
-                <Typography variant="h2" style={{ textAlign: "center", margin: "50px" }}> Home </Typography>
+            <div className="home" >
+                <Typography variant="h2" style={{ textAlign: "left", margin: "50px" }}> Home </Typography>
 
                 <Typography style={{ margin: "100px 200px 100px 200px" }}>
                     Home can be a topic that generates contradictory feelings

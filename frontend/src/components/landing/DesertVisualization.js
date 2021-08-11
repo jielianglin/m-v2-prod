@@ -3,7 +3,7 @@ import Sketch from 'react-p5';
 
 var t;
 
-var alpha = [5, 7, 18, 19];
+// var alpha = [5, 7, 18, 19];
 
 
 
@@ -11,11 +11,13 @@ export default function DesertVisualization() {
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
-
-    var alpha_value = alpha[Math.floor(Math.random() * alpha.length)];
-    console.log(alpha_value);
-    p5.stroke(230, 218, 200, 90);
-    p5.fill(230, 218, 200, alpha_value);
+    p5.background("#E6DAC8")
+    // var alpha_value = alpha[Math.floor(Math.random() * alpha.length)];
+    // console.log(alpha_value);
+    // p5.stroke(230, 218, 200, 90);
+    // p5.fill(230, 218, 200, alpha_value);
+    p5.stroke(255, 250, 250, 90);
+    p5.fill(255, 250, 250, 4)
     t = 0;
   }
 
@@ -51,6 +53,10 @@ export default function DesertVisualization() {
     }
   }
 
-  return <Sketch setup={setup} draw={draw} />
+  return (
+    <div>
+      <Sketch setup={setup} draw={draw} />
+    </div>
+  )
 
 }

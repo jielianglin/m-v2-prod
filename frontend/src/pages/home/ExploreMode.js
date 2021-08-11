@@ -10,26 +10,35 @@ import Dashboard from "../../components/explore/Dashboard";
 export default function ExploreMode() {
 
   return (
-    <div style={{ padding: "70px", borderRadius: "10px" }}>
+    <div style={{
+      position: "absolute",
+      zIndex: 1,
+      width: "100%",
+      height: "auto",
+      padding: "30px 10px 0px 10px",
+      backgroundColor: "#E6DAC8",
+      // borderRadius: "0px"
+
+    }}>
 
       <div className="backgroundVisual"
         style={{
-          borderRadius: "10px",
-          position: "absolute",
-          zIndex: 1,
-          width: "90%",
-          height: "90%"
+          zIndex: 2,
+          width: "99%",
+          height: "auto",
+          backgroundColor: "#E6DAC8",
         }}>
         <Visual />
       </div>
       <div className="controlBar"
         style={{
-          padding: "10px 45px 10px 35px",
-          backgroundColor: "rgba(255, 255, 255, 0.5)",
-          borderRadius: "150px 150px 150px 150px",
-          position: "absolute",
-          zIndex: 2,
-          width: "90%"
+          position: "relative",
+          right: "5px",
+          zIndex: 3,
+          backgroundColor: "#E6DAC8",
+          // backgroundColor: "rgba(255, 255, 255, 0.5)",
+          width: "100%",
+          height: "20px"
         }}>
         <div className="row" style={{ float: 'right', display: "flex", flexDirection: "row" }}>
           <Searchbar />

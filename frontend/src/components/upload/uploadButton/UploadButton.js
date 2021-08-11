@@ -18,6 +18,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+
 import Popover from "@material-ui/core/Popover";
 
 import { createMuiTheme } from "@material-ui/core/styles";
@@ -102,6 +103,7 @@ export default function CustomizedDialogs(props) {
   const [tags, setTags] = React.useState([]);
   const [src, setSrc] = React.useState(null);
   const [caption, setCaption] = React.useState(null);
+  const [returnTags, setReturnTags] = React.useState(null);
   const [returnCaption, setReturnCaption] = React.useState(null);
   const [returnAITags, setReturnAITags] = React.useState([]);
   const [progress, setProgress] = React.useState(false);
@@ -245,7 +247,7 @@ export default function CustomizedDialogs(props) {
                       className="returned-tags-chip"
                       avatar={
                         <Avatar>
-                          <AiOutlineNumber />
+                          #
                         </Avatar>
                       }
                       key={item.id}
@@ -270,7 +272,8 @@ export default function CustomizedDialogs(props) {
                       className="returned-ai-tags-chip"
                       avatar={
                         <Avatar style={{ background: "#668389" }}>
-                          <AiOutlineNumber style={{ color: "white" }} />
+
+                          #
                         </Avatar>
                       }
                       key={item.id}
