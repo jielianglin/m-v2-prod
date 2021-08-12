@@ -226,7 +226,7 @@ export default function P5Lasso() {
                 )}
 
                 {returnAITags.map((item) => (
-                  <Chipstyle className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
+                  <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
                     avatar={
                       <Avatar style={{ background: "#B5BCB4" }}>
                         <div style={{ color: "#FFFFFF" }}>
@@ -283,7 +283,7 @@ export default function P5Lasso() {
   } else {
     return (
       <FileInput
-        //is this needed okay? 
+        //is this needed?
         selectImage={setImage}
         selectedImage={selectedImage}
       />
