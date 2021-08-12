@@ -44,6 +44,7 @@ const theme = createMuiTheme({
 export default function P5Lasso() {
   const [color, setColor] = React.useState(['#ff0000']);
   const [image, setImage] = React.useState(null);
+  const [canvasImage, setCanvasImage] = React.useState(null);
 
   const [post, setPost] = React.useState(false);
   const [tags, setTags] = React.useState([]);
@@ -66,8 +67,9 @@ export default function P5Lasso() {
   };
 
   const resetCanvas = () => {
-    setImage(!image);
+    setCanvasImage(!canvasImage);
   }
+
 
 
   function setup(p5, canvasParentRef) {
@@ -79,7 +81,7 @@ export default function P5Lasso() {
     P5PostData = { Vector: imageBase64String };
 
     p5.background('black');
-    img = p5.loadImage(image, img => {
+    img = p5.loadImage(canvasImage, img => {
       p5.image(img, 0, 0);
     });
 
@@ -284,7 +286,7 @@ export default function P5Lasso() {
     return (
       <FileInput
         //is this needed?
-        selectImage={setImage}
+        selectImage={setCanvasImage}
         selectedImage={selectedImage}
       />
     );
