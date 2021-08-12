@@ -45,7 +45,7 @@ const styles = (theme) => ({
     root: {
         margin: 0,
         padding: theme.spacing(2),
-        color: "#2B4466",
+        color: "#000000",
         backgroundColor: "#E6DAC8",
     },
     closeButton: {
@@ -135,9 +135,11 @@ export default function Dashboard() {
 
     return (
         <div>
-            <IconButton onClick={handleClickOpen}>
-                <AccountCircleIcon style={{ fontSize: 50, color: "#FFFFFF" }} />
-            </IconButton>
+            <div>
+                <IconButton onClick={handleClickOpen}>
+                    <AccountCircleIcon style={{ fontSize: 60, color: "#FFFFFF" }} />
+                </IconButton>
+            </div>
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="simple-dialog-title"
@@ -194,9 +196,11 @@ export default function Dashboard() {
                                             {image.tags.map((sampletag) => {
 
                                                 return (
-                                                    <Chip className="chip1" avatar={
-                                                        <Avatar>
-                                                            #
+                                                    <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }} avatar={
+                                                        <Avatar style={{ color: "#E6DAC8" }}>
+                                                            <div style={{ color: "#FFFFFF" }}>
+                                                                #
+                                                            </div>
                                                         </Avatar>
                                                     }
                                                         key={image.id}
@@ -221,9 +225,11 @@ export default function Dashboard() {
                                             {image.ai_tags.map((sampletag) => {
 
                                                 return (
-                                                    <Chip className="chip2" style={{ color: "#668389" }} avatar={
-                                                        <Avatar style={{ background: "#668389" }}>
-                                                            #
+                                                    <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }} avatar={
+                                                        <Avatar style={{ background: "#B5BCB4" }}>
+                                                            <div style={{ color: "#FFFFFF" }}>
+                                                                #
+                                                            </div>
                                                         </Avatar>
                                                     }
                                                         key={image.id}

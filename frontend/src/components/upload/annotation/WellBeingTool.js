@@ -108,11 +108,13 @@ export default function WellBeingTool(props) {
                                 <Typography color="primary"> Your Tags: </Typography>
                                 {returnTags.map((item) => (
                                     <Chip
-                                        color="primary"
+                                        className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }}
                                         className="returned-tags-chip"
                                         avatar={
-                                            <Avatar>
-                                                #
+                                            <Avatar style={{ color: "#E6DAC8" }}>
+                                                <div style={{ color: "#FFFFFF" }}>
+                                                    #
+                                                </div>
                                             </Avatar>
                                         }
                                         key={item.id}
@@ -133,11 +135,14 @@ export default function WellBeingTool(props) {
 
                                 {returnAITags.map((item) => (
                                     <Chip
-                                        style={{ color: "#668389" }}
+                                        className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
+
                                         className="returned-ai-tags-chip"
                                         avatar={
-                                            <Avatar style={{ background: "#668389" }}>
-                                                #
+                                            <Avatar style={{ background: "#B5BCB4" }}>
+                                                <div style={{ color: "#FFFFFF" }}>
+                                                    #
+                                                </div>
                                             </Avatar>
                                         }
                                         key={item.id}

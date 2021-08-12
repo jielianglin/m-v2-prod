@@ -165,8 +165,8 @@ export default function CustomizedDialogs(props) {
                 onMouseEnter={showPopover}
                 onMouseLeave={closePopover}
             >
-                <div style={{ padding: "10px 0px 10px 10px" }}>
-                    <img src={UploadIMG} alt="upload" width="40px" />
+                <div style={{ position: "relative", left: "-15px", top: "-9px" }}>
+                    <img src={UploadIMG} alt="upload" width="90px" />
                 </div>
             </Button>
             <Popover

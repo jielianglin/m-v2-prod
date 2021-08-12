@@ -282,9 +282,11 @@ export default function Chart() {
                                                 {image.tags.map((sampletag) => {
 
                                                     return (
-                                                        <Chip className="chip1" avatar={
-                                                            <Avatar>
-                                                                #
+                                                        <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }} avatar={
+                                                            <Avatar style={{ color: "#E6DAC8" }}>
+                                                                <div style={{ color: "#FFFFFF" }}>
+                                                                    #
+                                                                </div>
                                                             </Avatar>
                                                         }
                                                             key={image.id}
@@ -309,9 +311,11 @@ export default function Chart() {
                                                 {image.ai_tags.map((sampletag) => {
 
                                                     return (
-                                                        <Chip className="chip2" style={{ color: "#668389" }} avatar={
-                                                            <Avatar style={{ background: "#668389" }}>
-                                                                #
+                                                        <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }} avatar={
+                                                            <Avatar style={{ background: "#B5BCB4" }}>
+                                                                <div style={{ color: "#FFFFFF" }}>
+                                                                    #
+                                                                </div>
                                                             </Avatar>
                                                         }
                                                             key={image.id}

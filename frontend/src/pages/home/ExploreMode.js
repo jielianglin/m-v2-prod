@@ -18,7 +18,6 @@ export default function ExploreMode() {
       padding: "30px 10px 0px 10px",
       backgroundColor: "#E6DAC8",
       // borderRadius: "0px"
-
     }}>
 
       <div className="backgroundVisual"
@@ -40,12 +39,19 @@ export default function ExploreMode() {
           width: "100%",
           height: "20px"
         }}>
-        <div className="row" style={{ float: 'right', display: "flex", flexDirection: "row" }}>
+        <div className="row" style={{ justifyContent: "center", display: "flex", flexDirection: "row" }}>
           <Searchbar />
         </div>
-        <div className="row" style={{ float: 'left', display: "flex", flexDirection: "row" }}>
-          <UploadButtonSmall />
-          <Dashboard />
+        <br />
+        <div className="row" style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+
+
+          <div style={{}}>
+            <Dashboard />
+          </div>
+          <div style={{}}>
+            <UploadButtonSmall />
+          </div>
         </div>
       </div>
     </div>
