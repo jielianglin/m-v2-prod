@@ -136,6 +136,7 @@ export default function P5Lasso() {
     pg.clear();
   }
 
+  //preparing files for p5 post
   function setFiles(p5) {
     let image = cnv.elt.toDataURL();
     let vector = pg.elt.toDataURL();
@@ -146,19 +147,22 @@ export default function P5Lasso() {
   let APIurl = "http://localhost:8000/images";
 
   //p5 post function
-  function P5PostRequest(p5) {
+  // function P5PostRequest(p5) {
+  //   p5.httpPost(APIurl, 'json', P5PostData,
+  //     function (result) {
+  //       console.log("postedCanvas")
+  //     });
+  // }
+
+  // main post function
+  async function postData(p5) {
+    setProgress(true);
+    console.log(tags);
+    console.log(tags.join(","));
     p5.httpPost(APIurl, 'json', P5PostData,
       function (result) {
         console.log("postedCanvas")
       });
-  }
-
-
-  async function postData() {
-    setProgress(true);
-    console.log(tags);
-    console.log(tags.join(","));
-    P5PostRequest();
     let formData = new FormData();
     // formData.append("file", image);
     formData.append("tags", tags.join(","));
