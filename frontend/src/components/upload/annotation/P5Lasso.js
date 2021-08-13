@@ -7,7 +7,9 @@ import Caption from './Caption';
 
 import Sketch from 'react-p5';
 import ColorSelector from './ColorSelector';
+
 import EraserIcon from './eraser/EraserIcon.png';
+import CheckMark from './checkmark/CheckMark.png';
 
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -16,7 +18,8 @@ import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { createMuiTheme } from "@material-ui/core/styles";
 
-
+var checkButton;
+var cnv;
 var smoothValue = 0.05;
 var init;
 var x = 0;
@@ -33,17 +36,13 @@ var P5PostData;
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#9611ff",
-    },
-    secondary: {
-      main: "#668389",
+      main: "#B272CE",
     },
   },
 });
 
 export default function P5Lasso() {
-  const [color, setColor] = React.useState(['#ff0000']);
-  const [image, setImage] = React.useState(null);
+  const [color, setColor] = React.useState(["#B272CE"]);
   const [canvasImage, setCanvasImage] = React.useState(null);
 
   const [post, setPost] = React.useState(false);
@@ -62,28 +61,33 @@ export default function P5Lasso() {
     setTags(tags);
   };
 
-  const selectedImage = (img) => {
-    setImage(img);
-  };
+  // const selectedImage = (img) => {
+  //   setImage(img);
+  //   setCanvasImage(img);
+  //   console.log("setImage");
+  // };
 
   const resetCanvas = () => {
     setCanvasImage(!canvasImage);
   }
 
-
-
   function setup(p5, canvasParentRef) {
-    p5.createCanvas(600, 600).parent(canvasParentRef);
+    cnv = p5.createCanvas(600, 600).parent(canvasParentRef);
     pg = p5.createGraphics(600, 600);
-
-    //Preparing graphics for post
-    let imageBase64String = pg.elt.toDataURL();
-    P5PostData = { Vector: imageBase64String };
-
     p5.background('black');
     img = p5.loadImage(canvasImage, img => {
       p5.image(img, 0, 0);
+      console.log("canvasImage");
     });
+
+
+
+    checkButton = p5.createImg(`${CheckMark}`).style(
+      'margin: 10px; width: 50px; height: 50px'
+    )
+
+    checkButton.position(100, 100);
+    checkButton.mousePressed(setFiles);
 
     clearButton = p5.createImg(`${EraserIcon}`).style(
       'margin: 10px; width: 50px; height: 50px'
@@ -120,7 +124,7 @@ export default function P5Lasso() {
   }
 
   function mouseReleased(p5) {
-    if (image) {
+    if (canvasImage) {
       pg.strokeWeight(15);
       pg.line(x, y, ...init);
       currentPath = [];
@@ -132,18 +136,21 @@ export default function P5Lasso() {
     pg.clear();
   }
 
+  function setFiles(p5) {
+    let image = cnv.elt.toDataURL();
+    let vector = pg.elt.toDataURL();
+    P5PostData = { Image: image, Vector: vector };
+    console.log("setFiles");
+  }
+
   let APIurl = "http://localhost:8000/images";
 
   //p5 post function
   function P5PostRequest(p5) {
     p5.httpPost(APIurl, 'json', P5PostData,
-      // function(result) {
-      //   return
-      //   (
-      //     //should return the graphics layer with createIMG() or <img />
-      //     
-      //   )
-    )
+      function (result) {
+        console.log("postedCanvas")
+      });
   }
 
 
@@ -153,11 +160,13 @@ export default function P5Lasso() {
     console.log(tags.join(","));
     P5PostRequest();
     let formData = new FormData();
-    formData.append("file", image);
+    // formData.append("file", image);
     formData.append("tags", tags.join(","));
     formData.append("caption", caption);
+
     let response = await axios.post(APIurl, formData);
     // props.newTitle();
+
     setSrc(`http://localhost:8000/images/${response.data.id}.jpeg`);
     console.log(response.data.caption);
     setReturnCaption(response.data.caption);
@@ -169,126 +178,124 @@ export default function P5Lasso() {
     setProgress(false);
   }
 
-  if (image) {
+  if (canvasImage) {
     return (
       <div>
-        {post ?
-          <div className="returnForm">
-            < img
-              style={{
-                display: "block",
-                margin: "0 auto",
-                height: "50%",
-                borderRadius: "5px",
-              }}
-              className="returned-image"
-              src={src}
-              alt=""
-            />
-            <br />
-            <ThemeProvider theme={theme}>
-              <Typography variant="h6" color="primary">
-                <div className="returned-caption">
-                  <i>"</i>
-                  <i>
-                    {" "}
-                    <span>{returnCaption}</span>{" "}
-                  </i>
-                  <i>"</i>
-                </div>
-              </Typography>
-              <br />
-              <span className="tags-return">
-                <Typography color="primary"> Your Tags: </Typography>
-                {returnTags.map((item) => (
-                  <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }}
-
-                    className="returned-tags-chip"
-                    avatar={
-                      <Avatar style={{ color: "#E6DAC8" }}>
-                        <div style={{ color: "#FFFFFF" }}>
-                          #
-                        </div>
-                      </Avatar>
-                    }
-                    key={item.id}
-                    label={item.tag}
-                    variant="outlined"
-                  />
-                ))}
-              </span>
-              <br />
-              <br />
-              <span className="ai_tags_return">
-                <Typography color="secondary"> Tags from ImageNet AI: </Typography>
-                {returnAITags.length === 0 && (
-                  <Typography variant="h12" color="secondary">
-                    <i>[couldn't identify any tags] </i>
-                  </Typography>
-                )}
-
-                {returnAITags.map((item) => (
-                  <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
-                    avatar={
-                      <Avatar style={{ background: "#B5BCB4" }}>
-                        <div style={{ color: "#FFFFFF" }}>
-                          #
-                        </div>
-                      </Avatar>
-                    }
-                    key={item.id}
-                    label={item.tag}
-                  />
-                ))}
-              </span>
-              <br />
-              <Button onClick={resetCanvas}>Back to WellBeing upload</Button>
-              <br />
-            </ThemeProvider>
-          </div >
-          :
+        <br />
+        <div style={{ backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
+          <Caption enteredCaption={enteredCaption} />
           <div>
             <br />
-            <div style={{ backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
-              <Caption enteredCaption={enteredCaption} />
-              {image && (
-
-                <div>
-                  <br />
-                  <Sketch setup={setup} draw={draw}
-                    mouseReleased={mouseReleased}
-                  />
-                </div>
-              )}
-              <br />
-              <Tags selectedTags={selectedTags} />
-            </div>
-            <ColorSelector selectColor={color => setColor(color)} />
-            <div className="save-data">
-              <Button
-                disabled={!image || !caption || tags.length === 0}
-                className="save-button"
-                palette="primary"
-                onClick={postData}
-              >
-                {" "}
-                Save{" "}
-              </Button>
-              <ThemeProvider theme={theme}>
-                {progress && <CircularProgress />}
-              </ThemeProvider>
-            </div>
+            <Sketch setup={setup} draw={draw}
+              mouseReleased={mouseReleased}
+            />
           </div>
+          <br />
+          <Tags selectedTags={selectedTags} />
+        </div>
+        <ColorSelector selectColor={color => setColor(color)} />
+        <div className="save-data">
+          <Button
+            disabled={!canvasImage || !caption || tags.length === 0}
+            className="save-button"
+            palette="primary"
+            onClick={postData}
+          >
+            {" "}
+            Save{" "}
+          </Button>
+          <ThemeProvider theme={theme}>
+            {progress &&
+              <CircularProgress />}
+          </ThemeProvider>
+        </div>
+
+
+        {
+          post ?
+            <div className="returnForm">
+              < img
+                style={{
+                  display: "block",
+                  margin: "0 auto",
+                  height: "50%",
+                  borderRadius: "5px",
+                }}
+                className="returned-image"
+                src={src}
+                alt=""
+              />
+              <br />
+              <ThemeProvider theme={theme}>
+                <Typography variant="h6" color="primary">
+                  <div className="returned-caption">
+                    <i>"</i>
+                    <i>
+                      {" "}
+                      <span>{returnCaption}</span>{" "}
+                    </i>
+                    <i>"</i>
+                  </div>
+                </Typography>
+                <br />
+                <span className="tags-return">
+                  <Typography color="primary"> Your Tags: </Typography>
+                  {returnTags.map((item) => (
+                    <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }}
+
+                      className="returned-tags-chip" avatar={
+                        <Avatar style={{ color: "#E6DAC8" }}>
+                          <div style={{ color: "#FFFFFF" }}>
+                            #
+                          </div>
+                        </Avatar>
+                      }
+                      key={item.id}
+                      label={item.tag}
+                      variant="outlined"
+                    />
+                  ))}
+                </span>
+                <br />
+                <br />
+                <span className="ai_tags_return">
+                  <Typography color="secondary"> Tags from ImageNet AI: </Typography>
+                  {returnAITags.length === 0 && (
+                    <Typography variant="h12" color="secondary">
+                      <i>[couldn't identify any tags] </i>
+                    </Typography>
+                  )}
+
+                  {returnAITags.map((item) => (
+                    <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
+                      avatar={
+                        <Avatar style={{ background: "#B5BCB4" }}>
+                          <div style={{ color: "#FFFFFF" }}>
+                            #
+                          </div>
+                        </Avatar>
+                      }
+                      key={item.id}
+                      label={item.tag}
+                    />
+                  ))}
+                </span>
+                <br />
+                <Button onClick={resetCanvas}>Back to WellBeing upload</Button>
+                <br />
+              </ThemeProvider>
+            </div >
+            : null
         }
-      </div>
-    )
+      </div>)
   } else {
     return (
-      <FileInput
-        //is this needed?
-        selectImage={setCanvasImage}
-        selectedImage={selectedImage}
-      />
+      <div>
+        <FileInput
+          selectImage={setCanvasImage}
+        // selectedImage={selectedImage}
+        />
+      </div>
     );
   }
 }

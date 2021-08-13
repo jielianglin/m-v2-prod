@@ -129,10 +129,6 @@ export default function Search() {
   const showCarousel = () => {
     setGallery(false);
     setCarousel(true);
-
-    //   return (
-
-    //   )
   }
 
   const showGallery = () => {
