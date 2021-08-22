@@ -1,6 +1,4 @@
-database/settings.py
 .vscode/
 frontend/node_modules
-backend/venv/
 venv/lib/python3.9/site-packages/tensorflow
 
