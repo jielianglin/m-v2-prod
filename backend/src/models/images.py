@@ -1,6 +1,7 @@
 # import dependencies
 from sqlalchemy import BigInteger, String, Column, Integer
 from sqlalchemy.orm import relationship
+from sqlalchemy import Column, ForeignKey
 
 from uuid import uuid4
 
@@ -17,6 +18,7 @@ class Image(Base):
     # define fields
     id = Column(UUID, primary_key=True, default=uuid4)
     caption = Column(String)
+    shapes_id = Column(UUID, ForeignKey("shapes.id"), default=uuid4)
 
     # define relationships
     tags = relationship("Tag", secondary=ImageTag.__table__)
