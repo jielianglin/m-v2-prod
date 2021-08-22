@@ -20,7 +20,7 @@ export default function WellBeingIconText() {
             <div>
                 <Typography variant="h2" style={{ textAlign: "left", margin: "50px", backgroundColor: "#E6DAC8" }}>Well-Being</Typography>
                 <Typography style={{ margin: "100px 200px 100px 200px" }}>
-                    Wellbeing takes different shapes in different territories.
+                    Well-being takes different shapes in different territories.
                     In some there are collective practices while in others individuals.
                     The meaning of this word will be explored, and as well multi-cultural
                     rituals for wellbeing.
