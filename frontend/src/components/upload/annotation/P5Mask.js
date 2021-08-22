@@ -142,32 +142,38 @@ export default function Mask() {
     function setFiles(p5) {
         let image = cnv.elt.toDataURL();
         let vector = pg.elt.toDataURL();
-        P5PostData = { Image: image, Vector: vector };
-        console.log("setFiles");
+        return { image, vector };
     }
 
-    let APIurl = "http://localhost:8000/images";
+    let APIurl = "http://localhost:2000/images";
 
     //p5 post function
-    function P5PostRequest(p5) {
-        p5.httpPost(APIurl, 'json', P5PostData,
-            function (result) {
-                console.log("postedCanvas")
-            });
-    }
+    // function P5PostRequest(p5) {
+    //   p5.httpPost(APIurl, 'json', P5PostData,
+    //     function (result) {
+    //       console.log("postedCanvas")
+    //     });
+    // }
 
     // main post function
-    async function postData() {
-        setProgress(true);
-        console.log(tags);
-        console.log(tags.join(","));
-        P5PostRequest();
+    async function postData(p5) {
+        let { image, vector } = setFiles(p5);
+
         let formData = new FormData();
+        console.log(tags.join(","));
         // formData.append("file", image);
         formData.append("tags", tags.join(","));
         formData.append("caption", caption);
+        formData.append("image", image);
+        formData.append("vector", vector);
 
-        let response = await axios.post(APIurl, formData);
+        let response = {};
+        try {
+            response = await axios.post(APIurl, formData);
+        } catch (e) {
+            console.error(e);
+            return;
+        }
         // props.newTitle();
 
         setSrc(`http://localhost:8000/images/${response.data.id}.jpeg`);
