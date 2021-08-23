@@ -12,17 +12,18 @@ import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 
+import MatchBar from "../../explore/MatchBar";
 
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         primary: {
-            main: "#9611ff",
+            main: "#000000",
         },
-        secondary: {
-            main: "#668389",
-        },
+        // secondary: {
+        //     main: "#668389",
+        // },
     },
 });
 
@@ -113,10 +114,10 @@ export default function WellBeingTool(props) {
                             <Typography color="primary"> Your Tags: </Typography>
                             {returnTags.map((item) => (
                                 <Chip
-                                    className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }}
+                                    className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }}
                                     className="return-tags"
                                     avatar={
-                                        <Avatar style={{ color: "#E6DAC8" }}>
+                                        <Avatar style={{ color: "#B272CE" }}>
                                             <div style={{ color: "#FFFFFF" }}>
                                                 #
                                             </div>
@@ -133,7 +134,7 @@ export default function WellBeingTool(props) {
                         <span className="ai_tags_return">
                             <Typography color="secondary"> Tags from ImageNet AI: </Typography>
                             {returnAITags.length === 0 && (
-                                <Typography variant="h12" color="secondary">
+                                <Typography variant="h12" color="#OOOOOO">
                                     <i>[couldn't identify any tags] </i>
                                 </Typography>
                             )}
@@ -141,7 +142,7 @@ export default function WellBeingTool(props) {
                             {returnAITags.map((item) => (
                                 <Chip
                                     className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
-
+                                    style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
                                     className="return-ai-tags"
                                     avatar={
                                         <Avatar style={{ background: "#B5BCB4" }}>
@@ -154,6 +155,16 @@ export default function WellBeingTool(props) {
                                     label={item.tag}
                                 />
                             ))}
+                            <div>
+                                {item.ai_tags.map((aiitem) => {
+                                    return (
+                                        <MatchBar
+                                            match={parseFloat(aiitem.confidence)}
+                                            aitag={aiitem.tag}
+                                        />
+                                    );
+                                })}
+                            </div>
                         </span>
                         <br />
                         <Button onClick={resetCanvas}>Back to WellBeing upload</Button>
