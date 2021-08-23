@@ -13,10 +13,12 @@ import CheckMark from './checkmark/CheckMark.png';
 
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import VisibilitySharpIcon from '@material-ui/icons/VisibilitySharp';
 
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
+
 
 var checkButton;
 var cnv;
@@ -31,9 +33,8 @@ var pg;
 var clearButton;
 var imgWidth;
 var imgHeight;
-var P5PostData;
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#B272CE",
@@ -52,6 +53,8 @@ export default function P5Lasso() {
   const [returnCaption, setReturnCaption] = React.useState(null);
   const [returnTags, setReturnTags] = React.useState([])
   const [returnAITags, setReturnAITags] = React.useState([]);
+  const [returnShape, setReturnShape] = React.useState([]);
+  const [shapeVisibility, setShapeVisibility] = React.useState(false);
   const [progress, setProgress] = React.useState(false);
 
   const enteredCaption = (caption) => {
@@ -79,8 +82,6 @@ export default function P5Lasso() {
       p5.image(img, 0, 0);
       console.log("canvasImage");
     });
-
-
 
     checkButton = p5.createImg(`${CheckMark}`).style(
       'margin: 10px; width: 50px; height: 50px'
@@ -136,34 +137,25 @@ export default function P5Lasso() {
     pg.clear();
   }
 
-  //preparing files for p5 post
+  //preparing files for post
   function setFiles(p5) {
     let image = cnv.elt.toDataURL();
-    let vector = pg.elt.toDataURL();
-    return { image, vector };
+    let shape = pg.elt.toDataURL();
+    return { image, shape };
   }
 
-  let APIurl = "http://localhost:2000/images";
-
-  //p5 post function
-  // function P5PostRequest(p5) {
-  //   p5.httpPost(APIurl, 'json', P5PostData,
-  //     function (result) {
-  //       console.log("postedCanvas")
-  //     });
-  // }
+  let APIurl = "http://localhost:8000/images";
 
   // main post function
   async function postData(p5) {
-    let { image, vector } = setFiles(p5);
+    let { image, shape } = setFiles(p5);
 
     let formData = new FormData();
     console.log(tags.join(","));
-    // formData.append("file", image);
     formData.append("tags", tags.join(","));
     formData.append("caption", caption);
-    formData.append("image", image);
-    formData.append("vector", vector);
+    formData.append("file", image);
+    formData.append("shape", shape);
 
     let response = {};
     try {
@@ -172,7 +164,6 @@ export default function P5Lasso() {
       console.error(e);
       return;
     }
-    // props.newTitle();
 
     setSrc(`http://localhost:8000/images/${response.data.id}.jpeg`);
     console.log(response.data.caption);
@@ -181,8 +172,13 @@ export default function P5Lasso() {
     setReturnTags(response.data.tags);
     console.log(response.data.ai_tags);
     setReturnAITags(response.data.ai_tags || []);
+    setReturnShape(`http://localhost:8000/images/${response.data.shape.id}.png`);
     setPost(true);
     setProgress(false);
+  }
+
+  const showShape = () => {
+    setShapeVisibility(true);
   }
 
   if (canvasImage) {
@@ -193,8 +189,12 @@ export default function P5Lasso() {
           <Caption enteredCaption={enteredCaption} />
           <div>
             <br />
-            <Sketch setup={setup} draw={draw}
+            <Sketch
+              setup={setup}
+              draw={draw}
               mouseReleased={mouseReleased}
+              resetSketch={resetSketch}
+              setFiles={setFiles}
             />
           </div>
           <br />
@@ -227,11 +227,29 @@ export default function P5Lasso() {
                   margin: "0 auto",
                   height: "50%",
                   borderRadius: "5px",
+                  zLayer: 1,
                 }}
                 className="returned-image"
                 src={src}
                 alt=""
               />
+              {shapeVisibility &&
+                <img
+                  style={{
+                    display: "block",
+                    margin: "0 auto",
+                    height: "50%",
+                    borderRadius: "5px",
+                    zLayer: 2,
+                  }}
+                  className="returned-shape"
+                  src={returnShape}
+                  alt=""
+                />
+              }
+
+              <br />
+              <Button onClick={showShape}><VisibilitySharpIcon fontsize="medium" /></Button>
               <br />
               <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="primary">
@@ -248,10 +266,10 @@ export default function P5Lasso() {
                 <span className="tags-return">
                   <Typography color="primary"> Your Tags: </Typography>
                   {returnTags.map((item) => (
-                    <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }}
+                    <Chip className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }}
 
                       className="returned-tags-chip" avatar={
-                        <Avatar style={{ color: "#E6DAC8" }}>
+                        <Avatar style={{ color: "#B272CE" }}>
                           <div style={{ color: "#FFFFFF" }}>
                             #
                           </div>
@@ -288,7 +306,7 @@ export default function P5Lasso() {
                   ))}
                 </span>
                 <br />
-                <Button onClick={resetCanvas}>Back to WellBeing upload</Button>
+                <Button onClick={resetCanvas}>Back to Well-Being upload</Button>
                 <br />
               </ThemeProvider>
             </div >
