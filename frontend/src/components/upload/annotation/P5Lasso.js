@@ -19,6 +19,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { createTheme } from "@material-ui/core/styles";
 
+import MatchBar from "../../explore/MatchBar";
 
 var checkButton;
 var cnv;
@@ -304,6 +305,17 @@ export default function P5Lasso() {
                       label={item.tag}
                     />
                   ))}
+
+                  <div>
+                    {item.ai_tags.map((aiitem) => {
+                      return (
+                        <MatchBar
+                          match={parseFloat(aiitem.confidence)}
+                          aitag={aiitem.tag}
+                        />
+                      );
+                    })}
+                  </div>
                 </span>
                 <br />
                 <Button onClick={resetCanvas}>Back to Well-Being upload</Button>

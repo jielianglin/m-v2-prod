@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import ReactEcharts from "echarts-for-react";
 import axios from "axios";
 import Popover from "@material-ui/core/Popover";
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -15,7 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
+import MatchBar from "./MatchBar";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -138,7 +138,7 @@ export default function Chart() {
             const tags = await axios.get("http://127.0.0.1:8000/tags/network");
             setGraph(tags.data);
             //not sure about the preview call
-            const preview = await axios.get("http://127.0.0.1:8000/images/thumbnail");
+            const preview = await axios.get(`http://127.0.0.1:8000/images?tag=${graph}`);
             var randomPreview = preview[Math.floor(Math.random() * preview.length)];
             setImagePreview(randomPreview);
             const images = await axios.get(`http://127.0.0.1:8000/images?tag=${graph}`)
@@ -176,7 +176,7 @@ export default function Chart() {
     };
     const showCarousel = (e) => {
         setGallery(false);
-        setSlidePosition(e.target.id);
+        // setSlidePosition(e.target.id);
         setCarousel(true);
 
     }
@@ -278,19 +278,18 @@ export default function Chart() {
                                             </div>
                                             <div className="userTags" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
 
-
-                                                {image.tags.map((sampletag) => {
+                                                {item.tags.map((posttag) => {
 
                                                     return (
-                                                        <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }} avatar={
-                                                            <Avatar style={{ color: "#E6DAC8" }}>
+                                                        <Chip className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }} avatar={
+                                                            <Avatar style={{ color: "#B272CE" }}>
                                                                 <div style={{ color: "#FFFFFF" }}>
                                                                     #
                                                                 </div>
                                                             </Avatar>
                                                         }
-                                                            key={image.id}
-                                                            label={sampletag}
+                                                            key={posttag.id}
+                                                            label={posttag.tag}
                                                             component="a"
                                                             href="#chip"
                                                             variant="outlined"
@@ -308,7 +307,7 @@ export default function Chart() {
                                             <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
 
 
-                                                {image.ai_tags.map((sampletag) => {
+                                                {item.ai_tags.map((aitag) => {
 
                                                     return (
                                                         <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }} avatar={
@@ -318,11 +317,21 @@ export default function Chart() {
                                                                 </div>
                                                             </Avatar>
                                                         }
-                                                            key={image.id}
-                                                            label={sampletag}
+                                                            key={aitag.id}
+                                                            label={aitag.tag}
                                                             component="a"
                                                             href="#chip"
                                                             clickable
+                                                        />
+                                                    );
+                                                })}
+                                            </div>
+                                            <div>
+                                                {item.ai_tags.map((aiitem) => {
+                                                    return (
+                                                        <MatchBar
+                                                            match={parseFloat(aiitem.confidence)}
+                                                            aitag={aiitem.tag}
                                                         />
                                                     );
                                                 })}

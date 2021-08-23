@@ -20,6 +20,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { createTheme } from "@material-ui/core/styles";
 
+import MatchBar from "../../explore/MatchBar";
 
 var slider;
 var checkButton;
@@ -294,20 +295,31 @@ export default function Mask() {
                                             <i>[couldn't identify any tags] </i>
                                         </Typography>
                                     )}
-
-                                    {returnAITags.map((item) => (
-                                        <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
-                                            avatar={
-                                                <Avatar style={{ background: "#B5BCB4" }}>
-                                                    <div style={{ color: "#FFFFFF" }}>
-                                                        #
-                                                    </div>
-                                                </Avatar>
-                                            }
-                                            key={item.id}
-                                            label={item.tag}
-                                        />
-                                    ))}
+                                    <div>
+                                        {returnAITags.map((item) => (
+                                            <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
+                                                avatar={
+                                                    <Avatar style={{ background: "#B5BCB4" }}>
+                                                        <div style={{ color: "#FFFFFF" }}>
+                                                            #
+                                                        </div>
+                                                    </Avatar>
+                                                }
+                                                key={item.id}
+                                                label={item.tag}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div>
+                                        {item.ai_tags.map((aiitem) => {
+                                            return (
+                                                <MatchBar
+                                                    match={parseFloat(aiitem.confidence)}
+                                                    aitag={aiitem.tag}
+                                                />
+                                            );
+                                        })}
+                                    </div>
                                 </span>
                                 <br />
                                 <Button onClick={resetCanvas}>Back to WellBeing upload</Button>

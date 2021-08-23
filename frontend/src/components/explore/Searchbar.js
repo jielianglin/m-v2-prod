@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from "material-ui-search-bar";
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Carousel from 'react-material-ui-carousel'
-import { Paper } from '@material-ui/core'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -14,15 +14,18 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import { withStyles } from "@material-ui/core/styles";
 
-import image1 from './Gallery/image1/image1.jpg';
-import image2 from './Gallery/image2/image2.jpg';
-import image3 from './Gallery/image3/image3.png';
+import MatchBar from "./MatchBar";
 
-const images = [
-  { id: 1, src: `${image1}` },
-  { id: 2, src: `${image2}` },
-  { id: 3, src: `${image3}` },
-]
+// import image1 from './Gallery/image1/image1.jpg';
+// import image2 from './Gallery/image2/image2.jpg';
+// import image3 from './Gallery/image3/image3.png';
+
+// const images = [
+//   { id: 1, src: `${image1}` },
+//   { id: 2, src: `${image2}` },
+//   { id: 3, src: `${image3}` },
+// ]
+
 // styling for dialog
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -196,18 +199,18 @@ export default function Search() {
                       <div className="userTags" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
 
 
-                        {image.tags.map((sampletag) => {
+                        {item.tags.map((posttag) => {
 
                           return (
-                            <Chip className="chip1" style={{ color: "#000000", backgroundColor: "#B272CE" }} avatar={
-                              <Avatar style={{ color: "#E6DAC8" }}>
+                            <Chip className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }} avatar={
+                              <Avatar style={{ color: "#B272CE" }}>
                                 <div style={{ color: "#FFFFFF" }}>
                                   #
                                 </div>
                               </Avatar>
                             }
-                              key={image.id}
-                              label={sampletag}
+                              key={posttag.id}
+                              label={posttag.tag}
                               component="a"
                               href="#chip"
                               variant="outlined"
@@ -223,23 +226,31 @@ export default function Search() {
                         </Typography>
                       </div>
                       <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
-
-
-                        {image.ai_tags.map((sampletag) => {
+                        {item.ai_tags.map((aitag) => {
 
                           return (
-                            <Chip className="chip2" style={{ color: "#668389" }} avatar={
-                              <Avatar style={{ background: "#668389" }}>
+                            <Chip className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }} avatar={
+                              <Avatar style={{ background: "#B5BCB4" }}>
                                 <div style={{ color: "#FFFFFF" }}>
                                   #
                                 </div>
                               </Avatar>
                             }
-                              key={image.id}
-                              label={sampletag}
+                              key={aittag.id}
+                              label={aitag.tag}
                               component="a"
                               href="#chip"
                               clickable
+                            />
+                          );
+                        })}
+                      </div>
+                      <div>
+                        {item.ai_tags.map((aiitem) => {
+                          return (
+                            <MatchBar
+                              match={parseFloat(aiitem.confidence)}
+                              aitag={aiitem.tag}
                             />
                           );
                         })}
