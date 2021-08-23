@@ -27,6 +27,7 @@ import MatchBar from "./MatchBar";
 // ]
 
 // styling for dialog
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "transparent",
