@@ -17,10 +17,11 @@ import Popover from "@material-ui/core/Popover";
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 
+import MatchBar from "../../explore/MatchBar";
 
 //popover styling
 const useStyles = makeStyles((theme) => ({
@@ -51,14 +52,14 @@ const styles = (theme) => ({
 });
 
 // return form styling
-const theme = createMuiTheme({
+const theme = createTheme({
     palette: {
         primary: {
-            main: "#9611ff",
+            main: "#000000",
         },
-        secondary: {
-            main: "#668389",
-        },
+        // secondary: {
+        //     main: "#668389",
+        // },
     },
 });
 
@@ -241,9 +242,12 @@ export default function CustomizedDialogs(props) {
                                         <Chip
                                             color="primary"
                                             className="returned-tags-chip"
+                                            style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }}
                                             avatar={
-                                                <Avatar>
-                                                    #
+                                                <Avatar style={{ color: "#B272CE" }}>
+                                                    <div style={{ color: "#FFFFFF" }}>
+                                                        #
+                                                    </div>
                                                 </Avatar>
                                             }
                                             key={item.id}
@@ -257,24 +261,37 @@ export default function CustomizedDialogs(props) {
                                 <span className="ai_tags_return">
                                     <Typography color="secondary"> Tags from ImageNet AI: </Typography>
                                     {returnAITags.length === 0 && (
-                                        <Typography variant="h12" color="secondary">
+                                        <Typography variant="h12" color="#OOOOOO">
                                             <i>[couldn't identify any tags] </i>
                                         </Typography>
                                     )}
-
-                                    {returnAITags.map((item) => (
-                                        <Chip
-                                            style={{ color: "#668389" }}
-                                            className="returned-ai-tags-chip"
-                                            avatar={
-                                                <Avatar style={{ background: "#668389" }}>
-                                                    #
-                                                </Avatar>
-                                            }
-                                            key={item.id}
-                                            label={item.tag}
-                                        />
-                                    ))}
+                                    <div>
+                                        {returnAITags.map((item) => (
+                                            <Chip
+                                                className="returned-ai-tags-chip"
+                                                style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
+                                                avatar={
+                                                    <Avatar style={{ background: "#B5BCB4" }}>
+                                                        <div style={{ color: "#FFFFFF" }}>
+                                                            #
+                                                        </div>
+                                                    </Avatar>
+                                                }
+                                                key={item.id}
+                                                label={item.tag}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div>
+                                        {item.ai_tags.map((aiitem) => {
+                                            return (
+                                                <MatchBar
+                                                    match={parseFloat(aiitem.confidence)}
+                                                    aitag={aiitem.tag}
+                                                />
+                                            );
+                                        })}
+                                    </div>
                                 </span>
 
                                 <br />

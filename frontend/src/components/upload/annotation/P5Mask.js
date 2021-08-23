@@ -291,7 +291,7 @@ export default function Mask() {
                                 <span className="ai_tags_return">
                                     <Typography color="secondary"> Tags from ImageNet AI: </Typography>
                                     {returnAITags.length === 0 && (
-                                        <Typography variant="h12" color="secondary">
+                                        <Typography variant="h12" color="#000000">
                                             <i>[couldn't identify any tags] </i>
                                         </Typography>
                                     )}
