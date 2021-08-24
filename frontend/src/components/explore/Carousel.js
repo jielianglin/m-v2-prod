@@ -1,5 +1,4 @@
 import Carousel from 'react-material-ui-carousel';
-import { makeStyles } from '@material-ui/core/styles';
 
 export default function Carousel(props) {
     const carousel = () => {
