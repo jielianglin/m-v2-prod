@@ -2,7 +2,7 @@ import React from "react";
 import UploadButtonSmall from "../../components/upload/uploadButton/UploadButtonSmall";
 import Searchbar from "../../components/explore/Searchbar";
 import Visual from "../../components/explore/Visual";
-import Dashboard from "../../components/explore/Dashboard";
+// import Dashboard from "../../components/explore/Dashboard";
 
 
 
@@ -45,10 +45,11 @@ export default function ExploreMode() {
         <br />
         <div className="row" style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
 
-
+          {/* 
           <div style={{}}>
             <Dashboard />
-          </div>
+          </div> */}
+
           <div style={{}}>
             <UploadButtonSmall />
           </div>
