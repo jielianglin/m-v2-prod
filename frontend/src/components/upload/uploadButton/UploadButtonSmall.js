@@ -40,7 +40,7 @@ const styles = (theme) => ({
     root: {
         margin: 0,
         padding: theme.spacing(2),
-        color: "#2B4466",
+        color: "#FFFFFF",
         backgroundColor: "#E6DAC8",
     },
     closeButton: {
@@ -84,7 +84,7 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogContent = withStyles((theme) => ({
     root: {
         padding: theme.spacing(2),
-        backgroundColor: "#E6DAC8",
+        backgroundColor: "#FFFFFF",
     },
 }))(MuiDialogContent);
 
@@ -310,7 +310,7 @@ export default function CustomizedDialogs(props) {
                                 FileInput selectedImage={selectedImage}
                             />
                             {forms && <Tags selectedTags={selectedTags} />}
-                            );
+
 
                             <div className="save-data">
                                 <Button

@@ -5,19 +5,24 @@ import Typography from "@material-ui/core/Typography";
 export default function About() {
   return (
     <div style={{ padding: "100px" }}>
+      {/* <div style={{ width: "800px" }}>
+        <video src={process.env.PUBLIC_URL + '/videos/video.mp4'} />
+      </div> */}
 
       <p className="team">
 
         <Typography variant="h5">
           <span className="About">
-            MIGR-AI-TION is a speculative platform to re-conceive current technological processes and futures. We use healing methodologies from Expressive-Arts Therapy and design fiction to address AI labour,
+            MIGR-AI-TION is a platform for re-conceiving current technological processes and futures. We use healing methodologies from Expressive-Arts Therapy and design fiction to address AI labour,
             data extraction, and inequalities that are inherent and (in)visible in the tech world. We convene artistic, ethnographic, therapeutic and design perspectives in order to do so, and our applied,
             interventional approaches carve out communal practices for intercultural well-being in digital-embodied-entangled realms. Digital practices include using archiving, witnessing and imagining as methods for
             community development and decolonising technology, for which, this platform is a tool.
             <br />
+            <br />
             This project was created to inspire grassroots modes of data activism and participation in everyday users. Not only do we want to counter the hegemonic media narratives about migrants, migration and (post)colonial societies,
             we also want to develop new models of interconnectivity and for sharing oneself and one’s data. For our team, this means going beyond superficial tropes of “diversity”, and delving deeper into inquiries of what knowledge is,
             how it is created and who it serves. We want to collect a decolonised image dataset, and to use the collection process itself as a way to strengthen individuals and communities.
+            <br />
             <br />
             The liminal character of migration experiences presents a challenge to the concretizing influence of image recognition technologies upon visual culture and our perceptual modes of thinking and being.
             Humans with migration backgrounds are our inspiration for re-centering the "in-betweeness" and unquantifiable character of primary experience in a data-driven world. Together, we push for more inclusive approaches to AI-oriented research,
@@ -25,6 +30,9 @@ export default function About() {
 
           </span>
           <br />
+          <br />
+          <br />
+          <span>CREATED BY</span>
           <br />
           <br />
           <span className="teammates-names" style={{ fontWeight: "bold" }}> Jie Liang Lin (Project Lead & Developer)</span>
@@ -37,8 +45,11 @@ export default function About() {
           </span>
           <br />
           <br />
-
+          <span>&</span>
+          <br />
+          <br />
           <span>RESEARCH TEAM</span>
+          <br />
           <br />
           <span className="teammates-names" style={{ fontWeight: "bold" }}>Nuno Moreira (UX Research) </span>
           <br />
@@ -74,6 +85,9 @@ export default function About() {
           </span>
           <br />
           <br />
+          <span>&</span>
+          <br />
+          <br />
           <span>OTHER CONTRIBUTORS</span>
           <br />
           <br />
@@ -89,9 +103,31 @@ export default function About() {
           <br />
           <br />
           <br />
+          <span>THANK YOU TO (in alphabetial order) :</span>
+          <br />
+          <br />
+          Saptarishi Baksi <br />
+          Paul Bochtler<br />
+          Aladin Borioli<br />
+          CeMig (Zentrum für Globale Migrationsstudien)<br />
+          Btari Galuh Chandraditya<br />
+          Jan Dix<br />
+          Margit Hain<br />
+          Adam Harvey<br />
+          Yoohna Kim<br />
+          Michael Kreil<br />
+          Julia Manek<br />
+          Prototype Fund Management Team <br />
+          Or Safarti<br />
+          Joanna Sleigh<br />
+          Peggy Sylopp<br />
+          Froilan Urzagasti<br />
+          <br />
+          <br />
           <span className="description">
-            <i>Phase 1 of this project was developed in the context of Techlabs Berlin.
-              Phase 2 is supported by Prototype Fund (Open Knowledge Foundation Germany & the Federal Ministry of Education and Research (BMBF))</i>
+            <i><b>Phase 1 of this project was developed in the context of Techlabs Berlin.
+              <br />
+              Phase 2 is supported by Prototype Fund (Open Knowledge Foundation Germany & the Federal Ministry of Education and Research (BMBF))</b></i>
           </span>
         </Typography>
       </p>

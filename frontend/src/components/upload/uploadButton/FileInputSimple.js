@@ -41,7 +41,7 @@ export default function FileInput(props) {
             maxHeight: "400px",
           }}>
 
-          <Typography variant="h2" style={{ color: "#2B4466" }}>
+          <Typography variant="h2" style={{ color: "#000000" }}>
             <div style={{ textAlign: "center", backgroundColor: "#FFFFFF", }}>
               <br />
               click
