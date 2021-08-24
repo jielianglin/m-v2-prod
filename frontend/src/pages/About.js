@@ -20,10 +20,11 @@ export default function About() {
             how it is created and who it serves. We want to collect a decolonised image dataset, and to use the collection process itself as a way to strengthen individuals and communities.
             <br />
             The liminal character of migration experiences presents a challenge to the concretizing influence of image recognition technologies upon visual culture and our perceptual modes of thinking and being.
-            Humans with migration backgrounds are our inspiration for re-centering the unquantifiable character of primary experience in a data-driven world. Together, we push for more inclusive approaches to AI-oriented research,
+            Humans with migration backgrounds are our inspiration for re-centering the "in-betweeness" and unquantifiable character of primary experience in a data-driven world. Together, we push for more inclusive approaches to AI-oriented research,
             businesses, policies and beyond.
 
           </span>
+          <br />
           <br />
           <br />
           <span className="teammates-names" style={{ fontWeight: "bold" }}> Jie Liang Lin (Project Lead & Developer)</span>
@@ -32,8 +33,7 @@ export default function About() {
             is a Chinese-American, interdisciplinary artist and media
             anthropologist based in Berlin. Her work focuses on the
             intersections of new technologies and migration phenomena, and the
-            mediation of migration experiences. She is responsible for the
-            project idea and web development for this project.
+            mediation of migration experiences.
           </span>
           <br />
           <br />
@@ -43,10 +43,11 @@ export default function About() {
           <span className="teammates-names" style={{ fontWeight: "bold" }}>Nuno Moreira (UX Research) </span>
           <br />
           <span className="description">
-            is a Portuguese architect based in Berlin interested in bringing the
-            Human-Centered Design approach to the Digital World. He is
-            responsible for the User Experience and the Interface Design for
-            this project.
+            is a Portuguese architect and UX Designer based in Berlin interested in bringing a
+            human-centered design approach to the digital world. He has worked on this project
+            since the first prototype as a UX Designer. Currently, he is responsible for research
+            from a user-centric perspective, which involves understanding both personal processes
+            and communal forms of exchange created through the platform.
           </span>
           <br />
           <br />
@@ -56,8 +57,8 @@ export default function About() {
             is a multidisciplinary Iranian artist and Expressive Arts therapist based in Potsdam, Germany.
             Her art-based research is focused on investigating new forms of interconnection and belonging
             at the bridges of the online and offline worlds by utilizing the transformational and curative
-            powers of art and art processes. She is in charge of the research design for this project,
-            connecting digital and analog processes.
+            powers of art and art processes. She is responsible for the research design in this project,
+            connecting new digital tools with traditional Expressive-Arts healing processes.
           </span>
           <br />
           <br />
@@ -69,13 +70,28 @@ export default function About() {
             She believes that positive social changes occur while strengthening human connection without denying
             personal uniqueness. Since 2020 she has facilitated dance- therapy workshops for migrant female,
             trans female and non binary people, delving into deeper themes and commonalities amongst
-            participants.
+            participants. She is the workshop lead for this project, and responsible for identifying core migration themes.
           </span>
+          <br />
+          <br />
+          <span>OTHER CONTRIBUTORS</span>
+          <br />
+          <br />
+          <span className="teammates-names" style={{ fontWeight: "bold" }}>Cristian Checcanin (Graphic Design)</span>
+          <br />
+          <span>
+            Cristian Checcanin is a graphic designer from Columbia, Argentina and Italy. He is currently based in Riyadh, Saudi Arabia
+            and has also lived and worked in Hong Kong as a graphic designer. He has been involved to this project since the
+            ideation phase, through early feedback and helping to create the name. He worked on the graphic layout of the interface,
+            functional buttons and logo design. Cristian is passionate about bringing ideas to life through design, and uses the principle
+            and philosophy of simplicity for his approach.
+          </span>
+          <br />
           <br />
           <br />
           <span className="description">
             <i>Phase 1 of this project was developed in the context of Techlabs Berlin.
-              Phase 2 is supported by Prototype Fund, Round 9 (Open Knowledge Foundation Germany and the Federal Ministry of Education and Research (BMBF))</i>
+              Phase 2 is supported by Prototype Fund (Open Knowledge Foundation Germany & the Federal Ministry of Education and Research (BMBF))</i>
           </span>
         </Typography>
       </p>
