@@ -191,7 +191,7 @@ export default function Mask() {
     }
 
     const showShape = () => {
-        setShapeVisibility(true);
+        setShapeVisibility(!shapeVisibility);
     }
 
     if (canvasImage) {
@@ -254,7 +254,9 @@ export default function Mask() {
                             }
 
                             <br />
-                            <Button onClick={showShape}><VisibilitySharpIcon fontsize="medium" /></Button>
+                            <Button onClick={showShape}>
+                                {shapeVisibility ? <VisibilityOffIcon fontsize="medium" /> : <VisibilitySharpIcon fontsize="medium" />}
+                            </Button>
                             <br />
                             <ThemeProvider theme={theme}>
                                 <Typography variant="h6" color="primary">

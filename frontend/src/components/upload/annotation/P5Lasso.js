@@ -14,6 +14,7 @@ import CheckMark from './checkmark/CheckMark.png';
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import VisibilitySharpIcon from '@material-ui/icons/VisibilitySharp';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -179,7 +180,7 @@ export default function P5Lasso() {
   }
 
   const showShape = () => {
-    setShapeVisibility(true);
+    setShapeVisibility(!shapeVisibility);
   }
 
   if (canvasImage) {
@@ -250,7 +251,9 @@ export default function P5Lasso() {
               }
 
               <br />
-              <Button onClick={showShape}><VisibilitySharpIcon fontsize="medium" /></Button>
+              <Button onClick={showShape}>
+                {shapeVisibility ? <VisibilityOffIcon fontsize="medium" /> : <VisibilitySharpIcon fontsize="medium" />}
+              </Button>
               <br />
               <ThemeProvider theme={theme}>
                 <Typography variant="h6" color="primary">
