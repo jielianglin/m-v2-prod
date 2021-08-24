@@ -1,12 +1,10 @@
 import React from "react";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
 
 
 export default function About() {
   return (
-    <div>
+    <div style={{ padding: "100px" }}>
 
       <p className="team">
 
@@ -26,6 +24,8 @@ export default function About() {
             businesses, policies and beyond.
 
           </span>
+          <br />
+          <br />
           <span className="teammates-names" style={{ fontWeight: "bold" }}> Jie Liang Lin (Project Lead & Developer)</span>
           <br />
           <span className="description">
