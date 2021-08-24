@@ -15,7 +15,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
-import MatchBar from "./MatchBar";
+import Carousel from 'react-material-ui-carousel';
+
+import MatchBar from "./Matchbar";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -25,16 +27,6 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         backgroundColor: 'transparent',
     },
-}));
-
-const DialogContent = withStyles((theme) => ({
-    root: {
-        padding: theme.spacing(2),
-        backgroundColor: "#E6DAC8"
-    },
-}))(MuiDialogContent);
-
-const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -47,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
         height: 450,
     },
 }));
+
+const DialogContent = withStyles((theme) => ({
+    root: {
+        padding: theme.spacing(2),
+        backgroundColor: "#E6DAC8"
+    },
+}))(MuiDialogContent);
 
 const styles = (theme) => ({
     root: {
@@ -82,13 +81,6 @@ const DialogTitle = withStyles(styles)((props) => {
     );
 });
 
-const DialogContent = withStyles((theme) => ({
-    root: {
-        padding: theme.spacing(2),
-        backgroundColor: "#E6DAC8"
-    },
-}))(MuiDialogContent);
-
 export default function Chart() {
     const [open, setOpen] = React.useState(false);
     const classes = useStyles();
@@ -97,12 +89,14 @@ export default function Chart() {
     const [graph, setGraph] = React.useState({ nodes: [], links: [] });
     const [imagePreview, setImagePreview] = React.useState([]);
     const [results, setResults] = React.useState([]);
-    const [gallery, setGallery] = React.useState(true);
+    const [gallery, setGallery] = React.useState(false);
     const [carousel, setCarousel] = React.useState(false);
 
-    const showGallery = () => {
+    const showDialog = () => {
         setOpen(true);
+        setGallery(!gallery)
     }
+
     const handleClose = () => {
         setOpen(false);
 
@@ -124,13 +118,9 @@ export default function Chart() {
         return color;
     }
 
-    const showGallery = () => {
-        setGallery(true);
-    }
-
     const onEvents = {
         'mouseMove': showPopover,
-        'click': showGallery
+        'click': showDialog
     }
 
     useEffect(() => {
@@ -175,15 +165,15 @@ export default function Chart() {
         ],
     };
     const showCarousel = (e) => {
-        setGallery(false);
+        setGallery(!gallery);
         // setSlidePosition(e.target.id);
-        setCarousel(true);
-
+        setCarousel(!carousel);
     }
     const showGallery = () => {
-        setCarousel(false);
-        setGallery(true);
+        setCarousel(!carousel);
+        setGallery(!gallery);
     }
+
     return (
         <div>
             <div className="eCharts">
@@ -222,9 +212,9 @@ export default function Chart() {
                             width="110px" alt=""
                             style={{
                                 borderRadius: "3px",
-                                onMouseLeave={ closePopover }
                             }}
-                            alt="" />
+                            onMouseLeave={closePopover}
+                        />
                     </div>
                 </Popover>
             </div>
@@ -233,7 +223,6 @@ export default function Chart() {
                     onClose={handleClose}
                     aria-labelledby="simple-dialog-title"
                     open={open}
-
                     maxWidth="md"
                     fullWidth={true}
                 >
@@ -249,9 +238,9 @@ export default function Chart() {
                             <div className="gallery">
                                 <div className={classes.root}>
                                     <ImageList rowHeight={160} className={classes.imageList} cols={3}>
-                                        {results.map((image) => (
-                                            <ImageListItem key={image.id} cols={image.cols || 1} >
-                                                <img src={image.id} alt="" maxHeight="100px"
+                                        {results.map((item) => (
+                                            <ImageListItem key={item.id} cols={item.cols || 1} >
+                                                <img src={item.id} alt="" maxHeight="100px"
                                                     onClick={showCarousel}
                                                 />
                                             </ImageListItem>
@@ -262,12 +251,12 @@ export default function Chart() {
                         )}
                         {carousel && (
                             <Carousel>
-                                {results.map((image) => (
+                                {results.map((item) => (
                                     <div className="carouselResults">
-                                        <Typography className="mtag-label"> {image.caption}
+                                        <Typography className="mtag-label"> {item.caption}
                                         </Typography>
-                                        <div key={image.id} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
-                                            <img id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                                        <div key={item.id} cols={item.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
+                                            <img id={item.id} src={item.src} alt="" maxHeight="100px" onClick={showGallery}
                                             />
                                         </div>
 
@@ -301,7 +290,7 @@ export default function Chart() {
                                             </div>
 
                                             <div style={{ display: "block", textAlign: "center" }}>
-                                                <Typography className="ai_tags"> ImageNet Tags:
+                                                <Typography className="ai_tags"> AI Tags:
                                                 </Typography>
                                             </div>
                                             <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>

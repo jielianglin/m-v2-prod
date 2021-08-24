@@ -120,7 +120,7 @@ class Visual extends React.Component {
               retina_detect: true
             }} />
         </div>
-        <div className="echarts" style={{ zLayer: 2 }}><Echarts /></div>
+        <div className="echarts" style={{ borderRadius: "10px", zLayer: 2 }}><Echarts /></div>
       </div>
     )
   }

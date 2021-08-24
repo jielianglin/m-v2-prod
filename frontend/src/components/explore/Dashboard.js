@@ -21,11 +21,11 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import Carousel from 'react-material-ui-carousel'
 
-const images = [
-    { id: 1, src: `${image1}`, tags: ["tag1", "tag2", "tag3"], caption: "Here is caption1", ai_tags: ["ai_tag1", "ai_tag2", "ai_tag3"] },
-    { id: 2, src: `${image2}`, tags: ["tag4", "tag5", "tag6"], caption: "Here is caption2", ai_tags: ["ai_tag4", "ai_tag5", "ai_tag6"] },
-    { id: 3, src: `${image3}`, tags: ["tag7", "tag8", "tag9"], caption: "Here is caption3", ai_tags: ["ai_tag7", "ai_tag8", "ai_tag9"] },
-]
+// const images = [
+//     { id: 1, src: `${image1}`, tags: ["tag1", "tag2", "tag3"], caption: "Here is caption1", ai_tags: ["ai_tag1", "ai_tag2", "ai_tag3"] },
+//     { id: 2, src: `${image2}`, tags: ["tag4", "tag5", "tag6"], caption: "Here is caption2", ai_tags: ["ai_tag4", "ai_tag5", "ai_tag6"] },
+//     { id: 3, src: `${image3}`, tags: ["tag7", "tag8", "tag9"], caption: "Here is caption3", ai_tags: ["ai_tag7", "ai_tag8", "ai_tag9"] },
+// ]
 
 const useStyles = makeStyles((theme) => ({
     root: {

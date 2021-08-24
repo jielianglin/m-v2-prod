@@ -21,7 +21,7 @@ import { createTheme } from "@material-ui/core/styles";
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 
-import MatchBar from "../../explore/MatchBar";
+import MatchBar from "../../explore/Matchbar";
 
 //popover styling
 const useStyles = makeStyles((theme) => ({
@@ -283,7 +283,7 @@ export default function CustomizedDialogs(props) {
                                         ))}
                                     </div>
                                     <div>
-                                        {item.ai_tags.map((aiitem) => {
+                                        {returnAITags.map((aiitem) => {
                                             return (
                                                 <MatchBar
                                                     match={parseFloat(aiitem.confidence)}

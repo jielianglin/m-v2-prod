@@ -35,9 +35,9 @@ export default function ColorSelector(props) {
   return (
     <div>
       <br />
-      <div style={{ position: 'absolute', left: '1000px', bottom: '350px', transform: 'rotate(90deg)' }}>
+      <div style={{ position: 'relative', justifyContent: 'center' }}>
         <CirclePicker
-          width="50%"
+          width="100%"
           colors={colors}
           color={color}
           circleSize={28}

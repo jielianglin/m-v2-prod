@@ -1,17 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Typography from "@material-ui/core/Typography";
 
-var slider;
-var diameter = 50;
-var smoothValue = 0.05;
-let img;
-let pg;
-var clearButton;
-var x = 0;
-var y = 0;
-var imgWidth;
-var imgHeight;
-
 
 export default function FileInput(props) {
 
@@ -50,7 +39,7 @@ export default function FileInput(props) {
 
     >
       <Typography variant="h2" style={{ color: "#000000" }}>
-        <div style={{ textAlign: "center", backgroundColor: "#E6DAC8", }}>
+        <div style={{ textAlign: "center", backgroundColor: "#FFFFFF", }}>
           <br />
           click
           <br />

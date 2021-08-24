@@ -42,7 +42,7 @@ export default function FileInput(props) {
           }}>
 
           <Typography variant="h2" style={{ color: "#2B4466" }}>
-            <div style={{ textAlign: "center", backgroundColor: "#E6DAC8", }}>
+            <div style={{ textAlign: "center", backgroundColor: "#FFFFFF", }}>
               <br />
               click
               <br />

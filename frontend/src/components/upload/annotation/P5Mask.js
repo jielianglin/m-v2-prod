@@ -14,13 +14,14 @@ import CheckMark from './checkmark/CheckMark.png';
 import { Typography, Chip, Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import VisibilitySharpIcon from '@material-ui/icons/VisibilitySharp';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 
 import { ThemeProvider } from "@material-ui/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { createTheme } from "@material-ui/core/styles";
 
-import MatchBar from "../../explore/MatchBar";
+import MatchBar from "../../explore/Matchbar";
 
 var slider;
 var checkButton;
@@ -85,13 +86,13 @@ export default function Mask() {
             'margin: 10px; width: 50px; height: 50px'
         )
 
-        checkButton.position(100, 100);
+        checkButton.position(100, 200);
         checkButton.mousePressed(setFiles);
 
         clearButton = p5.createImg(`${EraserIcon}`).style(
             'margin: 10px; width: 50px; height: 50px'
         )
-        clearButton.position(1175, 500);
+        clearButton.position(100, 300);
         clearButton.mousePressed(resetSketch);
 
         slider = p5.createSlider(10, 100, 50, 10);
@@ -198,7 +199,7 @@ export default function Mask() {
         return (
             <div>
                 <br />
-                <div style={{ backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
+                <div style={{ backgroundColor: "#FFFFFF", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
                     <Caption enteredCaption={enteredCaption} />
                     <div>
                         <br />
@@ -226,7 +227,7 @@ export default function Mask() {
                 </div>
                 {
                     post ?
-                        <div className="returnForm">
+                        <div className="returnForm" style={{ backgroundColor: "#FFFFFF", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
                             < img
                                 style={{
                                     display: "block",
@@ -273,15 +274,13 @@ export default function Mask() {
                                 <span className="tags-return">
                                     <Typography color="primary"> Your Tags: </Typography>
                                     {returnTags.map((item) => (
-                                        <Chip className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }}
-
-                                            className="returned-tags-chip" avatar={
-                                                <Avatar style={{ color: "#B272CE" }}>
-                                                    <div style={{ color: "#FFFFFF" }}>
-                                                        #
-                                                    </div>
-                                                </Avatar>
-                                            }
+                                        <Chip className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }} avatar={
+                                            <Avatar style={{ color: "#B272CE" }}>
+                                                <div style={{ color: "#FFFFFF" }}>
+                                                    #
+                                                </div>
+                                            </Avatar>
+                                        }
                                             key={item.id}
                                             label={item.tag}
                                             variant="outlined"
@@ -313,7 +312,7 @@ export default function Mask() {
                                         ))}
                                     </div>
                                     <div>
-                                        {item.ai_tags.map((aiitem) => {
+                                        {returnAITags.map((aiitem) => {
                                             return (
                                                 <MatchBar
                                                     match={parseFloat(aiitem.confidence)}

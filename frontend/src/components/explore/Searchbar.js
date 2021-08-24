@@ -14,7 +14,7 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import { withStyles } from "@material-ui/core/styles";
 
-import MatchBar from "./MatchBar";
+import MatchBar from "./Matchbar";
 
 // import image1 from './Gallery/image1/image1.jpg';
 // import image2 from './Gallery/image2/image2.jpg';
@@ -183,12 +183,12 @@ export default function Search() {
             )}
             {carousel && (
               <Carousel>
-                {results.map((image) => (
+                {results.map((item) => (
                   <div className="carouselResults">
-                    <Typography className="mtag-label"> {image.caption}
+                    <Typography className="mtag-label"> {item.caption}
                     </Typography>
-                    <div key={image.id} cols={image.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
-                      <img id={image.id} src={image.src} alt="" maxHeight="100px" onClick={showGallery}
+                    <div key={item.id} cols={item.cols || 1} style={{ display: "flex", justifyContent: "center" }}>
+                      <img id={item.id} src={item.src} alt="" maxHeight="100px" onClick={showGallery}
                       />
                     </div>
 
@@ -223,7 +223,7 @@ export default function Search() {
                       </div>
 
                       <div style={{ display: "block", textAlign: "center" }}>
-                        <Typography className="ai_tags"> ImageNet Tags:
+                        <Typography className="ai_tags"> Tags from ImageNet AI:
                         </Typography>
                       </div>
                       <div className="AITAgs" style={{ display: "flex", justifyContent: "center", padding: "10px" }}>
@@ -237,7 +237,7 @@ export default function Search() {
                                 </div>
                               </Avatar>
                             }
-                              key={aittag.id}
+                              key={aitag.id}
                               label={aitag.tag}
                               component="a"
                               href="#chip"

@@ -14,7 +14,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { createTheme } from "@material-ui/core/styles";
 
-import MatchBar from "../../explore/MatchBar";
+import MatchBar from "../../explore/Matchbar";
 
 const theme = createTheme({
     palette: {
@@ -84,7 +84,7 @@ export default function WellBeingTool(props) {
     return (
         <div>
             {post ?
-                <div className="returnForm">
+                <div className="returnForm" style={{ backgroundColor: "#FFFFFF", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
                     < img
                         style={{
                             display: "block",
@@ -115,7 +115,7 @@ export default function WellBeingTool(props) {
                             {returnTags.map((item) => (
                                 <Chip
                                     className="chip1" style={{ color: "#B272CE", backgroundColor: "#FFFFFF" }}
-                                    className="return-tags"
+
                                     avatar={
                                         <Avatar style={{ color: "#B272CE" }}>
                                             <div style={{ color: "#FFFFFF" }}>
@@ -142,8 +142,7 @@ export default function WellBeingTool(props) {
                             {returnAITags.map((item) => (
                                 <Chip
                                     className="chip2" style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
-                                    style={{ color: "#000000", backgroundColor: "#FFFFFF" }}
-                                    className="return-ai-tags"
+
                                     avatar={
                                         <Avatar style={{ background: "#B5BCB4" }}>
                                             <div style={{ color: "#FFFFFF" }}>
@@ -156,7 +155,7 @@ export default function WellBeingTool(props) {
                                 />
                             ))}
                             <div>
-                                {item.ai_tags.map((aiitem) => {
+                                {returnAITags.map((aiitem) => {
                                     return (
                                         <MatchBar
                                             match={parseFloat(aiitem.confidence)}
@@ -174,7 +173,7 @@ export default function WellBeingTool(props) {
 
                 :
 
-                <div style={{ padding: "50px", backgroundColor: "#E6DAC8", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7" }}>
+                <div style={{ padding: "50px", backgroundColor: "#FFFFFF", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7" }}>
                     {forms && <Caption enteredCaption={enteredCaption} />}
                     <br />
                     <div >
