@@ -168,8 +168,7 @@ export default function Mask() {
         console.log(tags.join(","));
         formData.append("tags", tags.join(","));
         formData.append("caption", caption);
-        formData.append("file", image);
-        formData.append("shape", shape);
+        formData.append("files", [image, shape]);
 
         let response = {};
         try {
@@ -186,7 +185,7 @@ export default function Mask() {
         setReturnTags(response.data.tags);
         console.log(response.data.ai_tags);
         setReturnAITags(response.data.ai_tags || []);
-        setReturnShape(`http://localhost:8000/images/${response.data.shape.id}.png`);
+        setReturnShape(`http://localhost:8000/images/${response.data.shape}.png`);
         setPost(true);
         setProgress(false);
     }

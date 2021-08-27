@@ -156,8 +156,7 @@ export default function P5Lasso() {
     console.log(tags.join(","));
     formData.append("tags", tags.join(","));
     formData.append("caption", caption);
-    formData.append("file", image);
-    formData.append("shape", shape);
+    formData.append("files", [image, shape]);
 
     let response = {};
     try {
@@ -174,7 +173,7 @@ export default function P5Lasso() {
     setReturnTags(response.data.tags);
     console.log(response.data.ai_tags);
     setReturnAITags(response.data.ai_tags || []);
-    setReturnShape(`http://localhost:8000/images/${response.data.shape.id}.png`);
+    setReturnShape(`http://localhost:8000/images/${response.data.shape}.png`);
     setPost(true);
     setProgress(false);
   }
@@ -222,7 +221,14 @@ export default function P5Lasso() {
 
         {
           post ?
-            <div className="returnForm" style={{ backgroundColor: "#FFFFFF", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7", padding: "50px", maxWidth: "800px", height: "auto" }}>
+            <div className="returnForm" style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: "3px",
+              boxShadow: "3px 3px 3px #b4beb7",
+              padding: "50px",
+              maxWidth: "800px",
+              height: "auto"
+            }}>
               < img
                 style={{
                   display: "block",

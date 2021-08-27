@@ -65,7 +65,7 @@ export default function WellBeingTool(props) {
         console.log(tags);
         console.log(tags.join(","));
         let formData = new FormData();
-        formData.append("file", image);
+        formData.append("files", image);
         formData.append("tags", tags.join(","));
         formData.append("caption", caption);
         let response = await axios.post("http://localhost:8000/images", formData);
