@@ -1,10 +1,10 @@
 import React from "react";
 import UploadButtonSmall from "../../components/upload/uploadButton/UploadButtonSmall";
 import Searchbar from "../../components/explore/Searchbar";
-import Visual from "../../components/explore/Visual";
+// import Visual from "../../components/explore/Visual";
 // import Dashboard from "../../components/explore/Dashboard";
 
-
+import Echarts from "../../components/explore/Echarts";
 
 
 export default function ExploreMode() {
@@ -12,13 +12,23 @@ export default function ExploreMode() {
   return (
     <div style={{
       position: "absolute",
-      zIndex: 1,
+      // zIndex: 0,
       width: "100%",
       height: "auto",
       padding: "30px 10px 0px 10px",
       backgroundColor: "#E6DAC8",
       // borderRadius: "0px"
     }}>
+
+      {/* <div className="backgroundVisual"
+        style={{
+          zIndex: 1,
+          width: "99%",
+          height: "auto",
+          backgroundColor: "#E6DAC8",
+        }}>
+        <Visual />
+      </div> */}
 
       <div className="backgroundVisual"
         style={{
@@ -27,17 +37,18 @@ export default function ExploreMode() {
           height: "auto",
           backgroundColor: "#E6DAC8",
         }}>
-        <Visual />
+        <Echarts />
       </div>
+
       <div className="controlBar"
         style={{
-          position: "relative",
-          right: "5px",
+          // position: "relative",
+          // right: "5px",
           zIndex: 3,
-          backgroundColor: "#E6DAC8",
+          // backgroundColor: "#E6DAC8",
           // backgroundColor: "rgba(255, 255, 255, 0.5)",
-          width: "100%",
-          height: "20px"
+          // width: "100%",
+          // height: "20px"
         }}>
         <div className="row" style={{ justifyContent: "center", display: "flex", flexDirection: "row" }}>
           <Searchbar />

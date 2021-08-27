@@ -18,6 +18,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 import Carousel from 'react-material-ui-carousel';
 
 import MatchBar from "./Matchbar";
+// import Visual from "./Visual";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -176,9 +177,11 @@ export default function Chart() {
 
     return (
         <div>
+
             <div className="eCharts">
-                <ReactEcharts style={{ width: "100%", height: "100vh" }} option={option} onEvents={onEvents} />
+                <ReactEcharts style={{ width: "100%", height: "100vh", zIndex: "auto" }} option={option} onEvents={onEvents} />
             </div>
+            {/* <div> <Visual style={{ position: "absolute", zIndex: -1 }} /> </div> */}
             <div className="eChartsPreview">
                 <Popover
                     id="mouse-over-popover"

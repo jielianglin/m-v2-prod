@@ -7,7 +7,11 @@ class Visual extends React.Component {
   render() {
     return (
       <div>
-        <div className="particles" style={{ borderRadius: "10px", backgroundColor: "black", zIndex: 1 }}>
+        <div className="particles" style={{
+          borderRadius: "10px",
+          backgroundColor: "black",
+          // zIndex: -1
+        }}>
           <Particles
             params={{
               particles: {
@@ -120,7 +124,12 @@ class Visual extends React.Component {
               retina_detect: true
             }} />
         </div>
-        <div className="echarts" style={{ borderRadius: "10px", position: "fixed", zIndex: 2 }}><Echarts /></div>
+        {/* <div className="echarts" style={{
+          // position: "relative",
+          // zIndex: '2'
+        }}>
+          <Echarts />
+        </div> */}
       </div>
     )
   }
