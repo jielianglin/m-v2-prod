@@ -39,8 +39,8 @@ router = APIRouter()
 # L = LIST -> @router.get("")
 
 @router.post("", response_model=ReadImage)
-async def create_image(caption: str = Form(...), tags: str = Form(...), files: Optional[List[UploadFile]] = File(None),
-                       session: Session = Depends(get_session)) -> Image:
+def create_image(caption: str = Form(...), tags: str = Form(...), files: Optional[List[UploadFile]] = File(None),
+                 session: Session = Depends(get_session)) -> Image:
     """[summary]
 
     Args:
