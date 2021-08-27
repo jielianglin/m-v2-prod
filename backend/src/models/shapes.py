@@ -1,4 +1,4 @@
-from sqlalchemy import BigInteger, String, Column, Integer
+from sqlalchemy import BigInteger, String, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 from uuid import uuid4
@@ -13,5 +13,7 @@ class Shape(Base):
 
     # define fields
     id = Column(UUID, primary_key=True, default=uuid4)
+    image_id = Column(UUID, ForeignKey("images.id"),
+                      primary_key=True, default=uuid4)
 
     # define relationships

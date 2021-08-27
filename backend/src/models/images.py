@@ -18,8 +18,8 @@ class Image(Base):
     # define fields
     id = Column(UUID, primary_key=True, default=uuid4)
     caption = Column(String)
-    shapes_id = Column(UUID, ForeignKey("shapes.id"), default=uuid4)
 
     # define relationships
     tags = relationship("Tag", secondary=ImageTag.__table__)
     ai_tags = relationship("AITag")
+    shape = relationship("Shape")
