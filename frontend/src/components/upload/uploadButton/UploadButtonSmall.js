@@ -160,16 +160,17 @@ export default function CustomizedDialogs(props) {
 
     return (
         <div>
-            <Button
+            <IconButton
                 className="upload-button"
                 onClick={handleClickOpen}
-                onMouseEnter={showPopover}
-                onMouseLeave={closePopover}
+                // onMouseEnter={showPopover}
+                // onMouseLeave={closePopover}
+                size="small"
             >
-                <div style={{ position: "relative", left: "-15px", top: "-9px" }}>
+                <div>
                     <img src={UploadIMG} alt="upload" width="90px" />
                 </div>
-            </Button>
+            </IconButton>
             <Popover
                 id="mouse-over-popover"
                 className={classes.popover}
@@ -190,8 +191,8 @@ export default function CustomizedDialogs(props) {
                 onClose={closePopover}
                 disableRestoreFocus
             >
-                <Typography variant='h6'>
-                    <Chip label="upload" />
+                <Typography variant='h6' style={{ color: "#B272CE" }}>
+                    Upload
                 </Typography>
             </Popover>
             <Dialog
@@ -326,9 +327,7 @@ export default function CustomizedDialogs(props) {
                                     {progress && <CircularProgress />}
                                 </ThemeProvider>
                             </div>
-
                         </div>
-
                     }
                 </DialogContent>
             </Dialog>

@@ -33,7 +33,7 @@ export default function SolidarityIconText() {
           </Typography>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button className="homeUploadButton" onClick={changeState}>
+          <Button className="solidarityUploadButton" onClick={changeState}>
             <img src={UploadIMG} width="110px" alt="" />
           </Button>
         </div>

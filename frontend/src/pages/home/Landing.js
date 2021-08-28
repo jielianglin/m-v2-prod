@@ -50,7 +50,7 @@ function shuffle(arra1) {
 
 export default function Gallery() {
   const classes = useStyles();
-  const showAnimation = useIntro();
+  // const showAnimation = useIntro();
   const [galleryMode, exploreMode] = React.useState(false);
   const [list, setList] = React.useState([]);
   const [toggle, setToggle] = React.useState(false);
@@ -98,11 +98,11 @@ export default function Gallery() {
 
   useEffect(() => {
     let seconds;
-    if (showAnimation === true) {
-      seconds = 8000
-    } else {
-      seconds = 0
-    }
+    // if (showAnimation === true) {
+    //   seconds = 3000
+    // } else {
+    seconds = 1000
+    // }
 
     const timer = setTimeout(() => {
       setToggle(true);
@@ -128,12 +128,12 @@ export default function Gallery() {
 
           return (
             <div >
-              {showAnimation ? (
+              {/* {showAnimation ? (
                 <div >
                   <div className="desertVisualisation" style={{ position: "absolute", zIndex: 1 }}>
                     <DesertVisualisation />
                   </div>
-                  <div className="IntroText" style={{ position: "absolute", zIndex: 2 }}>
+                  <div className="IntroText" style={{ position: "absolute", zIndex: 1 }}>
                     <br />
                     <IntroText />
                   </div>
@@ -174,56 +174,54 @@ export default function Gallery() {
                   </div>
                 </div>
               ) :
-
-                (<div>
-                  <div style={{ zIndex: 1, backgroundColor: "#E6DAC8" }}>
-                    <div className="desertVisualisation" style={{ position: "absolute", zIndex: 2 }}>
-                      <DesertVisualisation />
-                    </div>
-                    <div className="iconGallery"
-                      style={{
-                        position: "absolute",
-                        left: "50%",
-                        marginLeft: "-400px",
-                        zIndex: 3
-
-                      }} >
-                      <br />
-                      <animated.div style={props}>
-                        <div className={classes.root}>
-                          <Box
-                            display="flex"
-                            flexDirection="row"
-                            flexWrap="wrap"
-                            justifyContent="center"
-                            alignItems="center"
-                            maxWidth="800px"
-                            minWidth="100px"
-                            margin="0 auto"
-                          >
-                            <Grid
-                              container
-                              display="flex"
-                              flexDirection="column"
-                              justify="center"
-                              alignItems="center"
-                              spacing={10}
-                            >
-                              {list}
-                            </Grid>
-                          </Box>
-                        </div>
-                      </animated.div>
-                    </div>
-                  </div>
+                (<div> */}
+              <div style={{ zIndex: 1, backgroundColor: "#E6DAC8" }}>
+                <div className="desertVisualisation" style={{ position: "absolute", zIndex: 2 }}>
+                  <DesertVisualisation />
                 </div>
-                )}
-
+                <div className="iconGallery"
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    marginLeft: "-400px",
+                    zIndex: 3
+                  }} >
+                  <br />
+                  <animated.div style={props}>
+                    <div className={classes.root}>
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        flexWrap="wrap"
+                        justifyContent="center"
+                        alignItems="center"
+                        maxWidth="800px"
+                        minWidth="100px"
+                        margin="0 auto"
+                      >
+                        <Grid
+                          container
+                          display="flex"
+                          flexDirection="column"
+                          justify="center"
+                          alignItems="center"
+                          spacing={10}
+                        >
+                          {list}
+                        </Grid>
+                      </Box>
+                    </div>
+                  </animated.div>
+                </div>
+              </div>
             </div>
-
-          );
+          )
         }
+
+        //   </div>
+        // );
       }
     }
   }
 }
+// }

@@ -63,8 +63,8 @@ export default function ExploreButton(props) {
         onClose={closePopover}
         disableRestoreFocus
       >
-        <Typography variant='h6'>
-          <Chip label="explore" />
+        <Typography variant='h6' style={{ color: "#B272CE" }}>
+          Explore
         </Typography>
       </Popover>
     </div>

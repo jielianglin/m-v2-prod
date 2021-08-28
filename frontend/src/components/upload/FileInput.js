@@ -33,19 +33,22 @@ export default function FileInput(props) {
       style={{
         width: "100%",
         height: "400px",
-
         color: "black",
+        borderRadius: "3px",
+        boxShadow: "3px 3px 3px #b4beb7",
+        padding: "50px",
+        backgroundColor: "#FFFFFF"
       }}
 
     >
       <Typography variant="h2" style={{ color: "#000000" }}>
-        <div style={{ textAlign: "center", backgroundColor: "#FFFFFF", }}>
-          <br />
+        <div style={{ textAlign: "center", backgroundColor: "#FFFFFF", padding: "50px 50px 50px 50px" }}>
           click
           <br />
           +
           <br />
           upload
+          <br />
         </div>
       </Typography>
       <img

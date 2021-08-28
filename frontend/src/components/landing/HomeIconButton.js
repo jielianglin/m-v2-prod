@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 // import Button from "@material-ui/core/Button";
 import homeIcon from "./icons/homeIcon/homeIcon.png";
 import Popover from "@material-ui/core/Popover";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Chip from "@material-ui/core/Chip";
 import Avatar from '@material-ui/core/Avatar';
 
@@ -35,6 +35,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'transparent',
   },
 }));
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#B272CE',
+      dark: '#B272CE'
+    },
+    // secondary: {
+    //     main: '#f44336',
+    // },
+  },
+});
 
 export default function HomeIconButton(props) {
   // const [homeText, showHomeText] = React.useState(false);
@@ -115,7 +127,17 @@ export default function HomeIconButton(props) {
         disableRestoreFocus
       >
         <Typography variant='h6'>
-          <Chip avatar={<Avatar>#</Avatar>} label="Home" />
+          <ThemeProvider theme={theme}>
+            <Chip variant="outlined" color="primary" avatar={
+              <Avatar>
+                <div style={{ color: "#E6DAC8" }}>
+                  #
+                </div>
+              </Avatar>
+            }
+              label="Home"
+            />
+          </ThemeProvider>
         </Typography>
       </Popover>
     </div>

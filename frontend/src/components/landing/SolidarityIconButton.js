@@ -7,6 +7,8 @@ import Popover from "@material-ui/core/Popover";
 // import Box from '@material-ui/core/Box';
 import Chip from "@material-ui/core/Chip";
 import Avatar from '@material-ui/core/Avatar';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
 
 // import Paper from '@material-ui/core/Paper';
 // import Typography from '@material-ui/core/Typography';
@@ -27,7 +29,22 @@ import Avatar from '@material-ui/core/Avatar';
 //     },
 // }));
 
+
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#B272CE',
+            dark: '#B272CE'
+        },
+        // secondary: {
+        //     main: '#f44336',
+        // },
+    },
+});
+
 const useStyles = makeStyles((theme) => ({
+
     popover: {
         pointerEvents: 'none',
     },
@@ -36,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'transparent',
     },
 }));
+
 
 export default function HomeIconButton(props) {
     // const [solidarityText, showSolidarityText] = React.useState(false);
@@ -120,7 +138,15 @@ export default function HomeIconButton(props) {
                 disableRestoreFocus
             >
                 <Typography fontweight='fontWeightLight' variant='h6'>
-                    <Chip avatar={<Avatar>#</Avatar>} label="Solidarity" />
+                    <ThemeProvider theme={theme} >
+                        <Chip variant="outlined" color="primary"
+                            avatar={<Avatar>
+                                <div style={{ color: "#E6DAC8" }}>
+                                    #
+                                </div>
+                            </Avatar>}
+                            label="Solidarity" />
+                    </ThemeProvider>
                 </Typography>
             </Popover>
         </div>

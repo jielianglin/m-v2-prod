@@ -1,8 +1,8 @@
 import React from "react";
 import UploadButtonSmall from "../../components/upload/uploadButton/UploadButtonSmall";
 import Searchbar from "../../components/explore/Searchbar";
-// import Visual from "../../components/explore/Visual";
-// import Dashboard from "../../components/explore/Dashboard";
+import Visual from "../../components/explore/Visual";
+import Dashboard from "../../components/explore/Dashboard";
 
 import Echarts from "../../components/explore/Echarts";
 
@@ -12,7 +12,7 @@ export default function ExploreMode() {
   return (
     <div style={{
       position: "absolute",
-      // zIndex: 0,
+      zIndex: 0,
       width: "100%",
       height: "auto",
       padding: "30px 10px 0px 10px",
@@ -20,17 +20,18 @@ export default function ExploreMode() {
       // borderRadius: "0px"
     }}>
 
-      {/* <div className="backgroundVisual"
+      <div className="backgroundVisual"
         style={{
           zIndex: 1,
           width: "99%",
           height: "auto",
           backgroundColor: "#E6DAC8",
+          position: "relative",
         }}>
         <Visual />
-      </div> */}
+      </div>
 
-      <div className="backgroundVisual"
+      {/* <div className="backgroundVisual"
         style={{
           zIndex: 2,
           width: "99%",
@@ -38,7 +39,7 @@ export default function ExploreMode() {
           backgroundColor: "#E6DAC8",
         }}>
         <Echarts />
-      </div>
+      </div> */}
 
       <div className="controlBar"
         style={{
@@ -54,14 +55,13 @@ export default function ExploreMode() {
           <Searchbar />
         </div>
         <br />
-        <div className="row" style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+        <div className="row" style={{ display: "flex", flexDirection: "row", justifyContent: "center", position: "relative", left: "-5px" }}>
 
-          {/* 
           <div style={{}}>
             <Dashboard />
-          </div> */}
+          </div>
 
-          <div style={{}}>
+          <div style={{ position: "relative", top: "-5px" }}>
             <UploadButtonSmall />
           </div>
         </div>

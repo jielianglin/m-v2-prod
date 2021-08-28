@@ -117,6 +117,7 @@ export default function About() {
           Yoohna Kim<br />
           Michael Kreil<br />
           Julia Manek<br />
+          Ana Alvarez Monge (Migrapreneurs)<br />
           Prototype Fund Management Team <br />
           Or Safarti<br />
           Joanna Sleigh<br />

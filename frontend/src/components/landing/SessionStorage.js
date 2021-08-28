@@ -6,7 +6,9 @@ const useIntro = () => {
     const currTimestamp = Date.now();
     const timestamp = JSON.parse(storage.getItem('timestamp') || '1000');
 
-    const timeLimit = 2 * 60 * 60 * 1000; // 2 hours
+    // const timeLimit = 2 * 60 * 60 * 1000; // 2 hours
+
+    const timeLimit = 60 * 1000; // 1 min
 
     const hasTimePassed = currTimestamp - timestamp > timeLimit;
 

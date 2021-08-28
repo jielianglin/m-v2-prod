@@ -235,7 +235,7 @@ export default function P5Lasso() {
                   margin: "0 auto",
                   height: "50%",
                   borderRadius: "5px",
-                  zLayer: 1,
+                  zIndex: 1,
                 }}
                 className="returned-image"
                 src={src}
@@ -248,7 +248,7 @@ export default function P5Lasso() {
                     margin: "0 auto",
                     height: "50%",
                     borderRadius: "5px",
-                    zLayer: 2,
+                    zIndex: 2,
                   }}
                   className="returned-shape"
                   src={returnShape}

@@ -193,8 +193,8 @@ export default function CustomizedDialogs(props) {
         onClose={closePopover}
         disableRestoreFocus
       >
-        <Typography variant='h6'>
-          <Chip label="upload" />
+        <Typography variant='h6' style={{ color: "#B272CE" }}>
+          Upload
         </Typography>
       </Popover>
 

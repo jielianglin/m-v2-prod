@@ -225,13 +225,16 @@ export default function Login() {
                                 onChange={handleRePassword}
                             />
                         </div>
+                        <br />
+                        <br />
+                        <br />
                         <div style={{
                             padding: "5px",
                             display: "flex",
                             justifyContent: "center"
                         }}>
                             <Button onClick={handleSubmit}>
-                                <Typography variant="h5"> Create Account </Typography>
+                                <Typography variant="h7"> Create Account </Typography>
                             </Button>
                         </div>
                         <div style={{
@@ -240,7 +243,7 @@ export default function Login() {
                             justifyContent: "center"
                         }}>
                             <Button onClick={handleLogin}>
-                                <Typography variant="h5"> Login to  Account</Typography>
+                                <Typography variant="h7"> Login to  Account</Typography>
                             </Button>
                         </div>
                     </div>

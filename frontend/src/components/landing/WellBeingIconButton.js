@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 // import Button from "@material-ui/core/Button";
 import wellBeingIcon from "./icons/wellBeingIcon/wellBeingIcon.png"
 import Popover from "@material-ui/core/Popover";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createTheme, ThemeProvider } from '@material-ui/core/styles';
 // import Box from '@material-ui/core/Box';
 import Chip from "@material-ui/core/Chip";
 import Avatar from '@material-ui/core/Avatar';
@@ -28,6 +28,9 @@ import Avatar from '@material-ui/core/Avatar';
 // }));
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        background: "#B272CE"
+    },
     popover: {
         pointerEvents: 'none',
     },
@@ -36,6 +39,18 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'transparent',
     },
 }));
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#B272CE',
+            dark: '#B272CE'
+        },
+        // secondary: {
+        //     main: '#f44336',
+        // },
+    },
+});
 
 export default function WellBeingIcon(props) {
     // const [wellBeingText, showWellBeingText] = React.useState(false);
@@ -117,8 +132,11 @@ export default function WellBeingIcon(props) {
                 disableRestoreFocus
             >
                 <Typography variant='h6'>
-                    <Chip avatar={<Avatar>#</Avatar>} label="Well-Being" />
+                    <ThemeProvider theme={theme}>
+                        <Chip variant="outlined" color="primary" avatar={<Avatar className={classes.root}><div style={{ color: "#E6DAC8" }}>#</div></Avatar>} label="Well-Being" />
+                    </ThemeProvider>
                 </Typography>
+
             </Popover>
         </div >
     )

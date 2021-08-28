@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Typography from "@material-ui/core/Typography";
 import { Transition } from "react-transition-group";
- 
+// import DesertVisualization from "./DesertVisualization";
+
 
 const defaultStyle = {
   transition: `transform 5000ms, opacity 5000ms ease`,
@@ -29,10 +30,10 @@ let questions = [
 ]
 
 const intro = questions.map((item, index) => (
-    <div key={index}>
-      {item}
-    </div>
-  ));
+  <div key={index}>
+    {item}
+  </div>
+));
 
 const randomQuestion = intro[Math.floor(Math.random() * intro.length)];
 
@@ -44,7 +45,7 @@ const Intro = ({ in: inProp }) => (
           ...defaultStyle,
           ...transitionStyles[state],
           textAlign: "center",
-          padding:"50px"
+          padding: "50px"
         }}
       >
         <Typography variant='h2'>
@@ -54,12 +55,12 @@ const Intro = ({ in: inProp }) => (
     )}
   </Transition>
 );
-export default function IntroText(){
-    const [mount, setMount] = React.useState(false);
-    const [seconds, setSeconds] = React.useState(5);
+export default function IntroText() {
+  const [mount, setMount] = React.useState(false);
+  const [seconds, setSeconds] = React.useState(5);
   const foo = React.useRef();
 
-      useEffect(() => {
+  useEffect(() => {
     setMount(true);
     function tick() {
       setSeconds((prevSeconds) => prevSeconds - 1);
@@ -74,4 +75,12 @@ export default function IntroText(){
     }
   }, [seconds]);
 
-return(<Intro in={mount} /> ); }
+  return (
+    <div>
+
+      {/* <DesertVisualization style={{ zIndex: 2 }} /> */}
+      <Intro in={mount} style={{ zIndex: 1 }} />
+
+    </div>
+  );
+}

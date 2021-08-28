@@ -233,6 +233,7 @@ export default function Mask() {
                                     margin: "0 auto",
                                     height: "50%",
                                     borderRadius: "5px",
+                                    zIndex: 1,
                                 }}
                                 className="returned-image"
                                 src={src}
@@ -245,7 +246,7 @@ export default function Mask() {
                                         margin: "0 auto",
                                         height: "50%",
                                         borderRadius: "5px",
-                                        zLayer: 2,
+                                        zIndex: 2,
                                     }}
                                     className="returned-shape"
                                     src={returnShape}
@@ -331,7 +332,9 @@ export default function Mask() {
             </div>)
     } else {
         return (
-            <FileInput selectImage={setCanvasImage} />
+            <div >
+                <FileInput selectImage={setCanvasImage} />
+            </div>
         );
     }
 }

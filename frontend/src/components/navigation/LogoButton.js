@@ -2,6 +2,8 @@ import React from 'react';
 import Button from "@material-ui/core/Button";
 import { NavLink } from "react-router-dom";
 import logo from "./logo/logo.png";
+import Typography from "@material-ui/core/Typography"
+import Box from '@material-ui/core/Box';
 
 export default function LogoButton() {
     const [reloadHome, setReloadHome] = React.useState(false);
@@ -20,10 +22,13 @@ export default function LogoButton() {
 
 
     return (
-        <NavLink to='/' isActive={reload}>
-            <Button onClick={handleClick}>
-                <img src={logo} width="50px" alt="" />
-            </Button>
+        <NavLink to='/' style={{ textDecoration: "none" }} isActive={reload}>
+            <div>
+                <Button onClick={handleClick} disableFocusRipple="true">
+                    <img src={logo} width="50px" alt="" />
+                    <Typography> <Box fontSize={30} fontWeight="fontWeightLight" m={2} onClick={handleClick}> MIGR-AI-TION  </Box> </Typography>
+                </Button>
+            </div>
         </NavLink>
     );
 }

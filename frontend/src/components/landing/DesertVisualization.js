@@ -16,8 +16,8 @@ export default function DesertVisualization() {
     // console.log(alpha_value);
     // p5.stroke(230, 218, 200, 90);
     // p5.fill(230, 218, 200, alpha_value);
-    p5.stroke(255, 250, 250, 90);
-    p5.fill(255, 250, 250, 4)
+    p5.stroke(255, 250, 250, 20);
+    p5.fill(255, 250, 250, 2)
     t = 0;
   }
 
