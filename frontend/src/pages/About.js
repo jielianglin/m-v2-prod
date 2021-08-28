@@ -95,10 +95,9 @@ export default function About() {
           <br />
           <span>
             Cristian Checcanin is a graphic designer from Columbia, Argentina and Italy. He is currently based in Riyadh, Saudi Arabia
-            and has also lived and worked in Hong Kong as a graphic designer. He has been involved to this project since the
+            and has also lived and worked in Hong Kong as a graphic designer. He has been involved in this project since the
             ideation phase, through early feedback and helping to create the name. He worked on the graphic layout of the interface,
-            functional buttons and logo design. Cristian is passionate about bringing ideas to life through design, and uses the principle
-            and philosophy of simplicity for his approach.
+            functional buttons and logo design. Cristian is passionate about bringing ideas to life through design, and uses the principle of simplicity for his approach.
           </span>
           <br />
           <br />
