@@ -30,7 +30,9 @@ export default function NavBar() {
       <div className={classes.root}>
         <AppBar position="static" elevation={0} style={{ backgroundColor: "#E6DAC8" }}>
           <Toolbar>
-            <LogoButton />
+            <div styles={{ position: "relative", top: "3px", width: "40px", height: "auto" }}>
+              <LogoButton />
+            </div>
             <Typography variant="h6" className={classes.title}></Typography>
             <UserLoginIcon />
             <MenuListComposition />

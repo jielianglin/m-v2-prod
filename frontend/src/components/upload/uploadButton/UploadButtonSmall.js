@@ -302,7 +302,7 @@ export default function CustomizedDialogs(props) {
 
                         :
 
-                        <div className="postForm">
+                        <div className="postForm" style={{ padding: "50px" }}>
                             {forms &&
                                 <Caption enteredCaption={enteredCaption} />}
 

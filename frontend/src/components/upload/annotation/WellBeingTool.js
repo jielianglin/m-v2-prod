@@ -174,6 +174,8 @@ export default function WellBeingTool(props) {
                 :
 
                 <div style={{ padding: "50px", backgroundColor: "#FFFFFF", borderRadius: "3px", boxShadow: "3px 3px 3px #b4beb7" }}>
+                    <br />
+                    <br />
                     {forms && <Caption enteredCaption={enteredCaption} />}
                     <br />
                     <div >

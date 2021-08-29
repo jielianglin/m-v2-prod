@@ -24,8 +24,8 @@ export default function LogoButton() {
     return (
         <NavLink to='/' style={{ textDecoration: "none" }} isActive={reload}>
             <div>
-                <Button onClick={handleClick} disableFocusRipple="true">
-                    <img src={logo} width="50px" alt="" />
+                <Button onClick={handleClick} disableFocusRipple >
+                    <img src={logo} width="40px" alt="" />
                     <Typography> <Box fontSize={30} fontWeight="fontWeightLight" m={2} onClick={handleClick}> MIGR-AI-TION  </Box> </Typography>
                 </Button>
             </div>
